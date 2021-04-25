@@ -1,0 +1,682 @@
+{
+	"activate": {
+		"title": "Activation",
+		"messages": {
+			"success": "<strong>Your user account has been activated.</strong> Please ",
+			"error": "<strong>Your user could not be activated.</strong> Please use the registration form to sign up."
+		}
+	},
+	"appSetting": {
+		"home": {
+			"title": "App Settings",
+			"createLabel": "Create a new App Setting",
+			"createOrEditLabel": "Create or edit a App Setting",
+			"search": "Search for App Setting"
+		},
+		"created": "A new App Setting is created with identifier {{ param }}",
+		"updated": "A App Setting is updated with identifier {{ param }}",
+		"deleted": "A App Setting is deleted with identifier {{ param }}",
+		"delete": {
+			"question": "Are you sure you want to delete App Setting {{ id }}?"
+		},
+		"detail": {
+			"title": "App Setting"
+		},
+		"notificationMails": "Notification Mails"
+	},
+	"audits": {
+		"title": "Audits",
+		"filter": {
+			"title": "Filter per date",
+			"from": "from",
+			"to": "to",
+			"button": {
+				"weeks": "Weeks",
+				"today": "today",
+				"clear": "clear",
+				"close": "close"
+			}
+		},
+		"table": {
+			"header": {
+				"principal": "User",
+				"date": "Date",
+				"status": "State",
+				"data": "Extra data"
+			},
+			"data": {
+				"remoteAddress": "Remote Address:"
+			}
+		}
+	},
+	"configuration": {
+		"title": "Configuration",
+		"filter": "Filter (by prefix)",
+		"table": {
+			"prefix": "Prefix",
+			"properties": "Properties"
+		}
+	},
+	"document": {
+		"home": {
+			"title": "Documents",
+			"createLabel": "Create a new Document",
+			"createOrEditLabel": "Create or edit a Document",
+			"search": "Search for Document"
+		},
+		"created": "A new Document is created with identifier {{ param }}",
+		"deleted": "A Document is deleted with identifier {{ param }}",
+		"delete": {
+			"question": "Are you sure you want to delete Document {{ id }}?"
+		},
+		"detail": {
+			"title": "Document"
+		},
+		"link": "Link",
+		"fileType": "File Type",
+		"capacity": "Capacity",
+		"updated": "Updated"
+	},
+	"error": {
+		"title": "Error page!",
+		"http": {
+			"400": "Bad request.",
+			"403": "You are not authorized to access this page.",
+			"405": "The HTTP verb you used is not supported for this URL.",
+			"500": "Internal server error."
+		},
+		"concurrencyFailure": "Another user modified this data at the same time as you. Your changes were rejected.",
+		"validation": "Validation error on the server.",
+		"internalServerError": "Internal server error",
+		"server.not.reachable": "Server not reachable",
+		"url.not.found": "Not found",
+		"NotNull": "Field {{ fieldName }} cannot be empty!",
+		"Size": "Field {{ fieldName }} does not meet min/max size requirements!",
+		"userexists": "Login name already used!",
+		"emailexists": "Email is already in use!",
+		"idexists": "A new {{ entityName }} cannot already have an ID",
+		"idnull": "Invalid ID"
+	},
+	"global": {
+		"browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
+		"menu": {
+			"dashboard": "Dashboard",
+			"home": "Home",
+			"entities": {
+				"main": "Entities",
+				"plant": "Plant",
+				"part": "Part",
+				"machine": "Machine",
+				"machineBag": "Machine Bag",
+				"partInBag": "Part In Bag",
+				"event": "Event",
+				"line": "Line",
+				"task": "Task",
+				"notification": "Notification",
+				"notificationEmail": "Notification Email",
+				"document": "Document",
+				"employee": "Employee",
+				"appSetting": "App Setting"
+			},
+			"account": {
+				"main": "Account",
+				"settings": "Settings",
+				"password": "Password",
+				"sessions": "Sessions",
+				"login": "Sign in",
+				"logout": "Sign out",
+				"register": "Register"
+			},
+			"admin": {
+				"main": "Administration",
+				"userManagement": "User management",
+				"tracker": "User tracker",
+				"metrics": "Metrics",
+				"health": "Health",
+				"configuration": "Configuration",
+				"logs": "Logs",
+				"audits": "Audits",
+				"apidocs": "API",
+				"database": "Database"
+			},
+			"language": "Language",
+			"role": "Role"
+		},
+		"form": {
+			"username": "Username",
+			"username.placeholder": "Your username",
+			"currentpassword": "Current password",
+			"currentpassword.placeholder": "Current password",
+			"newpassword": "New password",
+			"newpassword.placeholder": "New password",
+			"confirmpassword": "New password confirmation",
+			"confirmpassword.placeholder": "Confirm the new password",
+			"email": "Email",
+			"email.placeholder": "Your email"
+		},
+		"messages": {
+			"info": {
+				"authenticated": {
+					"prefix": "If you want to ",
+					"link": "sign in",
+					"suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
+				},
+				"register": {
+					"noaccount": "You don't have an account yet?",
+					"link": "Register a new account"
+				}
+			},
+			"error": {
+				"dontmatch": "The password and its confirmation do not match!",
+				"cannotverifyphonecode": "Cannot verify phone code now, please try later."
+			},
+			"warn": {
+				"confirmDelete": "Are you sure you want to delete this data?"
+			},
+			"validate": {
+				"newpassword": {
+					"required": "Your password is required.",
+					"minlength": "Your password is required to be at least 4 characters.",
+					"maxlength": "Your password cannot be longer than 50 characters.",
+					"strength": "Password strength:"
+				},
+				"confirmpassword": {
+					"required": "Your confirmation password is required.",
+					"minlength": "Your confirmation password is required to be at least 4 characters.",
+					"maxlength": "Your confirmation password cannot be longer than 50 characters."
+				},
+				"email": {
+					"required": "Your email is required.",
+					"invalid": "Your email is invalid.",
+					"minlength": "Your email is required to be at least 5 characters.",
+					"maxlength": "Your email cannot be longer than 50 characters."
+				},
+				"phoneCode": {
+					"notfound": "The phone code is not valid or not found.",
+					"expired": "The phone code is not valid or was expired.",
+					"notvalid": "The verification phone code is not valid."
+				}
+			}
+		},
+		"field": {
+			"id": "ID"
+		},
+		"ribbon": {
+			"dev": "Development"
+		},
+		"item-count": "Showing {{first}}-{{second}} of {{total}} items.",
+		"privatePolicy": "Private Policy",
+		"male": "Male",
+		"female": "Female",
+		"introPrivatePolicy": "By signing up for membership you have agreed to the",
+		"ourPrivatePolicy": "Our Private Policy",
+		"back": "Back",
+		"send": "Send",
+		"continue": "Continue",
+		"confirm": "Confirm",
+		"cancel": "Cancel",
+		"auto": "Auto",
+		"manual": "Manual",
+		"add": "Add",
+		"search": "Search",
+		"enterSearchKey": "Enter search key",
+		"show": "Show",
+		"entries": "entries",
+		"upload": "Upload",
+		"fullName": "Full name",
+		"gender": "Gender",
+		"birthday": "Birthday",
+		"avatar": "Profile photo",
+		"chooseAvatar": "Choose profile photo",
+		"button": "Save",
+		"dashboard": "Dashboard"
+	},
+	"language": {
+		"vi-VN": "Vietnamese",
+		"en-US": "English (US)"
+	},
+	"entity": {
+		"action": {
+			"addblob": "Add blob",
+			"addimage": "Add image",
+			"back": "Back",
+			"cancel": "Cancel",
+			"delete": "Delete",
+			"edit": "Edit",
+			"open": "Open",
+			"save": "Save",
+			"view": "View"
+		},
+		"detail": {
+			"field": "Field",
+			"value": "Value"
+		},
+		"delete": {
+			"title": "Confirm delete operation"
+		},
+		"validation": {
+			"required": "This field is required.",
+			"maxlength": "This field cannot be longer than {{ max }} characters.",
+			"min": "This field should be at least {{ min }}.",
+			"max": "This field cannot be more than {{ max }}.",
+			"minbytes": "This field should be at least {{ min }} bytes.",
+			"maxbytes": "This field cannot be more than {{ max }} bytes.",
+			"pattern": "This field should follow pattern for {{ pattern }}.",
+			"number": "This field should be a number.",
+			"datetimelocal": "This field should be a date and time.",
+			"patternLogin": "This field can only contain letters, digits and e-mail addresses.",
+			"invalidphone": "Phone is not valid",
+			"invalidformatphone": "Phone format and locale is not valid.",
+			"isMobilePhone": "%s must be a phone number",
+			"isValidPassword": "Password and confirm password are not match.",
+			"minLength": "%s must be longer than or equal to {{length}} characters",
+			"isEmail": "%s must be correct email format.",
+			"IsValidUser": "%s is not valid.",
+			"isValidVerificationPhoneCodeViaPhone": "The verification phone code is not valid.",
+			"isUserAlreadyExist": "%s already exists.",
+			"isNotEmpty": "%s cannot be empty.",
+			"isValidDate": "%s is not valid."
+		},
+		"messages": {
+			"fill": "Please fill out these fields"
+		},
+		"property": {
+			"phone": "Phone",
+			"password": "Password",
+			"email": "Email",
+			"confirmPassword": "Confirm password",
+			"code": "Code",
+			"newPassword": "New password",
+			"birthday":"Birthday"
+		}
+	},
+	"footer": "This is your footer",
+	"login": {
+		"title": "Sign in",
+		"form": {
+			"username": "Username",
+			"username.placeholder":"Your username",
+			"usernameOrEmail.placeholder": "Enter username or email",
+			"password": "Password",
+			"password.placeholder": "Your password",
+			"rememberme": "Remember me",
+			"button": "Sign in",
+			"account": "Account",
+			"buttonGoogle": "Sign in with Google",
+			"buttonFacebook": "Sign in with Facebook"
+		},
+		"messages": {
+			"error": {
+				"authentication": "<strong>Failed to sign in!</strong> Please check your credentials and try again.",
+				"notactivated": "<strong>Failed to sign in!</strong> Your credentials are not available and please verify your account <a href='%s'>here</a>.",
+				"forbidden": "You are not authorized to access this action."
+			},
+			"introduction": "Enter field to login into admin.",
+			"register":"Do not have an account ?"
+		},
+		"password": {
+			"forgot": "Forgot password?"
+		},
+		"backtologin": "Back to log in"
+	},
+	"logs": {
+		"title": "Logs",
+		"nbloggers": "There are {{ total }} loggers.",
+		"filter": "Filter",
+		"table": {
+			"name": "Name",
+			"level": "Level"
+		}
+	},
+	"notification": {
+		"home": {
+			"title": "Notifications",
+			"createLabel": "Create a new Notification",
+			"createOrEditLabel": "Create or edit a Notification",
+			"search": "Search for Notification"
+		},
+		"created": "A new Notification is created with identifier {{ param }}",
+		"updated": "A Notification is updated with identifier {{ param }}",
+		"deleted": "A Notification is deleted with identifier {{ param }}",
+		"delete": {
+			"question": "Are you sure you want to delete Notification {{ id }}?"
+		},
+		"detail": {
+			"title": "Notification"
+		},
+		"title": "Title",
+		"message": "Message",
+		"method": "Method",
+		"task": "Task",
+		"emails": "Emails"
+	},
+	"notificationEmail": {
+		"home": {
+			"title": "Notification Emails",
+			"createLabel": "Create a new Notification Email",
+			"createOrEditLabel": "Create or edit a Notification Email",
+			"search": "Search for Notification Email"
+		},
+		"created": "A new Notification Email is created with identifier {{ param }}",
+		"updated": "A Notification Email is updated with identifier {{ param }}",
+		"deleted": "A Notification Email is deleted with identifier {{ param }}",
+		"delete": {
+			"question": "Are you sure you want to delete Notification Email {{ id }}?"
+		},
+		"detail": {
+			"title": "Notification Email"
+		},
+		"email": "Email"
+	},
+	"password": {
+		"title": "Password for [<b>{{username}}</b>]",
+		"titleSetting": "Change password",
+		"form": {
+			"button": "Save"
+		},
+		"messages": {
+			"error": "<strong>An error has occurred!</strong> The password could not be changed.",
+			"success": "<strong>Password changed!</strong>"
+		}
+	},
+	"register": {
+		"title": "ACCOUNT REGISTRATION",
+		"titleActivated": "Account Activated.",
+		"form": {
+			"text": "Do not have account?",
+			"button": "Register",
+			"email": "Email",
+			"firstName": "First name *",
+			"lastName": "Last name *",
+			"fullName": "Full name *",
+			"phone": "Phone *",
+			"gender": "Gender",
+			"birthday": "Birthday",
+			"career": "Career",
+			"province": "Province",
+			"district": "District",
+			"ward": "Ward",
+			"address": "Address",
+			"submit": "Submit",
+			"buttonVerifyAgain": "Verify account again",
+			"password": "Password",
+			"confirmPassword": "Retype Password",
+			"continue": "Continue",
+			"enterCode": "Enter code",
+			"sendCodeAgain": "Send code again",
+			"day": "Day",
+			"month": "Month",
+			"year": "Year"
+		},
+		"messages": {
+			"validate": {
+				"login": {
+					"required": "Your username is required.",
+					"minlength": "Your username is required to be at least 1 character.",
+					"maxlength": "Your username cannot be longer than 50 characters.",
+					"pattern": "Your username can only contain letters and digits."
+				}
+			},
+			"infoCode1": "Verification code has been <b>sent again</b> to phone number %s",
+			"infoCode2": "Verification code has been sent to phone number %s",
+			"success": "<strong>Registration saved!</strong> Please check your email for confirmation.",
+			"successWithPhone": "Registration was completed with phone number <strong>%s</strong>!.",
+			"activated": "Hello %s,<br> Thank you, your email has been verified. Your account is now active.<br> Please use the link below to login to your account.<br> Thank you for choosing %s.",
+			"error": {
+				"fail": "<strong>Registration failed!</strong> Please try again later.",
+				"userexists": "<strong>Login name already registered!</strong> Please choose another one.",
+				"emailexists": "<strong>Email is already in use!</strong> Please choose another one."
+			},
+			"invalidkey": "Activation key is not valid or was expired.",
+			"invalid": "%s is not valid."
+		},
+		"email": {
+			"greeting": "Hello %s",
+			"limit": "within %s minutes.",
+			"thank": "Thanks, ",
+			"activation": {
+				"title": "Verify your e-mail to finish signing up for %s",
+				"content1": "Thank your for choosing %s!",
+				"content2": "Please confirm that %s is your e-mail address by use this link:"
+			}
+		},
+		"sms": {
+			"verificationCode": "Your verification phone code is %s"
+		}
+	},
+	"reset": {
+		"request": {
+			"title": "Reset your password",
+			"titleUpc": "RESET YOUR PASSWORD",
+			"form": {
+				"button": "Reset password",
+				"email": "Email",
+				"tryAnotherVerificationWay": "Try another verification way"
+			},
+			"messages": {
+				"info": "Enter the email address you used to register",
+				"success": "Please check your email %s to verify TNG account.",
+				"notfound": "<strong>Email address isn't registered!</strong> Please check and try again",
+				"invalidemail": "Email is not valid or does not exist.",
+				"invalidphone": "Phone number is not valid or does not exist.",
+				"invalidphone2": "Phone number is not valid or was limited.",
+				"infoCode2": "Verification code has been sent to phone number %s"
+			},
+			"email": {
+				"activation": {
+					"title": "reset.request.email.activation.title"
+				}
+			}
+		},
+		"finish": {
+			"title": "Reset password",
+			"titleUpc": "RESET PASSWORD",
+			"form": {
+				"text": "Please choose a new password to finish reset password.",
+				"button": "Validate new password",
+				"password": "New password *",
+				"confirmPassword": "Confirm password *",
+				"phone": "Phone *",
+				"verifyPhone": "Verify phone",
+				"verifyPhoneSentCode": "Verification code will be sent to above phone number with sms from The New Gym. Please use this code to reset password."
+			},
+			"messages": {
+				"info": "Choose a new password",
+				"success": "Your password has been reset.",
+				"keymissing": "The reset key is missing.",
+				"error": "Your password couldn't be reset. Remember a password request is only valid for 24 hours.",
+				"invalidcode": "Verification code is not valid or was expired.",
+				"invalidtoken": "Reset password request is not valid or was expired.",
+				"invalidnewpass": "Password is not valid, please try it again.",
+				"phonecannotempty": "Phone can not be empty."
+			}
+		},
+		"email": {
+			"greeting": "Hello %s,",
+			"limit": "within %s minutes.",
+			"thank": "Thanks, ",
+			"request": {
+				"title": "Verify your e-mail to finish reset password for %s",
+				"content1": "Thank your for choosing %s!",
+				"content2": "Please confirm that %s is your e-mail address reset password by use this link:"
+			}
+		},
+		"sms": {
+			"verificationCode": "Your verification code is %s in %s minutes"
+		}
+	},
+	"settings": {
+		"title": "User settings for [<b>{{username}}</b>]",
+		"form": {
+			"firstname": "First Name",
+			"firstname.placeholder": "Your first name",
+			"lastname": "Last Name",
+			"lastname.placeholder": "Your last name",
+			"language": "Language",
+			"button": "Save"
+		},
+		"messages": {
+			"error": {
+				"fail": "<strong>An error has occurred!</strong> Settings could not be saved.",
+				"emailexists": "<strong>Email is already in use!</strong> Please choose another one."
+			},
+			"success": "<strong>Settings saved!</strong>",
+			"validate": {
+				"firstname": {
+					"required": "Your first name is required.",
+					"minlength": "Your first name is required to be at least 1 character",
+					"maxlength": "Your first name cannot be longer than 50 characters"
+				},
+				"lastname": {
+					"required": "Your last name is required.",
+					"minlength": "Your last name is required to be at least 1 character",
+					"maxlength": "Your last name cannot be longer than 50 characters"
+				}
+			}
+		},
+		"profile": "Profile",
+		"general": "Setting"
+	},
+	"matTemplate": {
+		"menu": {
+			"title": "MAT templates"
+		}
+	},
+	"tracker": {
+		"title": "Real-time user activities",
+		"table": {
+			"userlogin": "User",
+			"ipaddress": "IP Address",
+			"userAgent": "User agent",
+			"page": "Current page",
+			"time": "Time"
+		}
+	},
+	"user": {
+		"title": "Account",
+		"createLabel": "Create a new account",
+		"updateLabel": "Update account",
+		"form": {
+			"fullName": "Full name",
+			"fullName.placeholder": "Enter full name",
+			"login": "Username",
+			"login.placeholder": "Enter username",
+			"firstName": "First name",
+			"lastName": "Last name",
+			"email": "Email",
+			"email.placeholder": "Enter email",
+			"address": "Address",
+			"address.placeholder": "Enter address",
+			"telephone": "Phone number",
+			"telephone.placeholder": "Enter phone number",
+			"role": "Role",
+			"role.placeholder": "Select role",
+			"country": "Country",
+			"country.placeholder": "Select country",
+			"city": "City",
+			"city.placeholder": "Select city",
+			"district": "District",
+			"district.placeholder": "Select district",
+			"ward": "Ward",
+			"ward.placeholder": "Select ward"
+		},
+		"home": {
+			"title": "Users",
+			"createLabel": "Create a new user",
+			"createOrEditLabel": "Create or edit a user"
+		},
+		"created": "A new user is created with identifier {{ param }}",
+		"updated": "An user is updated with identifier {{ param }}",
+		"deleted": "An user is deleted with identifier {{ param }}",
+		"delete": {
+			"question": "Are you sure you want to delete user {{ login }}?"
+		},
+		"detail": {
+			"title": "User"
+		},
+		"login": "Login",
+		"firstName": "First name",
+		"lastName": "Last name",
+		"email": "Email",
+		"activated": "Activated",
+		"deactivated": "Deactivated",
+		"profiles": "Profiles",
+		"langKey": "Language",
+		"createdBy": "Created by",
+		"createdDate": "Created date",
+		"lastModifiedBy": "Modified by",
+		"lastModifiedDate": "Modified date",
+		"columns": {
+			"id": "Id",
+			"login": "Login",
+			"firstName":"First Name",
+			"lastName": "Last Name",
+			"fullName": "Full Name",
+			"birthday": "Birthday",
+			"telephone": "Phone",
+			"phone": "Phone",
+			"status": "Status",
+			"role": "Role"
+		}
+	},
+	"equipment": {
+		"addNew": "Add new equipment",
+		"form": {
+			"customerId": "Customer ID",
+			"machineName": "Machine name",
+			"machineName.placeholder": "Enter machine name",
+			"block": "Block",
+			"block.placeholder": "Choose block",
+			"pond": "Shrimp pond",
+			"pond.placeholder": "Choose pond",
+			"equipment": "Equipment",
+			"equipment.placeholder": "Choose equipment",
+			"warehouse": "Warehouse",
+			"warehouse.placeholder": "Choose warehouse"
+		},
+		"messages": {
+			"turnonoffwarning": "Cannot control device in auto mode",
+			"turnonconfirm": "Are you sure you want to turn on machine %s?",
+			"turnoffconfirm": "Are you sure you want to turn off machine %s?"
+		},
+		"columns": {
+			"id": "Id",
+			"equipment": "Equipment name",
+			"machineName":"Machine name",
+			"status": "Status",
+			"statusOnOff": "On & off status",
+			"mode": "Mode",
+			"modifiedDate": "Modified date"
+		}
+	},
+	"role": {
+		"title": "Role",
+		"function": "Function",
+		"functionGroup": "Function Group",
+		"createLabel": "Create new role",
+		"updateLabel": "Update role",
+		"created": "A new role is created with identifier {{ param }}",
+		"updated": "An role is updated with identifier {{ param }}",
+		"deleted": "An role is deleted with identifier {{ param }}",
+		"delete": {
+			"question": "Are you sure you want to delete role {{ login }}?"
+		},
+		"form": {
+			"title": "Role",
+			"name": "Role Name",
+			"name.placeholder": "Enter role name",
+			"description": "Description",
+			"description.placeholder": "Enter description"
+		},
+		"createdBy": "Creator",
+		"createdDate": "Created Date",
+		"lastModifiedBy": "Modified By",
+		"lastModifiedDate": "Modified Date",
+		"columns": {
+			"id": "Id",
+			"name": "Role Name",
+			"label": "Role Name",
+			"description":"Description"
+		}
+	}
+}

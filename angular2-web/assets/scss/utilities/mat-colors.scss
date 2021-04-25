@@ -1,0 +1,27 @@
+.mat-bg-primary {
+    background-color: mat-color($mat-primary);
+    &.light {
+        background-color: mat-color($mat-primary, 100);
+    }
+}
+
+.mat-bg-white-primary {
+    background-color: mat-color($mat-primary, 50);
+}
+
+.mat-bg-light-primary {
+    background-color: mat-color($mat-primary, 100);
+}
+
+.mat-light-primary {
+   color: mat-color($mat-primary, 100);
+}
+
+.mat-light-3-warn {
+    color: mat-color($mat-warn, 300);
+ }
+
+
+ .mat-bg-basic {
+     background-color: $background-color;
+ };

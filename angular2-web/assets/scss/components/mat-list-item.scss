@@ -1,0 +1,31 @@
+.mat-list {
+  padding: 1px;
+}
+.mat-list .mat-list-item.mat-list-item-sm {
+    height: 38px;
+}
+.mat-list .mat-list-item.mat-list-item-sm {
+  .mat-list-item-content {
+    padding: 0px 0px 0px 8px; 
+  }
+}
+.mat-list {
+  .mat-list-item.mat-list-item-fit {
+    height: inherit;
+    .mat-list-item-content {
+      padding: 0px; 
+    }
+  }
+}
+.mat-list .mat-list-item:hover,
+.mat-list .mat-list-item:focus{
+  color: #333;
+//   background-color: mat-color($accent, 100) !important;
+  background: rgba(0,0,0,.04);
+  cursor: pointer;
+  border: 1px;
+}
+
+.mat-list .mat-list-item.active {
+  background-color: mat-color($mat-primary, 100) !important;
+}

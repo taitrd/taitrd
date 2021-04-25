@@ -1,0 +1,34 @@
+// Abstracts: variables, functions, mixins
+
+// Vendors: Bootstrap, jQuery...
+@import 'assets/css/fontawesome-all.css';
+@import '~angular-notifier/styles';
+@import 'assets/css/notifier.css';
+
+// Utilities
+@import 'assets/scss/utilities/mat-colors.scss';
+@import 'assets/scss/utilities/shadows.scss';
+@import 'assets/scss/utilities/mat-elevation.scss';
+
+// Components
+@import 'assets/scss/components/mat-button.scss';
+@import 'assets/scss/components/mat-icon.scss';
+@import 'assets/scss/components/mat-list-item.scss';
+@import 'assets/scss/components/mat-table.scss';
+@import 'assets/scss/components/mat-card.scss';
+@import 'assets/scss/components/mat-dialog.scss';
+@import 'assets/scss/components/mat-list-item';
+@import 'assets/scss/components/mat-tree.scss';
+@import 'assets/scss/components/mat-grid-tile.scss';
+@import 'assets/scss/components/mat-form.scss';
+@import 'assets/scss/components/mat-popover.scss';
+
+@import 'assets/scss/components/virtual-scroll.scss';
+@import 'assets/scss/components/tile-button.scss';
+@import 'assets/scss/components/shapes.scss';
+@import 'assets/scss/components/fullscreen.scss';
+@import 'assets/scss/components/scrollbar.scss';
+@import 'assets/scss/components/side-nav.scss';
+
+// Base
+@import 'assets/css/style.css';

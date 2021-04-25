@@ -1,0 +1,23 @@
+.mat-button {
+    &.mat-button-sm {
+        padding: 0 8px;
+        min-width: 16px;
+    }
+}
+
+.mat-icon-button {
+    &.mat-icon-button-sm {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        margin-right: 4px;
+    }
+}
+
+.mat-raised-button {
+    &.mat-raised-button-sm {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 12px;
+    }
+}
