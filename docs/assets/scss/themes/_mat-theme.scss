@@ -1,0 +1,20 @@
+$custom-typography: mat-typography-config(
+  $font-family: "Roboto",
+);
+@include mat-core($custom-typography);
+
+.mat-deeppurple-amber {
+  @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+}
+
+.mat-indigo-pink {
+  @import '~@angular/material/prebuilt-themes/indigo-pink';
+}
+
+.mat-pink-bluegrey {
+  @import '~@angular/material/prebuilt-themes/pink-bluegrey';
+}
+
+.mat-purple-green {
+  @import '~@angular/material/prebuilt-themes/purple-green';
+}

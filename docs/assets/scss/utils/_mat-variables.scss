@@ -1,0 +1,48 @@
+$bodyfont: 'Roboto', sans-serif;
+$headingfont: 'Roboto', sans-serif;
+
+@import '~@angular/material/theming';
+
+$mat-primary-palette: mat-palette($mat-blue, 600);
+$mat-accent-palette: mat-palette($mat-green, 400);
+$mat-warn-palette: mat-palette($mat-red, 500);
+
+$theme: mat-light-theme($mat-primary-palette, $mat-accent-palette, $mat-warn-palette);
+$background: map-get($theme, background);
+$foreground: map-get($theme, foreground);
+
+$themecolor: #1e88e5;
+$themecolor-alt: #26c6da;
+$themecolor-dark: #028ee1;
+
+// Material colors
+$mat-colors: (
+  red: $mat-red,
+  pink: $mat-pink,
+  purple: $mat-purple,
+  deep-purple: $mat-deep-purple,
+  indigo: $mat-indigo,
+  blue: $mat-blue,
+  light-blue: $mat-light-blue,
+  cyan: $mat-cyan,
+  teal: $mat-teal,
+  green: $mat-green,
+  light-green: $mat-light-green,
+  lime: $mat-lime,
+  yellow: $mat-yellow,
+  amber: $mat-amber,
+  orange: $mat-orange,
+  deep-orange: $mat-deep-orange,
+  brown: $mat-brown,
+  gray: $mat-gray,
+  blue-gray: $mat-blue-gray,
+  white: white,
+  black: black,
+  light: $light-primary-text,
+  dark: $dark-primary-text,
+  transparent: transparent,
+) !default;
+
+
+// Default Theme
+@include angular-material-theme($theme);

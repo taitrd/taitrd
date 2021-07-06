@@ -1,0 +1,42 @@
+
+// Generate text color helpers
+@include generate-mat-colors('mat', 'color');
+
+// Generate background color helpers
+@include generate-mat-colors('mat-bg', 'background-color');
+
+$mat-primary-color: mat-color($mat-primary-palette);
+$mat-accent-color: mat-color($mat-accent-palette);
+$mat-warn-color: mat-color($mat-warn-palette);
+
+.mat-primary {
+    color: $mat-primary-color;
+}
+
+.mat-bg-primary {
+    background-color: $mat-primary-color;
+}
+
+.mat-accent {
+    color: $mat-accent-color;
+}
+
+.mat-bg-accent {
+    background-color: $mat-accent-color;
+}
+
+.mat-warn {
+    color: $mat-warn-color;
+}
+
+.mat-bg-warn {
+    background-color: $mat-warn-color;
+}
+
+@each $key, $item in $gradient-angles {
+    $property-class-prefix: map-get($item, class);
+    $property-value: map-get($item, value);
+    .mat-bg-lg-#{$property-class-prefix} {
+        @include x-linear-gradient($property-value, $mat-primary-color, mat-color($mat-primary-palette, 100), $mat-primary-color)
+    }
+}
