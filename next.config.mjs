@@ -5,4 +5,5 @@ const nextConfig = {
     cleanDistDir: true,
 };
 
+
 export default nextConfig;
