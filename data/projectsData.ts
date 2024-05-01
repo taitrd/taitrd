@@ -2,14 +2,16 @@ interface Project {
   title: string,
   description: string,
   href?: string,
+  tags?: string[],
   imgSrc?: string,
 }
 
 const projectsData: Project[] = [
   {
-    title: 'eCommerce Shop',
-    description: `Built R&D eCommerce website with searching product, cart & checkout, payment, shipping features.`,
-    imgSrc: '/imgs/shop.jpg',
+    title: 'eCommerce Shops platform',
+    description: `R&D then built about 10+ website templates of eCommerce in one data center with searching products, cart & checkout, payments, shipping, etc features.`,
+    imgSrc: '/imgs/kenworthshop.png',
+    tags: ['Laravel', 'NextJs', 'ReactJs'],
     href: 'https://kenworthshop.stagingtd.com/',
   },
 ]

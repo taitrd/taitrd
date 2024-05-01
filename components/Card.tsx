@@ -1,7 +1,7 @@
 import Image from './Image'
 import Link from './Link'
 
-const Card = ({ title, description, imgSrc, href }: any) => (
+const Card = ({ title, description, imgSrc, href, tags }: any) => (
   <div className="md max-w-[544px] p-4 md:w-1/2">
     <div
       className={`${
@@ -39,6 +39,7 @@ const Card = ({ title, description, imgSrc, href }: any) => (
           )}
         </h2>
         <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
+        <p className='text-sm'>Tech stack: {tags && tags.join(', ')}</p>
         {href && (
           <Link
             href={href}
