@@ -6,7 +6,7 @@ const siteMetadata = {
   headerTitle: 'taitrd',
   description: 'Tai is a Software Engineer in Vietnam. He works in weekdays and he love to developing his side projects in nights and weekends. That would be amazing when he has a good job with potentialities and professional process.',
   language: 'en-us',
-  company: 'Texo Design',
+  company: 'Senior Software Engineer at Texo Design',
   theme: 'system', // system, dark or light
   avatar: 'https://avatars.githubusercontent.com/u/16987286?s=400&u=1eafe9c3f9a19aed10325177e4c723290cd3b2c5&v=4',
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
