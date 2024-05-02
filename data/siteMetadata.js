@@ -4,7 +4,7 @@ const siteMetadata = {
   author: 'taitrd',
   name: 'Tai Tran Dinh',
   headerTitle: 'taitrd',
-  description: 'Tai is a Software Engineer in Vietnam. He works in weekdays and he love to developing his side projects in nights and weekends. That would be amazing when he has a good job with potentialities and professional process.',
+  description: 'Tai is a Software Engineer in Vietnam. He works in weekdays and he loves to developing his side projects in nights and weekends. That would be amazing when he has a good job with potentialities and professional process.',
   language: 'en-us',
   company: 'Senior Software Engineer at Texo Design',
   theme: 'system', // system, dark or light

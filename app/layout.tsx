@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import siteMetadata from '@data/siteMetadata'
 // import ThemeWrapper from "../components/ThemeWrapper";
@@ -7,11 +7,15 @@ import Footer from "@components/Footer";
 import Header from "@components/Header";
 import SectionContainer from "@components/SectionContainer";
 
-const space_grotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-grotesk',
+const plus = Inter({
+  subsets: ['vietnamese'],
+  variable: '--font-var',
 })
+// const space_grotesk = Space_Grotesk({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-space-grotesk',
+// })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -60,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      className={`${plus.variable} scroll-smooth`}
       suppressHydrationWarning>
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />

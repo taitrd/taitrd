@@ -17,8 +17,7 @@ export async function generateMetadata({ params }: { params: { tag: string } }):
     },
   })
 }
-
-export const generateStaticParams = async () => {
+export async function generateStaticParams() {
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
   const paths = tagKeys.map((tag) => ({
@@ -26,7 +25,6 @@ export const generateStaticParams = async () => {
   }))
   return paths
 }
-
 export default function TagPage({ params }: { params: { tag: string } }) {
   const tag = decodeURI(params.tag)
   // Capitalize first letter and convert space to dash
