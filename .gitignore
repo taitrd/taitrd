@@ -35,3 +35,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .dev
+.history
+backend
+store-frontend
+store-backend
+blog-backend
+mepasoft
+.vscode
