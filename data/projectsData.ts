@@ -14,6 +14,13 @@ const projectsData: Project[] = [
     tags: ['Laravel', 'NextJs', 'ReactJs'],
     href: 'https://kenworthshop.stagingtd.com/',
   },
+  {
+    title: 'H&H Auto Care',
+    description: `Landing page of local car service with cms and layout editor`,
+    imgSrc: '/imgs/hhautocare.png',
+    tags: ['NextJs', 'ReactJs'],
+    href: 'https://hhautocare.com/',
+  },
 ]
 
 export default projectsData
