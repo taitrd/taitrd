@@ -34,3 +34,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.dev
+.history
+backend
+store-frontend
+store-backend
+blog-backend
+mepasoft
+.vscode
