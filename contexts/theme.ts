@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 
 export type ElementId = 'navigation_bar' | 'primary_sidebar' | 'secondary_sidebar'
 type ThemeContextType = {
+    bgFlagNumber: number,
     theme: string,
     resolvedTheme: string,
     preload: boolean,
@@ -20,20 +21,21 @@ type ThemeContextType = {
 }
 
 const defaultValue: ThemeContextType = {
+    bgFlagNumber: 0,
     theme: 'light',
     resolvedTheme: 'light',
     preload: false,
     scrolled: false,
     activeElements: {},
     activePageTabs: {},
-    setTheme: () => {},
-    setPreload: () => {},
-    setScrolled:() => {},
-    setActiveElement:() => {},
-    toggleElement:() => {},
-    setModalContainer:() => {},
-    setActivePageTabs: () => {},
-    closeAllBars:() => {},
+    setTheme: () => { },
+    setPreload: () => { },
+    setScrolled: () => { },
+    setActiveElement: () => { },
+    toggleElement: () => { },
+    setModalContainer: () => { },
+    setActivePageTabs: () => { },
+    closeAllBars: () => { },
 }
 
 export const ThemeContext = createContext<ThemeContextType>(defaultValue)
