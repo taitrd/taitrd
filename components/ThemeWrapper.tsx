@@ -1,14 +1,20 @@
-import siteMetadata from '@data/siteMetadata'
-import ThemeProvider from 'contexts/ThemeProvider'
-
-export default function ThemeWrapper({ children }: { children: React.ReactNode }) {
+import siteMetadata from "@/data/siteMetadata";
+import ThemeProvider from "contexts/ThemeProvider";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+export default function ThemeWrapper({
+  children,
+  bgFlagNumber,
+}: {
+  children: React.ReactNode;
+  bgFlagNumber: number;
+}) {
   return (
-    <ThemeProvider value={{
-      attribute: "class",
-      defaultTheme: siteMetadata.theme,
-      enableSystem: true,
-    }}>
-      {children}
-    </ThemeProvider>
-  )
+    <NextThemesProvider
+      attribute={"class"}
+      defaultTheme={siteMetadata.theme}
+      enableSystem
+    >
+      <ThemeProvider bgFlagNumber={bgFlagNumber}>{children}</ThemeProvider>
+    </NextThemesProvider>
+  );
 }
