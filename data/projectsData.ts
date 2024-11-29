@@ -8,18 +8,25 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'eCommerce Shops platform',
+    title: 'e-Commerce Shops platform',
     description: `R&D then built about 10+ website templates of eCommerce in one data center with searching products, cart & checkout, payments, shipping, etc features.`,
-    imgSrc: '/imgs/kenworthshop.png',
+    imgSrc: '/imgs/buysimvietnam.au.jpeg',
     tags: ['Laravel', 'NextJs', 'ReactJs'],
-    href: 'https://kenworthshop.stagingtd.com/',
+    href: 'https://buysimvietnam.com.au/',
   },
   {
     title: 'H&H Auto Care',
-    description: `Landing page of local car service with cms and layout editor`,
+    description: `Landing page of local car from CMS SaaS web-service with friendly cms and layout editor`,
     imgSrc: '/imgs/hhautocare.png',
     tags: ['NextJs', 'ReactJs'],
     href: 'https://hhautocare.com/',
+  },
+  {
+    title: 'Dtite',
+    description: `Landing page for a custom website with friendly laravel cms`,
+    imgSrc: '/imgs/dtite.png',
+    tags: ['Laravel', 'NextJs', 'ReactJs'],
+    href: 'https://dtite.taitrd.com/',
   },
 ]
 
