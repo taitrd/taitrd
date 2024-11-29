@@ -3,27 +3,28 @@ const siteMetadata = {
   title: 'Tai\'s profile',
   author: 'taitrd',
   name: 'Tai Tran Dinh',
-  headerTitle: 'taitrd',
+  headerTitle: 'Tai D. Tran',
   description: 'Tai is a Software Engineer in Vietnam. He works in weekdays and he loves to developing his side projects in nights and weekends. That would be amazing when he has a good job with potentialities and professional process.',
   language: 'en-us',
-  company: 'Senior Software Engineer at Texo Design',
+  company: 'Freelancer',
   theme: 'system', // system, dark or light
   avatar: 'https://avatars.githubusercontent.com/u/16987286?s=400&u=1eafe9c3f9a19aed10325177e4c723290cd3b2c5&v=4',
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  siteUrl: 'https://taitrd.com',
+  siteRepo: 'https://github.com/taitrd/taitrd',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 't4itran@gmail.com',
+  email: 'taitrd49@gmail.com',
   github: 'https://github.com/taitrd',
-  twitter: 'https://twitter.com/Twitter',
+  twitter: 'https://x.com/taitrd92',
   facebook: 'https://facebook.com',
   youtube: 'https://youtube.com',
   linkedin: 'https://www.linkedin.com/in/tai-tran-0b68a9187/',
-  threads: 'https://www.threads.net',
+  threads: 'https://www.threads.net/@taitran.bl',
   instagram: 'https://www.instagram.com',
-  freelancer: 'https://www.freelancer.com/u/nhotsodeep',
-  locale: 'en-US',
+  freelancer: 'https://www.freelancer.com/hireme/nhotsodeep',
+  upwork: 'https://www.upwork.com/freelancers/~0187d81af70696e97e',
+  locale: 'vi-VN',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
@@ -45,6 +46,14 @@ const siteMetadata = {
     // googleAnalytics: {
     //   googleAnalyticsId: '', // e.g. G-XXXXXXX
     // },
+  },
+  icons: {
+    icon: [{
+      rel: "icon",
+      type: "image/png",
+      url: "/favicon.png",
+      href: "/favicon.png",
+    }],
   },
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
