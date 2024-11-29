@@ -1,12 +1,13 @@
+import { PropsWithChildren } from 'react'
 import Image from './Image'
 import Link from './Link'
 
-const Card = ({ title, description, imgSrc, href, tags }: any) => (
-  <div className="md max-w-[544px] p-4 md:w-1/2">
+const Card = ({ title, description, imgSrc, href, tags }: PropsWithChildren<any>) => (
+  <div className="md max-w-[544px] p-4 md:w-1/2 ">
     <div
       className={`${
         imgSrc && 'h-full'
-      }  overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700`}
+      }  overflow-hidden rounded-md border-0 border-gray-200 border-opacity-60 shadow bg-slate-50 dark:bg-slate-900`}
     >
       {imgSrc &&
         (href ? (
