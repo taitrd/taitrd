@@ -6,7 +6,7 @@
     "dev": "next dev --port=3455",
     "build": "next build",
     "build:github": "node github.js",
-    "start": "next start",
+    "start": "next start --port=3465",
     "serve": "http-server out --port=3456",
     "lint": "next lint"
   },
