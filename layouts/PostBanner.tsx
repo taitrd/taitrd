@@ -24,7 +24,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
       <ScrollTopAndComment />
       <article>
         <div>
-          <div className="space-y-1 pb-10 text-center dark:border-gray-700">
+          <div className="space-y-1 pb-10 text-center dark:border-gray-700 bg-slate-100 dark:bg-slate-700">
             <div className="w-full">
               <div>
                 <div className="relative aspect-[2/1] w-full">
