@@ -1,22 +1,21 @@
-import ListLayout from '@layouts/ListLayoutWithTags'
-import { genPageMetadata } from 'data/seo'
-import getBlogs from '@data/blogs'
-const POSTS_PER_PAGE = 5
+import ListLayout from "@layouts/ListLayoutWithTags";
+import { genPageMetadata } from "data/seo";
+import getBlogs from "@data/blogs";
+import { POSTS_PER_PAGE } from "@/data/pagination";
 const blogs = getBlogs;
-export const metadata = genPageMetadata({ title: 'Blog' })
+export const metadata = genPageMetadata({ title: "Blog" });
 
-export default function BlogPage() {
-  const posts = blogs.map(i => i.content)
-  const pageNumber = 1
+export default function BlogPage(props: any) {
+  const posts = blogs.map((i) => i.content);
+  const pageNumber = 1;
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
     POSTS_PER_PAGE * pageNumber
-  )
+  );
   const pagination = {
     currentPage: pageNumber,
-    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
-  }
-
+    totalPages: Math.round(blogs.length / POSTS_PER_PAGE),
+  };
   return (
     <ListLayout
       posts={posts}
@@ -24,5 +23,5 @@ export default function BlogPage() {
       pagination={pagination}
       title="All Posts"
     />
-  )
+  );
 }

@@ -94,7 +94,7 @@ export default function ListLayoutWithTags({
           </h1>
         </div>
         <div className="flex sm:space-x-8">
-          <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
+          <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
             <div className="px-6 py-4">
               {pathname.startsWith("/blog") ? (
                 <h3 className="font-bold uppercase text-primary-500">
@@ -131,7 +131,7 @@ export default function ListLayoutWithTags({
               </ul>
             </div>
           </div>
-          <div className="bg-slate-100 dark:bg-slate-700 p-6 rounded shadow min-w-96">
+          <div className="bg-slate-100 dark:bg-slate-700 px-6 rounded shadow min-w-96">
             <ul>
               {displayPosts.map((post) => {
                 const { path, date, title, summary, tags, images } = post;
@@ -195,7 +195,7 @@ export default function ListLayoutWithTags({
                 </>
               )}
             </ul>
-            {pagination?.totalPages && (
+            {pagination?.totalPages > 0 && (
               <Pagination
                 currentPage={pagination?.currentPage}
                 totalPages={pagination?.totalPages}
