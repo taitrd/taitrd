@@ -1,12 +1,15 @@
-import siteMetadata from '@data/siteMetadata'
-import headerNavLinks from '@data/headerNavLinks'
+import siteMetadata from "@data/siteMetadata";
+import headerNavLinks from "@data/headerNavLinks";
 // import Logo from '@data/logo.svg'
-const Link = dynamic(() => import('./Link'), {ssr: false});
+const Link = dynamic(() => import("./Link"), { ssr: false });
 // import MobileNav from './MobileNav'
 // import ThemeSwitch from './ThemeSwitch'
 // import SearchButton from './SearchButton'
-import dynamic from 'next/dynamic'
-import Image from './Image';
+import dynamic from "next/dynamic";
+import { ThemeSwitcher } from "./ThemeSwicher";
+// import SearchButton from './SearchButton';
+import MobileNav from "./MobileNav";
+import { Button } from "./ui/button";
 
 const Header = () => {
   return (
@@ -14,37 +17,36 @@ const Header = () => {
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
-            <div className="mr-3">
-              {/* <Logo /> */}  
+            <div className="mr-3">{/* <Logo /> */}</div>
+            <div className="hidden h-6 text-3xl font-bold sm:block">
+              {siteMetadata.headerTitle}
             </div>
-            {typeof siteMetadata.headerTitle === 'string' ? (
-              <div className="hidden h-6 text-2xl font-semibold sm:block">
+            <div className="sm:hidden h-6 text-2xl font-bold block">
                 {siteMetadata.headerTitle}
               </div>
-            ) : (
-              siteMetadata.headerTitle
-            )}
           </div>
         </Link>
       </div>
       <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
         {headerNavLinks
-          .filter((link) => link.href !== '/')
-          .map((link) => (
-            <Link
-              key={link.title}
-              href={link.href}
-              className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
-            >
-              {link.title}
-            </Link>
+          .filter((link) => link.href !== "/")
+          .map((link, key) => (
+            <Button key={key} variant="ghost" asChild>
+              <Link
+                key={link.title}
+                href={link.href}
+                className="hidden font-medium text-gray-900 dark:text-gray-50 sm:block"
+              >
+                {link.title}
+              </Link>
+            </Button>
           ))}
         {/* <SearchButton /> */}
-        {/* <ThemeSwitch /> */}
-        {/* <MobileNav /> */}
+        <ThemeSwitcher />
+        <MobileNav />
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
