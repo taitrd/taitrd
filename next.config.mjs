@@ -8,7 +8,8 @@ const nextConfig = {
     distDir: process.env.NODE_ENV == 'development' ? '.dev' : '.next',
     cleanDistDir: true,
     images: {
-        domains: ['avatars.githubusercontent.com'],
+        domains: ['avatars.githubusercontent.com', 'www.reshot.com'],
+        dangerouslyAllowSVG: true,
     },
 };
 

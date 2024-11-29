@@ -3,6 +3,7 @@ import colors from 'tailwindcss/colors';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,18 +14,17 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+  			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+  			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       lineHeight: {
-        11: '2.75rem',
-        12: '3rem',
-        13: '3.25rem',
-        14: '3.5rem',
+  			'11': '2.75rem',
+  			'12': '3rem',
+  			'13': '3.25rem',
+  			'14': '3.5rem'
       },
       fontFamily: {
-        sans: ['var(--font-var)', ...fontFamily.sans],
+  			sans: ['var(--font-var)', ...fontFamily.sans]
       },
       colors: {
         primary: colors.sky,
@@ -67,11 +67,17 @@ const config: Config = {
           },
         },
       }),
-    },
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
   },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+	require("tailwindcss-animate")
   ],
 };
 export default config;
