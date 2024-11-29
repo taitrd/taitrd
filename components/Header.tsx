@@ -6,7 +6,7 @@ const Link = dynamic(() => import("./Link"), { ssr: false });
 // import ThemeSwitch from './ThemeSwitch'
 // import SearchButton from './SearchButton'
 import dynamic from "next/dynamic";
-import { ThemeSwitcher } from "./ThemeSwicher";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 // import SearchButton from './SearchButton';
 import MobileNav from "./MobileNav";
 import { Button } from "./ui/button";
