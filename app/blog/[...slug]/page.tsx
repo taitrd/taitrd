@@ -73,8 +73,8 @@ export async function generateStaticParams() {
   const paths = allBlogs.map((p) => ({ slug: p.slug.split('/') }))
   return paths
 }
-
 export default async function Page({ params }: { params: { slug: string[] } }) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { components } = useMDXComponents({ components: {} });
   const slug = decodeURI(params.slug.join('/'))
   // Filter out drafts in production
