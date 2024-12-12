@@ -8,7 +8,7 @@ import Header from "@components/Header";
 import SectionContainer from "@components/SectionContainer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeWrapper from "@/components/ThemeWrapper";
-import bgStylesConfigs from "@/data/bgStylesConfigs";
+import bgStylesConfigs from "@/lib/client/bgStylesConfigs";
 
 const plus = Inter({
   subsets: ["vietnamese"],

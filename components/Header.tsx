@@ -1,5 +1,5 @@
 import siteMetadata from "@data/siteMetadata";
-import headerNavLinks from "@data/headerNavLinks";
+import headerNavLinks from "@/lib/constants/headerNavLinks";
 // import Logo from '@data/logo.svg'
 const Link = dynamic(() => import("./Link"), { ssr: false });
 // import MobileNav from './MobileNav'

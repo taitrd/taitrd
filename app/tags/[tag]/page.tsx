@@ -3,7 +3,7 @@ import ListLayout from "@layouts/ListLayoutWithTags";
 import tagData from "@data/tag-data.json";
 import { genPageMetadata } from "@data/seo";
 import { Metadata } from "next";
-import { POSTS_PER_PAGE } from "@/data/pagination";
+import { POSTS_PER_PAGE } from "@/lib/constants/pagination";
 import getBlogs from "@data/blogs";
 const blogs = getBlogs;
 export async function generateMetadata({
