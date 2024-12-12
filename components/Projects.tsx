@@ -4,15 +4,19 @@ import { Badge } from "@/components/ui/badge";
 
 import projects from "@data/projectsData";
 import Link from "next/link";
+import { Button } from "./ui/button";
 export function Projects() {
   return (
     <Card className="bg-white dark:bg-slate-700  border-0">
-      <CardHeader>
-        <CardTitle>Featured Projects</CardTitle>
-      </CardHeader>
+      <div className="flex items-center justify-between pr-6">
+        <CardHeader>
+          <CardTitle>Featured Projects</CardTitle>
+        </CardHeader>
+        <Link href="/projects"><Button variant='link'>See projects</Button></Link>
+      </div>
       <CardContent>
         <div className="space-y-6">
-          {projects.map((project, index) => (
+          {projects.slice(0, 3).map((project, index) => (
             <div className="p-0" key={index}>
               <Link
                 href={project.href || "#"}

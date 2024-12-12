@@ -18,9 +18,9 @@ export function LatestBlogs() {
       <CardContent>
         <div className="space-y-6">
           {blogPosts.map((post, index) => (
-            <div key={index} className="flex space-x-4">
+            <div key={index} className="flex space-x-4 hover:[&>a>div>img]:shadow">
               <Link href={`/blog/${post.title}`}>
-                <div className="relative h-24 w-24 flex-shrink-0">
+                <div className="relative h-24 flex-shrink-0">
                   <Image
                     src={(post.images && post.images[0]) || "/placeholder.svg"}
                     alt={post.title}
@@ -45,7 +45,7 @@ export function LatestBlogs() {
           variant="outline"
           className="w-full mt-4 bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700"
         >
-          View All Posts
+          View posts
         </Button>
       </CardContent>
     </Card>
