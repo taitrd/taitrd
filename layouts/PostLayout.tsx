@@ -110,7 +110,7 @@ export default function PostLayout({
             </dl>
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
               {cover && (
-                <Image src={cover} height={300} width={600} alt={title} />
+                <Image src={cover} height={300} width={600} alt={title} className="rounded-lg mx-auto py-6"/>
               )}
               <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">
                 {children}

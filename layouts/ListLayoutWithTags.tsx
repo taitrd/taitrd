@@ -6,7 +6,7 @@ import Tag from "@components/Tag";
 import tagData from "@data/tag-data.json";
 import { slug } from "@taitrd/next";
 import dayjs from "dayjs";
-import { DATE_LOCALE_FORMAT } from "@/data/format";
+import { DATE_LOCALE_FORMAT } from "@/lib/constants/format";
 import { Button } from "@/components/ui/button";
 import Image from "@/components/Image";
 

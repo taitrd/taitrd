@@ -16,6 +16,7 @@ const siteMetadata = {
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'taitrd49@gmail.com',
   github: 'https://github.com/taitrd',
+  gitlab: 'https://gitlab.com/taitrd',
   twitter: 'https://x.com/taitrd92',
   facebook: 'https://facebook.com',
   youtube: 'https://youtube.com',
