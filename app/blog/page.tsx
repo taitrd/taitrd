@@ -1,7 +1,7 @@
 import ListLayout from "@layouts/ListLayoutWithTags";
 import { genPageMetadata } from "data/seo";
 import getBlogs from "@data/blogs";
-import { POSTS_PER_PAGE } from "@/data/pagination";
+import { POSTS_PER_PAGE } from "@/lib/constants/pagination";
 const blogs = getBlogs;
 export const metadata = genPageMetadata({ title: "Blog" });
 

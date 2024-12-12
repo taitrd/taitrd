@@ -1,6 +1,6 @@
 import ListLayout from "@layouts/ListLayoutWithTags";
 import getBlogs from "@data/blogs";
-import { POSTS_PER_PAGE } from "@/data/pagination";
+import { POSTS_PER_PAGE } from "@/lib/constants/pagination";
 const allBlogs = getBlogs;
 
 export async function generateStaticParams() {

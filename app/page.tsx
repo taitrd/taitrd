@@ -51,7 +51,7 @@ export default function Home() {
         </div>
 
         {/* Right Column */}
-        <div className="space-y-6">
+        <div className="space-y-6 ">
           <CommunicatorCard />
           {/* <CertificationGrid /> */}
           <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-700 backdrop-blur-sm">

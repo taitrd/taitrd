@@ -1,4 +1,4 @@
-import { slug } from '@utils'
+import { slug } from '@/lib/next-utils'
 import Link from 'next/link'
 interface Props {
   text: string
