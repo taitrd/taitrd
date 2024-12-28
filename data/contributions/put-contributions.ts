@@ -34,9 +34,9 @@ const putContributions = async (
       const newItem: { [key in string]: any } = {
         [DYNAMODB_TABLE_KEY]: keyValue,
         contributions: {
-          grouped_events: data.groupedEvents,
+          grouped_events: data.groupedEvents || [],
         },
-        events_count: data.allEvents.length,
+        events_count: data.allEvents?.length || 0,
         created_at: dayJS.toISOString(),
         status: "open",
       };

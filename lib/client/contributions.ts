@@ -32,10 +32,11 @@ export function generateContributions(
 
 export const gitHubEventGroupMapping = (i: EventGroup) => {
   const createBranchCount = i.events.filter(
-    (j) => j.type === EventType.CreateEvent && j.payload?.ref_type === 'branch',
+    (j) => j.type === EventType.CreateEvent && j.payload?.ref_type === "branch"
   ).length;
   const createRepoCount = i.events.filter(
-    (j) => j.type === EventType.CreateEvent && j.payload?.ref_type === 'repository',
+    (j) =>
+      j.type === EventType.CreateEvent && j.payload?.ref_type === "repository"
   ).length;
   const prCount = i.events.filter(
     (j) =>
@@ -45,7 +46,7 @@ export const gitHubEventGroupMapping = (i: EventGroup) => {
   ).length;
   const cmCount = i.events.filter((j) => j.type === EventType.PushEvent).length;
   const createCount = createRepoCount || createBranchCount;
-  const totalCount = createCount + prCount || cmCount || 0
+  const totalCount = createCount + prCount || cmCount || 0;
   return {
     count: totalCount,
     date_str: i.date,
@@ -69,26 +70,41 @@ export const gitHubContributionsMapping = (
       ?.filter((i) => i.date.startsWith(String(selectedYear)))
       .map(gitHubEventGroupMapping) || [];
 
+  const entryContributions =
+    github_contributions?.contributions?.entry_events || [];
+
   const contributions = [];
   for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
     const dayJsObj = dayjs(d);
+    const dateStr = dayJsObj.format("YYYY-MM-DD");
     const dataContribution = dataContributions.find(
-      (i) => i.date_str === dayJsObj.format("YYYY-MM-DD")
+      (i) => i.date_str === dateStr
     );
     if (dataContribution) {
       contributions.push(dataContribution);
     } else {
       const oldDataContribution = oldDataContributions.find(
-        (i) => i.date_str === dayJsObj.format("YYYY-MM-DD")
+        (i) => i.date_str === dateStr
       );
       if (oldDataContribution) {
         contributions.push(oldDataContribution);
       } else {
-        contributions.push({
-          date: new Date(d),
-          count: 0,
-          level: getContributionLevel(0),
-        });
+        const entryContribution = entryContributions.find(
+          (i) => i.date === dateStr
+        );
+        if (entryContribution && entryContribution.events_count) {
+          contributions.push({
+            date: new Date(d),
+            count: entryContribution.events_count,
+            level: getContributionLevel(entryContribution.events_count),
+          });
+        } else {
+          contributions.push({
+            date: new Date(d),
+            count: 0,
+            level: getContributionLevel(0),
+          });
+        }
       }
     }
   }

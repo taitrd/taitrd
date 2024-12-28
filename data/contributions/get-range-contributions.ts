@@ -9,6 +9,9 @@ import dynamodbDocClient from "@/lib/dynamodb";
 import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 import dayjs from "dayjs";
 import { unstable_cache } from "next/cache";
+import { getDateKeyValue } from "@/lib/dynamodb/key-values";
+import { CACHE_VERSION } from "@/lib/constants/cache";
+const keyValue = getDateKeyValue();
 const getRangeContributions = unstable_cache(
   async () => {
     if (
@@ -44,7 +47,7 @@ const getRangeContributions = unstable_cache(
     }
     return null;
   },
-  ["range_contributes"],
+  [CACHE_VERSION, "range_contributes", keyValue],
   { revalidate: 3600 }
 );
 export default getRangeContributions;

@@ -8,6 +8,7 @@ import {
 import dynamodbDocClient from "@/lib/dynamodb";
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
 import { unstable_cache } from "next/cache";
+import { CACHE_VERSION } from "@/lib/constants/cache";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 const keyValue = getDateKeyValue();
 const getContributions = unstable_cache(
@@ -36,7 +37,7 @@ const getContributions = unstable_cache(
     }
     return null;
   },
-  ["contributes", keyValue],
+  [CACHE_VERSION, "contributes", keyValue],
   { revalidate: 3600 }
 );
 export default getContributions;

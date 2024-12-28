@@ -13,6 +13,10 @@ const dynamodbDocClient = (
     },
     region: region,
   });
-  return DynamoDBDocumentClient.from(dbClient);
+  return DynamoDBDocumentClient.from(dbClient, {
+    marshallOptions: {
+      removeUndefinedValues: true,
+    }
+  });
 };
 export default dynamodbDocClient;

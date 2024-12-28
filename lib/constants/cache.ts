@@ -1,0 +1,1 @@
+export const CACHE_VERSION = process.env.CACHE_VERSION || 'v0';

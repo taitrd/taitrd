@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port=3455",
+    "debug": "NODE_OPTIONS='--inspect' next dev --port=3455",
     "build": "next build",
     "build:github": "node github.js",
     "start": "next start --port=3465",
