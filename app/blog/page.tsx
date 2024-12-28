@@ -6,7 +6,8 @@ const blogs = getBlogs;
 export const metadata = genPageMetadata({ title: "Blog" });
 
 export default function BlogPage(props: any) {
-  const posts = blogs.map((i) => i.content);
+  const posts = blogs.map((i) => i.content)
+    .sort((a, b) => b.date.localeCompare(a.date));
   const pageNumber = 1;
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),

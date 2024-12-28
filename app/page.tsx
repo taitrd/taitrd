@@ -10,7 +10,10 @@ import getBlogs from "@data/blogs";
 import HomeProvider from "@/contexts/HomeProvider";
 const blogs = getBlogs;
 export default function Home() {
-  const blogPosts = blogs.slice(0, 3).map((i) => i.content);
+  const blogPosts = blogs
+    .map((i) => i.content)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3);
   return (
     <HomeProvider blogs={blogPosts}>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
