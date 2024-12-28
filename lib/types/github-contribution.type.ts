@@ -10,5 +10,6 @@ export type GithubContributions = {
   contributions: {
     grouped_events: EventGroup[];
     old_grouped_events?: EventGroup[];
+    entry_events?: EventGroup[]
   };
 };

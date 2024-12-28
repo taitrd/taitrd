@@ -15,6 +15,7 @@ export type EventItem = {
 export type EventGroup = {
   date: string;
   events: EventItem[];
+  events_count?: number;
 };
 export type Event = {
   id: string;
