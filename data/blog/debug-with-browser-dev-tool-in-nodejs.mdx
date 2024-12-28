@@ -1,0 +1,59 @@
+---
+title: Debug with browser DevTools in Server-side Node.js
+date: '2024-12-28'
+tags: ['node.js', 'debugger', 'server-side', 'next.js']
+draft: false
+layout: PostBanner
+images: ['/static/images/debug-in-nodejs.png']
+summary: The scenic lands of Canada featuring maple leaves, snow-capped mountains, turquoise lakes and Toronto. Take in the sights in this photo gallery exhibition and see how easy it is to replicate with some MDX magic and tailwind classes.
+---
+
+Easy steps so we can use debugger that you may not know. See below example with `Next.js`, chrome DevTools:
+
+---
+
+# Steps
+
+Run this script, we can run development with debugger attached.
+
+```bash
+NODE_OPTIONS='--inspect' next dev
+```
+
+You will see these outputs:
+
+```bash
+Debugger listening on ws://127.0.0.1:9229/e8290eb3-2965-4718-8fb9-d47b56c94b5c
+For help, see: https://nodejs.org/en/docs/inspector
+   the --inspect option was detected, the Next.js router server should be inspected at port 9229.
+  ▲ Next.js 14.2.10
+  - Local:        http://localhost:3000
+  - Environments: .env.development.local, .env
+
+ ✓ Starting...
+   automatically enabled Fast Refresh for 1 custom loader
+ ✓ Ready in 1626ms
+ ○ Compiling /api/contributions ...
+ ✓ Compiled /api/contributions in 1053ms (804 modules)
+```
+
+In your browser, open `DevTools` in chrome or microsoft edge, you will see this.
+
+<div className="-mx-2 flex flex-wrap overflow-hidden xl:-mx-2">
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
+    ![Maple](/static/images/debug-in-node-js__devtools.png)
+  </div>
+</div>
+
+Just add a breakpoint or put `debugger` on any line.
+
+Start to run something with server actions. In my example, i went to my home page with api route running.
+
+### Reference links you may need to know more.
+
+<div>
+  Reach out with Steve's video [Debugging in Node.js is SO much better with this one trick](https://www.youtube.com/watch?v=i9hOCvBDMMg&pp=ygUPI2pzY29uc29sZXRyaWNr&themeRefresh=1)
+</div>
+<div>
+  Read more in Next.js original docs [Debugging with Browser DevTools](https://nextjs.org/docs/app/building-your-application/configuring/debugging)
+</div>
