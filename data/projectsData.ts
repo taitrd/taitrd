@@ -25,7 +25,7 @@ const projectsData: Project[] = [
     title: "HealthCare Custom Pricing Portal", 
     description: `A payment portal with AI supports`,
     imgSrc: "/imgs/dthc_cpp.png",
-    tags: ["Next.js", "React.js", "TaietinlwindCSS"],
+    tags: ["Next.js", "React.js", "TailwindCSS"],
     href: "https://pricingportal.taitrd.com/",
   },
   {

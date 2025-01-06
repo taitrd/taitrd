@@ -16,7 +16,7 @@ export const collectGithubContributions = async () => {
       !contributionsItem ||
       (contributionsItem && ["open"].includes(contributionsItem.status))
     ) {
-      console.log(
+      console.info(
         "batching contributions",
         contributionsItem ? "open status" : "new status"
       );

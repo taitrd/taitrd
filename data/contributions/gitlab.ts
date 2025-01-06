@@ -18,7 +18,7 @@ export const collectGitlabContributions = async () => {
       !contributionsItem ||
       (contributionsItem && ["open"].includes(contributionsItem.status))
     ) {
-      console.log(
+      console.info(
         "batching gitlab contributions",
         contributionsItem ? "open status" : "new status"
       );

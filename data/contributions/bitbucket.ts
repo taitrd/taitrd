@@ -18,7 +18,7 @@ export const collectBitbucketContributions = async () => {
       !contributionsItem ||
       (contributionsItem && ["open"].includes(contributionsItem.status))
     ) {
-      console.log(
+      console.info(
         "batching bitbucket contributions",
         contributionsItem ? "open status" : "new status"
       );
