@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useHomeContext } from "@/contexts/home";
 import Link from "next/link";
 
-export function LatestBlogs() {
+export default function LatestBlogs() {
   const { blogs: blogPosts } = useHomeContext();
   const router = useRouter();
   return (
@@ -19,7 +19,7 @@ export function LatestBlogs() {
         <div className="space-y-6">
           {blogPosts.map((post, index) => (
             <div key={index} className="flex space-x-4 hover:[&>a>div>img]:shadow">
-              <Link href={`/blog/${post.title}`}>
+              <Link href={`/blog/${post.name || post.title}`}>
                 <div className="relative h-24 flex-shrink-0">
                   <Image
                     src={(post.images && post.images[0]) || "/placeholder.svg"}

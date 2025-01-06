@@ -5,7 +5,7 @@ import { Github, Linkedin } from "lucide-react";
 import SocialIcon from "./social-icons";
 import siteMetadata from "@/data/siteMetadata";
 
-export function SocialLinks() {
+export default function SocialLinks() {
   return (
     <div className="flex flex-wrap gap-6 max-w-xs">
       <Button

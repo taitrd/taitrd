@@ -70,10 +70,10 @@ export default function PostLayout({
               <dt className="sr-only">Authors</dt>
               <dd>
                 <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
-                  {authorDetails.map((author) => (
+                  {authorDetails.map((author, i) => (
                     <li
                       className="flex items-center space-x-2"
-                      key={author.name}
+                      key={i}
                     >
                       {author.avatar && (
                         <Image
@@ -139,8 +139,8 @@ export default function PostLayout({
                       Tags
                     </h2>
                     <div className="flex flex-wrap">
-                      {tags.map((tag: any) => (
-                        <Tag key={tag} text={tag} />
+                      {tags.map((tag: any, key: number) => (
+                        <Tag key={key} text={tag} />
                       ))}
                     </div>
                   </div>

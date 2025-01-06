@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import projects from "@data/projectsData";
 import Link from "next/link";
 import { Button } from "./ui/button";
-export function Projects() {
+export default function Projects() {
   return (
     <Card className="bg-white dark:bg-slate-700  border-0">
       <div className="flex items-center justify-between pr-6">
@@ -53,9 +53,9 @@ export function Projects() {
                       <Image
                         src={project.imgSrc}
                         alt={project.title}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-lg"
+                        className="object-cover rounded-lg"
+                        layout='fill'
+                        
                       />
                     )}
                   </div>

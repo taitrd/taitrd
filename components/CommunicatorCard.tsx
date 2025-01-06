@@ -1,4 +1,4 @@
-export function CommunicatorCard() {
+export default function CommunicatorCard() {
   return (
     <div className="p-8 bg-yellow-400 dark:bg-yellow-600 rounded-xl text-black dark:text-white shadow-lg">
       <h2 className="text-3xl font-bold mb-6">Effective Communicator</h2>

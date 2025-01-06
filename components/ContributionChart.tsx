@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import useContributions from "@/hooks/use-contributions";
 import { Skeleton } from "./ui/skeleton";
+import { useMemo } from "react";
 
 function ContributionChart({ data }: { data: SkillData["contributions"] }) {
   const { isLoading } = useContributions();
@@ -24,20 +25,24 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
     return colors[level] || colors[0];
   };
 
-  const weeks = [];
-  let currentWeek: { date: Date; count: number; level: 0 | 1 | 2 | 3 | 4 }[] =
-    [];
+  const returnWeeks = useMemo(() => {
+    const weeks = [];
+    let currentWeek: { date: Date; count: number; level: 0 | 1 | 2 | 3 | 4 }[] =
+      [];
 
-  data.forEach((day, index) => {
-    if (index % 7 === 0 && currentWeek.length > 0) {
+    data.forEach((day, index) => {
+      if (index % 7 === 0 && currentWeek.length > 0) {
+        weeks.push(currentWeek);
+        currentWeek = [];
+      }
+      currentWeek.push(day);
+    });
+    if (currentWeek.length > 0) {
       weeks.push(currentWeek);
-      currentWeek = [];
     }
-    currentWeek.push(day);
-  });
-  if (currentWeek.length > 0) {
-    weeks.push(currentWeek);
-  }
+
+    return weeks;
+  }, [data]);
 
   return (
     <div className="flex gap-2 overflow-x-auto">
@@ -48,38 +53,39 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
           </div>
         ))}
       </div>
-      
+
       <div className="flex-grow">
         <div className="flex gap-[3px]">
           {isLoading && <Skeleton className="h-[88px] w-full rounded-xl" />}
-          {!isLoading && weeks.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex flex-col gap-[3px]">
-              {week.map((day, dayIndex) => {
-                const title = `${day.count} contributions on ${dayjs(
-                  day.date
-                ).format("YYYY-MM-DD")}`;
-                return (
-                  <TooltipProvider key={dayIndex}>
-                    <Tooltip delayDuration={100}>
-                      <TooltipTrigger>
-                        <div
-                          key={dayIndex}
-                          className={cn(
-                            "h-[10px] w-[10px] rounded-[3px] hover:bg-primary dark:hover:bg-primary ",
-                            getContributionColor(day.level)
-                          )}
-                          title={title}
-                        />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{title}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                );
-              })}
-            </div>
-          ))}
+          {!isLoading &&
+            returnWeeks.map((week, weekIndex) => (
+              <div key={weekIndex} className="flex flex-col gap-[3px]">
+                {week.map((day, dayIndex) => {
+                  const title = `${day.count} contributions on ${dayjs(
+                    day.date
+                  ).format("YYYY-MM-DD")}`;
+                  return (
+                    <TooltipProvider key={dayIndex}>
+                      <Tooltip delayDuration={100}>
+                        <TooltipTrigger>
+                          <div
+                            key={dayIndex}
+                            className={cn(
+                              "h-[10px] w-[10px] rounded-[3px] hover:bg-primary dark:hover:bg-primary ",
+                              getContributionColor(day.level)
+                            )}
+                            title={title}
+                          />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{title}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  );
+                })}
+              </div>
+            ))}
         </div>
         <div className="flex justify-between mt-2 text-xs text-zinc-500 dark:text-zinc-400">
           {MONTHS.map((month) => (
