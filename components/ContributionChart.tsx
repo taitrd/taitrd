@@ -16,7 +16,7 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
   const { isLoading } = useContributions();
   const getContributionColor = (level: number) => {
     const colors: { [key in number]: string } = {
-      0: "bg-slate-100 dark:bg-slate-600",
+      0: "bg-slate-100 dark:bg-slate-500",
       1: "bg-green-200 dark:bg-green-900",
       2: "bg-green-300 dark:bg-green-800",
       3: "bg-green-400 dark:bg-green-700",
@@ -46,10 +46,10 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
 
   return (
     <div className="flex gap-2 overflow-x-auto">
-      <div className="flex flex-col justify-between text-sm text-zinc-500 dark:text-zinc-400">
+      <div className="flex flex-col items-start content-start gap-[3px] text-sm text-zinc-500 dark:text-zinc-300">
         {DAYS.map((day, index) => (
-          <div key={index} className="h-[10px] text-xs">
-            {day}
+          <div key={index} className="h-[10px] w-6 text-[10px] text-center align-top relative">
+            <span className='absolute left-0 top-0 leading-none'>{day}</span>
           </div>
         ))}
       </div>
@@ -67,7 +67,7 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
                   return (
                     <TooltipProvider key={dayIndex}>
                       <Tooltip delayDuration={100}>
-                        <TooltipTrigger>
+                        <TooltipTrigger asChild>
                           <div
                             key={dayIndex}
                             className={cn(
@@ -87,7 +87,7 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
               </div>
             ))}
         </div>
-        <div className="flex justify-between mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+        <div className="flex justify-between mt-2 text-xs text-zinc-500 dark:text-zinc-300">
           {MONTHS.map((month) => (
             <div key={month}>{month}</div>
           ))}

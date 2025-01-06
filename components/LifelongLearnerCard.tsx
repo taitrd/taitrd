@@ -7,7 +7,7 @@ const LifelongLearnerCard = () => {
         <CardTitle>Lifelong Learner</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4 text-zinc-600 dark:text-zinc-400">
+        <div className="space-y-4 text-zinc-600 dark:text-zinc-300">
           <p>
             {"I'm"} naturally curious and an explorer at heart, always eager for
             new challenges and enthusiastic about learning & building things -

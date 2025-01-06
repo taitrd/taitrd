@@ -24,9 +24,9 @@ export default function LatestBlogs() {
                   <Image
                     src={(post.images && post.images[0]) || "/placeholder.svg"}
                     alt={post.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-md"
+                    className="object-cover rounded-md"
+                    width={400}
+                    height={100}
                   />
                 </div>
                 <div className="flex-grow">

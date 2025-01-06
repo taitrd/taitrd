@@ -21,8 +21,8 @@ import siteMetadata from "@/data/siteMetadata";
 import { Github, Gitlab } from "lucide-react";
 import { Bitbucket } from "./social-icons/icons";
 import { currentYear, yearRange } from "@/lib/constants/contributions";
-import dynamic from 'next/dynamic';
-const ContributionChart = dynamic(() => import("./ContributionChart"));
+import dynamic from "next/dynamic";
+const ContributionChart = dynamic(() => import("./ContributionChart"), {ssr: false});
 
 export default function ContributionActivity() {
   const { data: contributions_data } = useContributions();
@@ -103,7 +103,7 @@ export default function ContributionActivity() {
       </div>
       <CardContent>
         <div className="space-y-6">
-          {skillsData.map((skill) => {
+          {skillsData.map((skill, key) => {
             const SkillLink = ({ children }: PropsWithChildren) =>
               skill.link ? (
                 <a href={skill.link} target="_blank">
@@ -113,24 +113,26 @@ export default function ContributionActivity() {
                 <>{children}</>
               );
             return (
-              <h4 key={skill.name} className="text-md font-semibold mb-2 ">
-                <Button
-                  variant="link"
-                  className={cn(
-                    "flex items-center gap-2 justify-center px-1 ",
-                    skill.link ? "" : "cursor-default hover:no-underline"
-                  )}
-                >
-                  {skill.icon && <skill.icon />}
-                  <SkillLink>{skill.name}</SkillLink>
-                </Button>
+              <div key={key}>
+                <SkillLink>
+                  <Button
+                    variant="link"
+                    className={cn(
+                      "flex items-center gap-2 justify-center px-1 ",
+                      skill.link ? "" : "cursor-default hover:no-underline"
+                    )}
+                  >
+                    {skill.icon && <skill.icon />}
+                    {skill.name}
+                  </Button>
+                </SkillLink>
                 <ContributionChart data={skill.contributions} />
-              </h4>
+              </div>
             );
           })}
         </div>
         <div className="mt-4 flex items-center justify-center gap-2 text-sm">
-          <span className="text-xs text-zinc-500 dark:text-zinc-400">Less</span>
+          <span className="text-xs text-zinc-500 dark:text-zinc-300">Less</span>
           {[0, 1, 2, 3, 4].map((level) => (
             <div
               key={level}
@@ -144,7 +146,7 @@ export default function ContributionActivity() {
               )}
             />
           ))}
-          <span className="text-xs text-zinc-500 dark:text-zinc-400">More</span>
+          <span className="text-xs text-zinc-500 dark:text-zinc-300">More</span>
         </div>
       </CardContent>
     </Card>

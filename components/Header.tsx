@@ -1,15 +1,14 @@
 import siteMetadata from "@data/siteMetadata";
 import headerNavLinks from "@/lib/constants/headerNavLinks";
 // import Logo from '@data/logo.svg'
-const Link = dynamic(() => import("./Link"), { ssr: false });
 // import MobileNav from './MobileNav'
 // import ThemeSwitch from './ThemeSwitch'
 // import SearchButton from './SearchButton'
-import dynamic from "next/dynamic";
-import { ThemeSwitcher } from "./ThemeSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher";
 // import SearchButton from './SearchButton';
 import MobileNav from "./MobileNav";
 import { Button } from "./ui/button";
+import Link from 'next/link';
 
 const Header = () => {
   return (

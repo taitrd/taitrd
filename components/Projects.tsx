@@ -54,8 +54,8 @@ export default function Projects() {
                         src={project.imgSrc}
                         alt={project.title}
                         className="object-cover rounded-lg"
-                        layout='fill'
-                        
+                        width={800}
+                        height={400}
                       />
                     )}
                   </div>

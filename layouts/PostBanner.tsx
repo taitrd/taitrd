@@ -28,7 +28,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             <div className="w-full">
               <div>
                 <div className="relative aspect-[2/1] w-full">
-                  <Image src={displayImage} alt={title} fill className="object-cover" />
+                  <Image src={displayImage} alt={title} className="object-cover" />
                 </div>
               </div>
             </div>
