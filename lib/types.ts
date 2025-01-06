@@ -1,4 +1,3 @@
-import { Dayjs } from "dayjs";
 import { Event, EventGroup } from "./types/github-api.type";
 import { Contributions } from "./types/contribution.type";
 

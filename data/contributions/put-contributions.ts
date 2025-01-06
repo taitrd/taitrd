@@ -11,10 +11,12 @@ import { ContributionData } from "@/lib/types";
 import dynamodbDocClient from "@/lib/dynamodb";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 import dayjs from "dayjs";
+import { revalidateTag } from 'next/cache';
 const dayJS = dayjs();
 const putContributions = async (
   item: Record<string, any> | null | undefined,
-  data: ContributionData
+  data: ContributionData, 
+  keyParam: string = ''
 ) => {
   if (
     AWS_ACCESS_KEY_ID &&
@@ -32,7 +34,7 @@ const putContributions = async (
     if (!item) {
       const keyValue = getDateKeyValue();
       const newItem: { [key in string]: any } = {
-        [DYNAMODB_TABLE_KEY]: keyValue,
+        [DYNAMODB_TABLE_KEY]: keyParam + keyValue,
         contributions: {
           grouped_events: data.groupedEvents || [],
         },
@@ -61,6 +63,7 @@ const putContributions = async (
       });
       await docClient.send(putCommand, function (err) {
         if (err) console.log(err);
+        revalidateTag(keyParam + "contributes");
       });
     }
   }

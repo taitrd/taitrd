@@ -1,23 +1,25 @@
 import { AWS_ENABLE_SYNC } from "../../lib/constants/aws";
-import { getEventData } from "./github/events";
+import { getBitbucketContributions } from './get-contributions';
+import { getBitbucketEntryContributions } from './get-entry-contributions';
+import { getBitbucketRangeContributions } from './get-range-contributions';
 import putContributions from "./put-contributions";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
-import { getGithubContributions } from './get-contributions';
-import { getGithubRangeContributions } from './get-range-contributions';
-import { getGithubEntryContributions } from './get-entry-contributions';
 const keyValue = getDateKeyValue();
 
-export const collectGithubContributions = async () => {
-  const eventData = await getEventData();
-  const contributionsItem = await getGithubContributions();
-  const oldContributes = await getGithubRangeContributions();
+export const collectBitbucketContributions = async () => {
+  const eventData = {
+    allEvents: [],
+    groupedEvents: [],
+  };
+  const contributionsItem = await getBitbucketContributions('bitbucket_');
+  const oldContributes = await getBitbucketRangeContributions('bitbucket_contributions');
   if (AWS_ENABLE_SYNC) {
     if (
       !contributionsItem ||
       (contributionsItem && ["open"].includes(contributionsItem.status))
     ) {
       console.log(
-        "batching contributions",
+        "batching bitbucket contributions",
         contributionsItem ? "open status" : "new status"
       );
       if (contributionsItem) {
@@ -55,16 +57,13 @@ export const collectGithubContributions = async () => {
           return prv;
         }, []);
         contributionsItem.contributions.old_grouped_events = oldGroupedEvent;
-        const entryContributions = await getGithubEntryContributions();
+        const entryContributions = await getBitbucketEntryContributions('bitbucket_');
         contributionsItem.contributions.entry_events =
           entryContributions?.contributions?.entry_events || [];
       }
 
-      await putContributions(contributionsItem, eventData);
+      await putContributions(contributionsItem, eventData, 'bitbucket_');
     }
   }
-  // console.log(contributionsItem);
-  // return oldContributes;
-  // return eventData;
   return contributionsItem;
 };
