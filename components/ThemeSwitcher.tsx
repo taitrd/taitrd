@@ -5,8 +5,9 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useThemeContext } from "@/contexts/theme";
+import { Skeleton } from './ui/skeleton';
 
-export function ThemeSwitcher() {
+export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
   const { setTheme: setThemeCtx } = useThemeContext();
   const [mounted, setMounted] = React.useState(false);
@@ -26,7 +27,7 @@ export function ThemeSwitcher() {
   }, []);
 
   if (!mounted) {
-    return null;
+    return <Skeleton className="h-[36px] w-[36px]" />;
   }
 
   return (

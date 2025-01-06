@@ -1,6 +1,6 @@
 import { EventGroup } from "./github-api.type";
 
-export type GithubContributions = {
+export type Contributions = {
   version: number;
   updated_at?: string;
   taitrd: string;
@@ -10,6 +10,6 @@ export type GithubContributions = {
   contributions: {
     grouped_events: EventGroup[];
     old_grouped_events?: EventGroup[];
-    entry_events?: EventGroup[]
+    entry_events?: EventGroup[];
   };
 };

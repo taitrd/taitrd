@@ -5,13 +5,14 @@ import { Github, Linkedin } from "lucide-react";
 import SocialIcon from "./social-icons";
 import siteMetadata from "@/data/siteMetadata";
 
-export function SocialLinks() {
+export default function SocialLinks() {
   return (
     <div className="flex flex-wrap gap-6 max-w-xs">
       <Button
         variant="ghost"
         size="icon"
         className="p-6 [&_svg]:size-8 hover:shadow hover:bg-slate-200 dark:hover:bg-slate-500"
+        asChild
       >
         <a href={siteMetadata.github} target="_blank" rel="noopener noreferrer">
           <Github className="h-16 w-16" />
@@ -21,17 +22,14 @@ export function SocialLinks() {
       <Button
         variant="ghost"
         size="icon"
+        asChild
         className="p-6 [&_svg]:size-8 hover:shadow hover:bg-slate-200 dark:hover:bg-slate-500"
       >
-        <SocialIcon kind="twitterx" href={siteMetadata.twitter} size={6} />
-        <span className="sr-only">X</span>
+        <SocialIcon kind="twitterx" href={siteMetadata.twitter} size={8} />
       </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="p-6 [&_svg]:size-8 hover:shadow hover:bg-slate-200 dark:hover:bg-slate-500"
-      >
+      <Button variant="ghost" size="icon" asChild>
         <a
+          className="p-6 [&_svg]:size-8 hover:shadow hover:bg-slate-200 dark:hover:bg-slate-500"
           href={siteMetadata.linkedin}
           target="_blank"
           rel="noopener noreferrer"
@@ -44,21 +42,21 @@ export function SocialLinks() {
         variant="ghost"
         size="icon"
         className="p-6 [&_svg]:size-8 hover:shadow hover:bg-slate-200 dark:hover:bg-slate-500"
+        asChild
       >
         <SocialIcon
           kind="freelancer"
           href={siteMetadata.freelancer}
           size={16}
         />
-        <span className="sr-only">Freelancer</span>
       </Button>
       <Button
         variant="ghost"
         size="icon"
         className="p-6 [&_svg]:size-8 hover:shadow hover:bg-slate-200 dark:hover:bg-slate-500"
+        asChild
       >
         <SocialIcon kind="upwork" href={siteMetadata.upwork} size={12} />
-        <span className="sr-only">Upwork</span>
       </Button>
     </div>
   );

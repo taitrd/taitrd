@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { SkillData } from "../types";
 import { EventGroup, EventType } from "../types/github-api.type";
-import { GithubContributions } from "../types/github-contribution.type";
+import { Contributions } from "../types/contribution.type";
 
 export function getContributionLevel(count: number): 0 | 1 | 2 | 3 | 4 {
   if (count === 0) return 0;
@@ -59,7 +59,7 @@ export const gitHubContributionsMapping = (
   selectedYear: number,
   startDate: Date,
   endDate: Date,
-  github_contributions?: GithubContributions
+  github_contributions?: Contributions
 ) => {
   const dataContributions =
     github_contributions?.contributions?.grouped_events
@@ -95,17 +95,55 @@ export const gitHubContributionsMapping = (
         if (entryContribution && entryContribution.events_count) {
           contributions.push({
             date: new Date(d),
+            date_str: dateStr,
             count: entryContribution.events_count,
             level: getContributionLevel(entryContribution.events_count),
           });
         } else {
           contributions.push({
             date: new Date(d),
+            date_str: dateStr,
             count: 0,
             level: getContributionLevel(0),
           });
         }
       }
+    }
+  }
+
+  return contributions;
+};
+
+export const entryContributionsMapping = (
+  selectedYear: number,
+  startDate: Date,
+  endDate: Date,
+  gitlab_contributions?: Contributions
+) => {
+  const entryContributions =
+    gitlab_contributions?.contributions?.entry_events || [];
+
+  const contributions = [];
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dayJsObj = dayjs(d);
+    const dateStr = dayJsObj.format("YYYY-MM-DD");
+    const entryContribution = entryContributions.find(
+      (i) => i.date === dateStr
+    );
+    if (entryContribution && entryContribution.events_count) {
+      contributions.push({
+        date: new Date(d),
+        date_string: dateStr,
+        count: entryContribution.events_count,
+        level: getContributionLevel(entryContribution.events_count),
+      });
+    } else {
+      contributions.push({
+        date: new Date(d),
+        date_str: dateStr,
+        count: 0,
+        level: getContributionLevel(0),
+      });
     }
   }
 

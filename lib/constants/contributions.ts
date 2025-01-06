@@ -13,3 +13,5 @@ export const MONTHS = [
   "Nov",
   "Dec",
 ];
+export const currentYear = new Date().getFullYear();
+export const yearRange = [currentYear, currentYear - 1, currentYear - 2, currentYear - 3];

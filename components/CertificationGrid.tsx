@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Check } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -96,7 +96,7 @@ export function CertificationGrid() {
                 ].map((item) => (
                   <div key={item} className="flex items-center space-x-2">
                     <Check className="w-5 h-5 text-green-500 dark:text-green-400" />
-                    <span className="font-mono text-sm">{item}</span>
+                    <span className="text-sm">{item}</span>
                   </div>
                 ))}
               </div>

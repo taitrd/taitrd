@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Skills } from "./Skills";
 
 interface ExpertiseProps {
@@ -7,7 +7,7 @@ interface ExpertiseProps {
   items?: string[];
 }
 
-export function ExpertiseSection({ title, items = ["HEALTHTECH", "E-COMMERCE", "IOT", "SAAS", "MANUFACTURE"] }: ExpertiseProps) {
+export default function ExpertiseSection({ title, items = ["HEALTHTECH", "E-COMMERCE", "IOT", "SAAS", "MANUFACTURE"] }: ExpertiseProps) {
   return (
     <Card className="shadow-lg border-0 bg-white dark:bg-slate-700 pt-4">
       <CardContent>
