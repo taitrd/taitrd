@@ -1,14 +1,16 @@
 import { Dayjs } from "dayjs";
 import { Event, EventGroup } from "./types/github-api.type";
-import { GithubContributions } from "./types/github-contribution.type";
+import { Contributions } from "./types/contribution.type";
 
 export type ContributionData = {
   allEvents: Event[];
   groupedEvents: EventGroup[];
 };
 
-export type Contributions = {
-  github_contributions: GithubContributions;
+export type ServiceContributions = {
+  github_contributions: Contributions;
+  gitlab_contributions?: Contributions;
+  bitbucket_contributions?: Contributions;
 };
 
 export interface SkillData {
