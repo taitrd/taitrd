@@ -14,13 +14,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",
         port: "",
-        search: "",
       },
       {
         protocol: "https",
         hostname: "www.reshot.com",
         port: "",
-        search: "",
       },
     ],
   },
