@@ -17,9 +17,9 @@ function AnimatedBackground({
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className={`absolute rounded-lg opacity-10 animate-rectangle-${
-              i + 1
-            }`}
+            className={cn(
+              `absolute rounded-lg opacity-10 animate-rectangle-${i + 1}`,
+            )}
             style={{
               left: `${bgFlagNumber * 100}%`,
               top: `${bgFlagNumber * 100}%`,
