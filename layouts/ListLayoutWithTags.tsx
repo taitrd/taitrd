@@ -179,7 +179,7 @@ export default function ListLayoutWithTags({
                           alt={post.title}
                           height={100}
                           width={200}
-                          className="rounded-md"
+                          className="object-cover rounded-md"
                         />
                       </Link>
                     </article>
