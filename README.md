@@ -13,7 +13,4 @@ I'm a passionate software engineer with experience in building web applications,
 - **Tools:** NodeJs, Docker
 - **Other:** AWS, Gitlab CI-CD, Bitbucket Pipelines
 
-## Education
-- **Bachelor** in **Information Technology** from **University of Science Ho Chi Minh city**
-
 Thanks for visiting my profile! Feel free to reach out if you want to connect or collaborate on a project.
