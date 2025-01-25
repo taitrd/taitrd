@@ -2,13 +2,17 @@
 
 import { usePathname } from "next/navigation";
 import Link from "@components/Link";
-import Tag from "@components/Tag";
 import tagData from "@data/tag-data.json";
 import { slug } from "@taitrd/next";
 import dayjs from "dayjs";
 import { DATE_LOCALE_FORMAT } from "@/lib/constants/format";
 import { Button } from "@/components/ui/button";
 import Image from "@/components/Image";
+import { arise, cards, fadeInLeft, fadeInRight } from "@/lib/motion/variants";
+import dynamic from "next/dynamic";
+const MotionBlock = dynamic(() => import("@/components/motions/Block"));
+const MotionListItem = dynamic(() => import("@/components/motions/ListItem"));
+const Tag = dynamic(() => import("@components/Tag"));
 
 interface PaginationProps {
   totalPages: number;
@@ -28,7 +32,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   const nextPage = currentPage + 1 <= totalPages;
 
   return (
-    <div className="space-y-2 pb-8 pt-6 md:space-y-5">
+    <MotionBlock variants={arise} className="space-y-2 pb-8 pt-6 md:space-y-5">
       <nav className="flex justify-between">
         {!prevPage && (
           <button
@@ -67,7 +71,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
           </Link>
         )}
       </nav>
-    </div>
+    </MotionBlock>
   );
 }
 
@@ -94,7 +98,7 @@ export default function ListLayoutWithTags({
           </h1>
         </div>
         <div className="flex sm:space-x-8">
-          <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
+          <MotionBlock variants={fadeInLeft} className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
             <div className="px-6 py-4">
               {pathname.startsWith("/blog") ? (
                 <h3 className="font-bold uppercase text-primary-500">
@@ -130,14 +134,14 @@ export default function ListLayoutWithTags({
                 })}
               </ul>
             </div>
-          </div>
-          <div className="bg-slate-100 dark:bg-slate-700 px-6 rounded shadow min-w-96">
+          </MotionBlock>
+          <MotionBlock variants={fadeInRight} className="bg-slate-100 dark:bg-slate-700 px-6 rounded shadow min-w-96">
             <ul>
-              {displayPosts.map((post) => {
+              {displayPosts.map((post, k) => {
                 const { path, date, title, summary, tags, images } = post;
                 return (
-                  <li key={path} className="py-5">
-                    <article className="flex flex-col xl:flex-row gap-2">
+                  <MotionListItem key={path} variants={cards} transition={{duration: 0.9, delay: 0.1 * k}} className="py-5">
+                    <article className="flex flex-col xl:flex-row gap-2 items-center">
                       <div className="flex flex-col space-y-2 xl:space-y-0 xl:w-9/12">
                         <dl>
                           <dt className="sr-only">Published on</dt>
@@ -177,13 +181,13 @@ export default function ListLayoutWithTags({
                             "/placeholder.jpg"
                           }
                           alt={post.title}
-                          height={100}
-                          width={200}
+                          height={400}
+                          width={600}
                           className="object-cover rounded-md"
                         />
                       </Link>
                     </article>
-                  </li>
+                  </MotionListItem>
                 );
               })}
               {!displayPosts.length && (
@@ -201,7 +205,7 @@ export default function ListLayoutWithTags({
                 totalPages={pagination?.totalPages}
               />
             )}
-          </div>
+          </MotionBlock>
         </div>
       </div>
     </>
