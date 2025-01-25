@@ -22,7 +22,10 @@ import { Github, Gitlab } from "lucide-react";
 import { Bitbucket } from "./social-icons/icons";
 import { currentYear, yearRange } from "@/lib/constants/contributions";
 import dynamic from "next/dynamic";
-const ContributionChart = dynamic(() => import("./ContributionChart"), {ssr: false});
+import { fadeInLeft } from "@/lib/motion/variants";
+const MotionBlock = dynamic(() => import("./motions/Block"));
+
+const ContributionChart = dynamic(() => import("./ContributionChart"), { ssr: false });
 
 export default function ContributionActivity() {
   const { data: contributions_data } = useContributions();
@@ -71,7 +74,7 @@ export default function ContributionActivity() {
         icon: Bitbucket,
         contributions: bitbucket,
       },
-    ];
+    ].filter(i => i.contributions.length);
   }, [
     contributions_data?.bitbucket_contributions,
     contributions_data?.github_contributions,
@@ -80,75 +83,85 @@ export default function ContributionActivity() {
   ]);
 
   return (
-    <Card className="shadow-lg border-0 bg-white dark:bg-slate-700">
-      <div className="flex justify-between pr-6">
-        <CardHeader>
-          <CardTitle>Contribution Activity</CardTitle>
-          <CardDescription>
-            My coding activity over the past year
-          </CardDescription>
-        </CardHeader>
-        <div className="flex items-center justify-between space-x-2">
-          {yearRange.map((year) => (
-            <Button
-              key={year}
-              variant={year === selectedYear ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedYear(year)}
-            >
-              {year}
-            </Button>
-          ))}
+    <MotionBlock variants={{
+      ...fadeInLeft, animate: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.5,
+          delay: 0.3,
+        },
+      }
+    }} >
+      <Card className="shadow-lg border-0 bg-white dark:bg-slate-700">
+        <div className="flex flex-col sm:flex-row sm:justify-between pr-6">
+          <CardHeader>
+            <CardTitle>Contribution Activity</CardTitle>
+            <CardDescription>
+              My coding activity over the past year
+            </CardDescription>
+          </CardHeader>
+          <div className="px-6 sm:px-0 flex items-center lg:justify-between space-x-2">
+            {yearRange.map((year) => (
+              <Button
+                key={year}
+                variant={year === selectedYear ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedYear(year)}
+              >
+                {year}
+              </Button>
+            ))}
+          </div>
         </div>
-      </div>
-      <CardContent>
-        <div className="space-y-6">
-          {skillsData.map((skill, key) => {
-            const SkillLink = ({ children }: PropsWithChildren) =>
-              skill.link ? (
-                <a href={skill.link} target="_blank">
-                  {children}
-                </a>
-              ) : (
-                <>{children}</>
+        <CardContent>
+          <div className="space-y-6">
+            {skillsData.map((skill, key) => {
+              const SkillLink = ({ children }: PropsWithChildren) =>
+                skill.link ? (
+                  <a href={skill.link} target="_blank">
+                    {children}
+                  </a>
+                ) : (
+                  <>{children}</>
+                );
+              return (
+                <div key={key}>
+                  <SkillLink>
+                    <Button
+                      variant="link"
+                      className={cn(
+                        "flex items-center gap-2 justify-center px-1 ",
+                        skill.link ? "" : "cursor-default hover:no-underline"
+                      )}
+                    >
+                      {skill.icon && <skill.icon />}
+                      {skill.name}
+                    </Button>
+                  </SkillLink>
+                  <ContributionChart data={skill.contributions} />
+                </div>
               );
-            return (
-              <div key={key}>
-                <SkillLink>
-                  <Button
-                    variant="link"
-                    className={cn(
-                      "flex items-center gap-2 justify-center px-1 ",
-                      skill.link ? "" : "cursor-default hover:no-underline"
-                    )}
-                  >
-                    {skill.icon && <skill.icon />}
-                    {skill.name}
-                  </Button>
-                </SkillLink>
-                <ContributionChart data={skill.contributions} />
-              </div>
-            );
-          })}
-        </div>
-        <div className="mt-4 flex items-center justify-center gap-2 text-sm">
-          <span className="text-xs text-zinc-500 dark:text-zinc-300">Less</span>
-          {[0, 1, 2, 3, 4].map((level) => (
-            <div
-              key={level}
-              className={cn(
-                "h-[10px] w-[10px] rounded-sm",
-                level === 0
-                  ? "bg-slate-100 dark:bg-slate-700"
-                  : `bg-green-${(level + 1) * 100} dark:bg-green-${
-                      1000 - level * 100
+            })}
+          </div>
+          <div className="mt-4 flex items-center justify-center gap-2 text-sm">
+            <span className="text-xs text-zinc-500 dark:text-zinc-300">Less</span>
+            {[0, 1, 2, 3, 4].map((level) => (
+              <div
+                key={level}
+                className={cn(
+                  "h-[10px] w-[10px] rounded-sm",
+                  level === 0
+                    ? "bg-slate-100 dark:bg-slate-700"
+                    : `bg-green-${(level + 1) * 100} dark:bg-green-${1000 - level * 100
                     }`
-              )}
-            />
-          ))}
-          <span className="text-xs text-zinc-500 dark:text-zinc-300">More</span>
-        </div>
-      </CardContent>
-    </Card>
+                )}
+              />
+            ))}
+            <span className="text-xs text-zinc-500 dark:text-zinc-300">More</span>
+          </div>
+        </CardContent>
+      </Card>
+    </MotionBlock>
   );
 }

@@ -1,10 +1,13 @@
+'use client';
 import Link from './Link'
 import siteMetadata from '@data/siteMetadata'
 import SocialIcon from '@components/social-icons'
+import { motion } from "framer-motion";
+import { arise } from '@/lib/motion/variants';
 
 export default function Footer() {
   return (
-    <footer>
+    <motion.footer variants={arise}>
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
           <SocialIcon kind="github" href={siteMetadata.github} size={6} />
@@ -31,6 +34,6 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }

@@ -1,3 +1,4 @@
+'use client';
 import { ReactNode } from "react";
 import Comments from "@components/Comments";
 import Link from "@components/Link";
@@ -7,6 +8,11 @@ import Image from "@components/Image";
 import Tag from "@components/Tag";
 import siteMetadata from "@data/siteMetadata";
 import ScrollTopAndComment from "@components/ScrollTopAndComment";
+import { fadeIn, fadeInLeft, heading } from "@/lib/motion/variants";
+import dynamic from "next/dynamic";
+
+const MotionDd = dynamic(() => import("@/components/motions/Dd"));
+const MotionBlock = dynamic(() => import("@/components/motions/Block"));
 
 // const editUrl = (path: string) =>
 //   `${siteMetadata.siteRepo}/blob/main/data/${path}`;
@@ -50,19 +56,19 @@ export default function PostLayout({
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <MotionDd variants={heading} className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(
                         siteMetadata.locale,
                         postDateTemplate
                       )}
                     </time>
-                  </dd>
+                  </MotionDd>
                 </div>
               </dl>
-              <div>
+              <MotionBlock variants={heading}>
                 <PageTitle>{title}</PageTitle>
-              </div>
+              </MotionBlock>
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0">
@@ -112,9 +118,9 @@ export default function PostLayout({
               {cover && (
                 <Image src={cover} height={600} width={800} alt={title} className="rounded-lg mx-auto py-6"/>
               )}
-              <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">
+              <MotionBlock variants={fadeIn} className="prose max-w-none pb-8 pt-10 dark:prose-invert">
                 {children}
-              </div>
+              </MotionBlock>
               {/* <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(path)} rel="nofollow">
                   Discuss on Twitter
@@ -131,7 +137,7 @@ export default function PostLayout({
                 </div>
               )}
             </div>
-            <footer>
+            <MotionBlock variants={fadeInLeft}>
               <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
                 {tags && (
                   <div className="py-4 xl:py-8">
@@ -179,7 +185,7 @@ export default function PostLayout({
                   &larr; Back to the blog
                 </Link>
               </div>
-            </footer>
+            </MotionBlock>
           </div>
         </div>
       </article>

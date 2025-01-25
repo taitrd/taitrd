@@ -9,6 +9,9 @@ import SectionContainer from "@components/SectionContainer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeWrapper from "@/components/ThemeWrapper";
 import bgStylesConfigs from "@/lib/client/bgStylesConfigs";
+import dynamic from "next/dynamic";
+
+const MotionContainer = dynamic(() => import("@/components/motions/Container"));
 
 const plus = Inter({
   subsets: ["vietnamese"],
@@ -116,11 +119,11 @@ export default async function RootLayout({
         <ThemeWrapper bgFlagNumber={bgFlagNumber}>
           <AnimatedBackground className="bg-slate-100 pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white"/>
           <SectionContainer>
-            <div className="max-w-7xl mx-auto relative z-10 flex h-screen flex-col justify-between font-sans">
+            <MotionContainer className="max-w-7xl mx-auto relative z-10 flex h-screen flex-col justify-between font-sans">
               <Header />
               <main className="mb-auto">{children}</main>
               <Footer />
-            </div>
+            </MotionContainer>
           </SectionContainer>
         </ThemeWrapper>
       </body>

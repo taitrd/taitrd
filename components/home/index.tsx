@@ -6,7 +6,7 @@ const ContributionActivity = dynamic(
   { ssr: false }
 );
 const LatestBlogs = dynamic(() => import("@components/LatestBlogs"));
-const Projects = dynamic(() => import("@components/Projects"));
+const Projects = dynamic(() => import("@components/FeaturedProjects"));
 const CommunicatorCard = dynamic(() => import("@components/CommunicatorCard"));
 
 const ProfileCard = dynamic(() => import("@components/ProfileCard"));

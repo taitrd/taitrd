@@ -1,6 +1,12 @@
+'use client';
+import { fadeInRight } from "@/lib/motion/variants";
+import dynamic from "next/dynamic";
+
+const MotionBlock = dynamic(() => import("./motions/Block"));
+
 export default function CommunicatorCard() {
   return (
-    <div className="p-8 bg-yellow-400 dark:bg-yellow-700 rounded-xl text-black dark:text-white shadow-lg">
+    <MotionBlock variants={fadeInRight} className="p-8 bg-yellow-400 dark:bg-yellow-700 rounded-xl text-black dark:text-white shadow-lg">
       <h2 className="text-3xl font-bold mb-6">Effective Communicator</h2>
       {/* <p className="mb-4">
         I talk <span className="font-bold">tech</span> with devs, and{" "}
@@ -21,6 +27,6 @@ export default function CommunicatorCard() {
         </a>
         (UTC+7) and align best with teams in APAC.
       </p>
-    </div>
+    </MotionBlock>
   );
 }
