@@ -74,7 +74,7 @@ export default function ContributionActivity() {
         icon: Bitbucket,
         contributions: bitbucket,
       },
-    ].filter(i => i.contributions.length);
+    ].filter(i => i.contributions.some(j => j.count));
   }, [
     contributions_data?.bitbucket_contributions,
     contributions_data?.github_contributions,
