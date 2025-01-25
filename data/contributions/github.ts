@@ -60,7 +60,7 @@ export const collectGithubContributions = async () => {
           entryContributions?.contributions?.entry_events || [];
       }
 
-      await putContributions(contributionsItem, eventData);
+      await putContributions(contributionsItem, eventData, 'github_');
     }
   }
   // console.log(contributionsItem);
