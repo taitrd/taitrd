@@ -9,6 +9,7 @@ import SectionContainer from "@components/SectionContainer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeWrapper from "@/components/ThemeWrapper";
 import bgStylesConfigs from "@/lib/client/bgStylesConfigs";
+import { Analytics } from "@vercel/analytics/react"
 
 const plus = Inter({
   subsets: ["vietnamese"],
@@ -113,6 +114,7 @@ export default async function RootLayout({
       />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <body className="">
+        <Analytics/>
         <ThemeWrapper bgFlagNumber={bgFlagNumber}>
           <AnimatedBackground className="bg-slate-100 pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white"/>
           <SectionContainer>
