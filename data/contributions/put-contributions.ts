@@ -49,6 +49,7 @@ const putContributions = async (
       await docClient.send(putCommand, function (err) {
         if (err) console.log(err);
       });
+      return newItem;
     } else {
       item.contributions.grouped_events = data.groupedEvents;
       const putCommand = new PutCommand({
@@ -65,6 +66,7 @@ const putContributions = async (
         if (err) console.log(err);
         revalidateTag(keyParam + "contributes");
       });
+      return item;
     }
   }
 };
