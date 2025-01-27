@@ -20,21 +20,20 @@ export const collectGithubContributions = async () => {
         contributionsItem ? "open status" : "new status"
       );
       if (contributionsItem) {
-        contributionsItem = mergeGithubContributions(
+        contributionsItem = await mergeGithubContributions(
           contributionsItem,
           oldContributes
         );
       }
 
-      const putItem = await putContributions(
-        contributionsItem,
-        eventData,
-        "github_"
-      );
+      const putItem = await putContributions(contributionsItem, eventData);
 
       /** Merge new item */
       if (!contributionsItem && putItem) {
-        contributionsItem = mergeGithubContributions(putItem, oldContributes);
+        contributionsItem = await mergeGithubContributions(
+          putItem,
+          oldContributes
+        );
       }
     }
   }
