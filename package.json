@@ -24,6 +24,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@taitrd/next": "^0.0.5",
     "@types/mdx": "^2.0.13",
+    "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
