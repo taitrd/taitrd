@@ -5,7 +5,11 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useThemeContext } from "@/contexts/theme";
-import { Skeleton } from './ui/skeleton';
+import { Skeleton } from "./ui/skeleton";
+import { enter } from "@/lib/motion/variants";
+import dynamic from "next/dynamic";
+
+const MotionBlock = dynamic(() => import("./motions/Block"));
 
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
@@ -31,7 +35,7 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <>
+    <MotionBlock variants={enter}>
       {(theme === "light" || theme === "system") && (
         <Button
           variant="ghost"
@@ -50,12 +54,12 @@ export default function ThemeSwitcher() {
           size="icon"
           onClick={() => changeTheme("light")}
           aria-label="Toggle theme"
-            className="hidden dark:flex"
+          className="hidden dark:flex"
         >
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       )}
-    </>
+    </MotionBlock>
   );
 }
