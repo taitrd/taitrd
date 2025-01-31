@@ -11,14 +11,14 @@ import { ContributionData } from "@/lib/types";
 import dynamodbDocClient from "@/lib/dynamodb";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 import dayjs from "dayjs";
-import { revalidateTag } from "next/cache";
+// import { revalidateTag } from "next/cache";
 const dayJS = dayjs();
 const putContributions = async (
   item: Record<string, any> | null | undefined,
   data: ContributionData,
   keyParam: string = ""
 ) => {
-  revalidateTag("contributions_item");
+  // revalidateTag("contributions_item");
   if (
     AWS_ACCESS_KEY_ID &&
     AWS_SECRET_ACCESS_KEY &&
