@@ -23,12 +23,13 @@ import { Bitbucket } from "./social-icons/icons";
 import { currentYear, yearRange } from "@/lib/constants/contributions";
 import dynamic from "next/dynamic";
 import { fadeInLeft } from "@/lib/motion/variants";
-const MotionBlock = dynamic(() => import("./motions/Block"));
+import { Skeleton } from "./ui/skeleton";
 
+const MotionBlock = dynamic(() => import("./motions/Block"));
 const ContributionChart = dynamic(() => import("./ContributionChart"), { ssr: false });
 
 export default function ContributionActivity() {
-  const { data: contributions_data } = useContributions();
+  const { data: contributions_data, isLoading } = useContributions();
 
   const [selectedYear, setSelectedYear] = useState(currentYear);
 
@@ -116,6 +117,7 @@ export default function ContributionActivity() {
         </div>
         <CardContent>
           <div className="space-y-6">
+            {isLoading && <Skeleton className="h-[88px] w-full rounded-xl" />}
             {skillsData.map((skill, key) => {
               const SkillLink = ({ children }: PropsWithChildren) =>
                 skill.link ? (

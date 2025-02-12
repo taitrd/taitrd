@@ -1,8 +1,11 @@
-import { getGithubEntryContributions } from "./get-entry-contributions";
+import {
+  getBitbucketEntryContributions,
+  getGithubEntryContributions,
+  getGitlabEntryContributions,
+} from "./get-entry-contributions";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 const keyValue = getDateKeyValue();
-
-export const mergeGithubContributions = async (
+const mergeOldGroups = (
   contributionsItem: Record<string, any>,
   oldContributes: Record<string, any>[] | null | undefined
 ) => {
@@ -46,8 +49,41 @@ export const mergeGithubContributions = async (
     }
     return prv;
   }, []);
-  contributionsItem.contributions.old_grouped_events = oldGroupedEvent;
+  return oldGroupedEvent;
+};
+export const mergeGithubContributions = async (
+  contributionsItem: Record<string, any>,
+  oldContributes: Record<string, any>[] | null | undefined
+) => {
+  const oldGroupedEvents = mergeOldGroups(contributionsItem, oldContributes);
+  contributionsItem.contributions.old_grouped_events = oldGroupedEvents;
   const entryContributions = await getGithubEntryContributions();
+  contributionsItem.contributions.entry_events =
+    entryContributions?.contributions?.entry_events || [];
+
+  return contributionsItem;
+};
+
+export const mergeGitlabContributions = async (
+  contributionsItem: Record<string, any>,
+  oldContributes: Record<string, any>[] | null | undefined
+) => {
+  const oldGroupedEvents = mergeOldGroups(contributionsItem, oldContributes);
+  contributionsItem.contributions.old_grouped_events = oldGroupedEvents;
+  const entryContributions = await getGitlabEntryContributions("gitlab_");
+  contributionsItem.contributions.entry_events =
+    entryContributions?.contributions?.entry_events || [];
+
+  return contributionsItem;
+};
+
+export const mergeBitbucketContributions = async (
+  contributionsItem: Record<string, any>,
+  oldContributes: Record<string, any>[] | null | undefined
+) => {
+  const oldGroupedEvents = mergeOldGroups(contributionsItem, oldContributes);
+  contributionsItem.contributions.old_grouped_events = oldGroupedEvents;
+  const entryContributions = await getBitbucketEntryContributions("bitbucket_");
   contributionsItem.contributions.entry_events =
     entryContributions?.contributions?.entry_events || [];
 

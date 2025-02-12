@@ -9,7 +9,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import useContributions from "@/hooks/use-contributions";
-import { Skeleton } from "./ui/skeleton";
 import { useMemo } from "react";
 
 function ContributionChart({ data }: { data: SkillData["contributions"] }) {
@@ -56,7 +55,6 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
 
       <div className="flex-grow">
         <div className="flex gap-[3px]">
-          {isLoading && <Skeleton className="h-[88px] w-full rounded-xl" />}
           {!isLoading &&
             returnWeeks.map((week, weekIndex) => (
               <div key={weekIndex} className="flex flex-col gap-[3px]">
