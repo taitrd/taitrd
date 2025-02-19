@@ -36,7 +36,7 @@ export default function FeaturedProjects() {
         </div>
         <CardContent>
           <div className="space-y-6">
-            {projects.slice(0, 3).map((project, index) => (
+            {projects.slice(0, 5).map((project, index) => (
               <div className="p-0" key={index}>
                 <Link
                   href={project.href || "#"}
