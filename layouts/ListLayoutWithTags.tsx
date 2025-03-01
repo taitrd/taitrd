@@ -180,7 +180,7 @@ export default function ListLayoutWithTags({
                             (post.images && post.images[0]) ||
                             "/placeholder.jpg"
                           }
-                          alt={post.title}
+                          alt={post.images[0] ? post.title : 'Placeholder'}
                           height={400}
                           width={600}
                           className="object-cover rounded-md"
