@@ -32,18 +32,17 @@ const mergeOldGroups = (
           );
         }
       }
-    } else {
-      if (cur.contributions?.grouped_events) {
-        for (const event of cur.contributions?.grouped_events) {
-          const exists = prv.find((j) => j.date === event.date);
-          if (!exists && !keepEventDates.includes(event.date)) {
-            prv.push(event);
-            console.log(
-              "added this event from new group of contribution",
-              cur.taitrd,
-              event.date
-            );
-          }
+    }
+    if (cur.contributions?.grouped_events) {
+      for (const event of cur.contributions?.grouped_events) {
+        const exists = prv.find((j) => j.date === event.date);
+        if (!exists && !keepEventDates.includes(event.date)) {
+          prv.push(event);
+          console.log(
+            "added this event from new group of contribution",
+            cur.taitrd,
+            event.date
+          );
         }
       }
     }
