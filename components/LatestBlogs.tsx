@@ -38,7 +38,7 @@ export default function LatestBlogs() {
                   <div className="relative h-24 flex-shrink-0">
                     <Image
                       src={(post.images && post.images[0]) || "/placeholder.svg"}
-                      alt={post.title}
+                      alt={post.images && post.images[0] ? post.title : 'Placeholder'}
                       className="object-cover rounded-md"
                       width={400}
                       height={100}

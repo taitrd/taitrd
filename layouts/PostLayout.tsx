@@ -86,7 +86,7 @@ export default function PostLayout({
                           src={author.avatar}
                           width={38}
                           height={38}
-                          alt="avatar"
+                          alt={siteMetadata.title}
                           className="h-10 w-10 rounded-full"
                         />
                       )}

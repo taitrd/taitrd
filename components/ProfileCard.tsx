@@ -3,6 +3,7 @@ import Image from "next/legacy/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { fadeInLeft } from "@/lib/motion/variants";
 import dynamic from "next/dynamic";
+import siteMetadata from '@/data/siteMetadata';
 const MotionBlock = dynamic(() => import("./motions/Block"));
 
 const ProfileCard = () => {
@@ -14,7 +15,7 @@ const ProfileCard = () => {
             <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-700">
               <Image
                 src="/avatar.webp"
-                alt="Profile"
+                alt={siteMetadata.title}
                 width={64}
                 height={64}
                 className="w-full h-full object-cover"
