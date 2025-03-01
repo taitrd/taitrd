@@ -25,7 +25,7 @@ const siteMetadata = {
   instagram: 'https://www.instagram.com',
   freelancer: 'https://www.freelancer.com/hireme/nhotsodeep',
   upwork: 'https://www.upwork.com/freelancers/~0187d81af70696e97e',
-  locale: 'vi-VN',
+  locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.

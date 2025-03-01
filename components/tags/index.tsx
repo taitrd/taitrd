@@ -28,7 +28,7 @@ const Tags = () => {
           {tagKeys.map((t, k) => {
             return (
               <MotionCard
-                transition={{ duration: 0.3, delay: 0.09 * k }}
+                transition={{ duration: 0.3, delay: 0.01 * k }}
                 key={t}
                 className=""
               >

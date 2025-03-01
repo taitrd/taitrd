@@ -28,7 +28,7 @@ export default function ExpertiseSection({ title, items = ["HEALTHTECH", "E-COMM
       <Card className="shadow-lg border-0 bg-white dark:bg-slate-700 pt-4">
         <CardContent>
           <div className="flex flex-col sm:flex-row gap-4">
-            <div className="space-y-3 w-4/12">
+            <div className="space-y-3 sm:w-4/12">
               <h3 className="text-nowrap">{title}</h3>
               {items.map((item) => (
                 <div key={item} className="flex items-center space-x-2">
