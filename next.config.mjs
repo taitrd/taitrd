@@ -6,6 +6,7 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 const nextConfig = {
   // output: process.env.NODE_ENV == 'development' ? 'standalone' : 'export',
   distDir: process.env.NODE_ENV == "development" ? ".dev" : ".next",
+  reactStrictMode: false,
   cleanDistDir: true,
   images: {
     dangerouslyAllowSVG: true,
