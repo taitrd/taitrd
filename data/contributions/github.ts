@@ -25,7 +25,6 @@ export const collectGithubContributions = async () => {
           oldContributes
         );
       }
-
       const putItem = await putContributions(contributionsItem, eventData);
 
       /** Merge new item */
@@ -37,8 +36,5 @@ export const collectGithubContributions = async () => {
       }
     }
   }
-  // console.log(contributionsItem);
-  // return oldContributes;
-  // return eventData;
   return contributionsItem;
 };
