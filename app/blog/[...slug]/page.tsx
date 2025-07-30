@@ -16,11 +16,12 @@ const layouts = {
 }
 const allBlogs = blogs.map(i => i.content)
 const allAuthors: any[] = []
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string[] }
-}): Promise<Metadata | undefined> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string[] }>
+  }
+): Promise<Metadata | undefined> {
+  const params = await props.params;
   const slug = decodeURI(params.slug.join('/'))
   const post = allBlogs.find((p) => p.slug === slug)
   const authorList = post?.authors || ['default']
@@ -73,13 +74,14 @@ export async function generateStaticParams() {
   const paths = allBlogs.map((p) => ({ slug: p.slug.split('/') }))
   return paths
 }
-export default async function Page({ params }: { params: { slug: string[] } }) {
+export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
+  const params = await props.params;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { components } = useMDXComponents({ components: {} });
   const slug = decodeURI(params.slug.join('/'))
   // Filter out drafts in production
   const sortedCoreContents = allBlogs
-  
+
   const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
   if (postIndex === -1) {
     return notFound()
@@ -101,7 +103,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       name: author?.name,
     }
   })
-  const Layout = layouts[defaultLayout] 
+  const Layout = layouts[defaultLayout]
   return (
     <>
       <script
