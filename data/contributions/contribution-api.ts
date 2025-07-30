@@ -49,7 +49,7 @@ export const scanCommand = async (keySearch: string = "contributions_") => {
       AWS_SECRET_ACCESS_KEY,
       AWS_REGION
     );
-    const startDate = dayjs().subtract(30, "days");
+    const startDate = dayjs().subtract(360, "days");
     const endDate = dayjs();
 
     const getCommand = new ScanCommand({
