@@ -26,7 +26,7 @@ import { fadeInLeft } from "@/lib/motion/variants";
 import { Skeleton } from "./ui/skeleton";
 
 const MotionBlock = dynamic(() => import("./motions/Block"));
-const ContributionChart = dynamic(() => import("./ContributionChart"), { ssr: false });
+const ContributionChart = dynamic(() => import("./ContributionChart"));
 
 export default function ContributionActivity() {
   const { data: contributions_data, isLoading } = useContributions();

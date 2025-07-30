@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 const ExpertiseSection = dynamic(() => import("@components/ExpertiseSection"));
 const ContributionActivity = dynamic(
   () => import("@components/ContributionActivity"),
-  { ssr: false }
 );
 const LatestBlogs = dynamic(() => import("@components/LatestBlogs"));
 const Projects = dynamic(() => import("@components/FeaturedProjects"));
