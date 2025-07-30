@@ -6,11 +6,12 @@ import { Metadata } from "next";
 import { POSTS_PER_PAGE } from "@/lib/constants/pagination";
 import getBlogs from "@data/blogs";
 const blogs = getBlogs;
-export async function generateMetadata({
-  params,
-}: {
-  params: { tag: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ tag: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const tag = decodeURI(params.tag);
   return genPageMetadata({
     title: tag,
@@ -31,7 +32,8 @@ export async function generateStaticParams() {
   }));
   return paths;
 }
-export default function TagPage({ params }: { params: { tag: string } }) {
+export default async function TagPage(props: { params: Promise<{ tag: string }> }) {
+  const params = await props.params;
   const tag = decodeURI(params.tag);
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(" ").join("-").slice(1);

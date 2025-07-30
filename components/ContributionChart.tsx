@@ -1,3 +1,4 @@
+'use client';
 import { DAYS, MONTHS } from "@/lib/constants/contributions";
 import { SkillData } from "@/lib/types";
 import { cn } from "@/lib/utils";

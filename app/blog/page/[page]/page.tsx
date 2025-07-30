@@ -11,7 +11,8 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default function Page({ params }: { params: { page: string } }) {
+export default async function Page(props: { params: Promise<{ page: string }> }) {
+  const params = await props.params;
   const posts = allBlogs.map((i) => i.content);
   const pageNumber = parseInt(params.page as string);
   const initialDisplayPosts = posts.slice(
@@ -22,7 +23,7 @@ export default function Page({ params }: { params: { page: string } }) {
     currentPage: pageNumber,
     totalPages: Math.ceil(allBlogs.length / POSTS_PER_PAGE),
   };
-  
+
   return (
     <ListLayout
       posts={posts}

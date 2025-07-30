@@ -2,12 +2,12 @@
 import PostSimple from '@layouts/PostSimple'
 import PostLayout from '@layouts/PostLayout'
 import PostBanner from '@layouts/PostBanner'
-import { Metadata } from 'next'
 import siteMetadata from '@data/siteMetadata'
 import { notFound } from 'next/navigation'
 import { useMDXComponents } from 'mdx-components'
 import MDXLayoutRenderer from '@components/MDXLayoutRenderer'
 import blogs from '@data/blogs'
+import { Metadata } from 'next'
 const defaultLayout = 'PostLayout'
 const layouts = {
   PostSimple,
@@ -16,11 +16,13 @@ const layouts = {
 }
 const allBlogs = blogs.map(i => i.content)
 const allAuthors: any[] = []
+type PageParams = Promise<{ slug: string[] }>;
 export async function generateMetadata({
-  params,
+  params: asyncParams,
 }: {
-  params: { slug: string[] }
+  params: PageParams
 }): Promise<Metadata | undefined> {
+  const params = await asyncParams;
   const slug = decodeURI(params.slug.join('/'))
   const post = allBlogs.find((p) => p.slug === slug)
   const authorList = post?.authors || ['default']
@@ -29,7 +31,7 @@ export async function generateMetadata({
     return authorResults || {}
   })
   if (!post) {
-    return
+    return undefined
   }
 
   const publishedAt = new Date(post.date).toISOString()
@@ -69,17 +71,18 @@ export async function generateMetadata({
   }
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const paths = allBlogs.map((p) => ({ slug: p.slug.split('/') }))
   return paths
 }
-export default async function Page({ params }: { params: { slug: string[] } }) {
+export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
+  const params = await props.params;
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { components } = useMDXComponents({ components: {} });
+  const { components } = useMDXComponents({ components: {} as any });
   const slug = decodeURI(params.slug.join('/'))
   // Filter out drafts in production
   const sortedCoreContents = allBlogs
-  
+
   const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
   if (postIndex === -1) {
     return notFound()
@@ -101,7 +104,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       name: author?.name,
     }
   })
-  const Layout = layouts[defaultLayout] 
+  const Layout = layouts[defaultLayout]
   return (
     <>
       <script
