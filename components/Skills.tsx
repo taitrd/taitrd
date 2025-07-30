@@ -7,7 +7,7 @@ const skills = [
   },
   { category: "Backend", items: ["PHP", "Laravel", "Node.js", "Nest.js"] },
   { category: "Cloud", items: ["AWS", "Google Cloud", "Serverless"] },
-  { category: "DevOps", items: ["Docker", "CI/CD"] },
+  { category: "DevOps", items: ["Git-based", "Docker", "CI/CD"] },
 ];
 
 export function Skills() {

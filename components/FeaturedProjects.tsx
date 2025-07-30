@@ -34,16 +34,16 @@ export default function FeaturedProjects() {
             <Button variant="link">See projects</Button>
           </Link>
         </div>
-        <CardContent>
-          <div className="space-y-6">
+        <CardContent className="px-0">
+          <div className="space-y-2">
             {projects.slice(0, 5).map((project, index) => (
-              <div className="p-0" key={index}>
+              <div className="px-6 py-4 hover:bg-card/10 group" key={index}>
                 <Link
                   href={project.href || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <div className="flex space-x-4 flex-col md:flex-row">
+                  <div className="flex space-x-2 flex-col md:flex-row sm:items-center">
                     <div className="flex-grow lg:w-2/3">
                       <h3 className="text-lg font-semibold mb-2">
                         {project.title}
@@ -58,22 +58,13 @@ export default function FeaturedProjects() {
                           </Badge>
                         ))}
                       </div>
-                      {/* <Button variant='outline' asChild>
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Project
-                    </a>
-                  </Button> */}
                     </div>
-                    <div className="relative md:h-auto lg:w-1/3">
+                    <div className="flex lg:w-1/3 group-hover:scale-[1.02] duration-300 shadow-sm group-hover:shadow-lg rounded-lg">
                       {project.imgSrc && (
                         <Image
                           src={project.imgSrc}
                           alt={project.title}
-                          className="object-cover rounded-lg"
+                          className="object-cover rounded-lg "
                           width={800}
                           height={400}
                         />

@@ -31,20 +31,21 @@ export default function LatestBlogs() {
           <CardTitle><MotionSpan variants={heading}>Latest Blog Posts</MotionSpan></CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-6">
+          <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1">
             {blogPosts.map((post, index) => (
-              <div key={index} className="flex space-x-4 hover:[&>a>div>img]:shadow">
+              <div key={index} className="flex hover:[&>a>div>img]:shadow hover:scale-[1.05] duration-300 hover:bg-card/30 dark:hover:bg-card/20 rounded-sm bg-card/10">
                 <Link href={`/blog/${post.name || post.title}`}>
-                  <div className="relative h-24 flex-shrink-0">
+                  <div className="relative flex-shrink-0">
+                    <div className='absolute inset-0 blur-sm bg-card/80 opacity-10 z-10' />
                     <Image
                       src={(post.images && post.images[0]) || "/placeholder.svg"}
                       alt={post.images && post.images[0] ? post.title : 'Placeholder'}
-                      className="object-cover rounded-md"
-                      width={400}
-                      height={100}
+                      className="object-cover rounded-t-md"
+                      width={600}
+                      height={200}
                     />
                   </div>
-                  <div className="flex-grow">
+                  <div className="flex-grow py-2 pb-4 px-4">
                     <h3 className="text-lg font-semibold mb-1">{post.title}</h3>
                     <p className="text-sm text-muted-foreground mb-2">
                       {post.excerpt}
