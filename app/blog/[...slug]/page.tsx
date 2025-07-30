@@ -2,12 +2,12 @@
 import PostSimple from '@layouts/PostSimple'
 import PostLayout from '@layouts/PostLayout'
 import PostBanner from '@layouts/PostBanner'
-import { Metadata } from 'next'
 import siteMetadata from '@data/siteMetadata'
 import { notFound } from 'next/navigation'
 import { useMDXComponents } from 'mdx-components'
 import MDXLayoutRenderer from '@components/MDXLayoutRenderer'
 import blogs from '@data/blogs'
+import { Metadata } from 'next'
 const defaultLayout = 'PostLayout'
 const layouts = {
   PostSimple,
@@ -16,12 +16,13 @@ const layouts = {
 }
 const allBlogs = blogs.map(i => i.content)
 const allAuthors: any[] = []
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string[] }>
-  }
-): Promise<Metadata | undefined> {
-  const params = await props.params;
+type PageParams = Promise<{ slug: string[] }>;
+export async function generateMetadata({
+  params: asyncParams,
+}: {
+  params: PageParams
+}): Promise<Metadata | undefined> {
+  const params = await asyncParams;
   const slug = decodeURI(params.slug.join('/'))
   const post = allBlogs.find((p) => p.slug === slug)
   const authorList = post?.authors || ['default']
@@ -30,7 +31,7 @@ export async function generateMetadata(
     return authorResults || {}
   })
   if (!post) {
-    return
+    return undefined
   }
 
   const publishedAt = new Date(post.date).toISOString()
@@ -70,14 +71,14 @@ export async function generateMetadata(
   }
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const paths = allBlogs.map((p) => ({ slug: p.slug.split('/') }))
   return paths
 }
 export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
   const params = await props.params;
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { components } = useMDXComponents({ components: {} });
+  const { components } = useMDXComponents({ components: {} as any });
   const slug = decodeURI(params.slug.join('/'))
   // Filter out drafts in production
   const sortedCoreContents = allBlogs
