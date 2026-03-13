@@ -11,6 +11,6 @@ I'm a passionate software engineer with experience in building web applications,
 - **Languages:** PHP, Javascript, Typescript
 - **Frameworks:** Laravel, Next.js, Nest.js
 - **Tools:** NodeJs, Docker
-- **Other:** AWS, Gitlab CI-CD, Bitbucket Pipelines
+- **Other:** GCP, Github/Gitlab CI-CD, Bitbucket Pipelines
 
 Thanks for visiting my profile! Feel free to reach out if you want to connect or collaborate on a project.
