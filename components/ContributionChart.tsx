@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { DAYS, MONTHS } from "@/lib/constants/contributions";
 import { SkillData } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -11,7 +11,11 @@ import {
 } from "@/components/ui/tooltip";
 import useContributions from "@/hooks/use-contributions";
 import { useMemo } from "react";
-
+type ContributionLevelData = {
+  date: Date;
+  count: number;
+  level: 0 | 1 | 2 | 3 | 4;
+};
 function ContributionChart({ data }: { data: SkillData["contributions"] }) {
   const { isLoading } = useContributions();
   const getContributionColor = (level: number) => {
@@ -27,11 +31,10 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
 
   const returnWeeks = useMemo(() => {
     const weeks = [];
-    let currentWeek: { date: Date; count: number; level: 0 | 1 | 2 | 3 | 4 }[] =
-      [];
+    let currentWeek: (ContributionLevelData | null)[] = [];
 
-    data.forEach((day, index) => {
-      if (index % 7 === 0 && currentWeek.length > 0) {
+    data.forEach((day) => {
+      if (dayjs(day.date).day() % 7 === 0 && currentWeek.length > 0) {
         weeks.push(currentWeek);
         currentWeek = [];
       }
@@ -40,7 +43,6 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
     if (currentWeek.length > 0) {
       weeks.push(currentWeek);
     }
-
     return weeks;
   }, [data]);
 
@@ -48,43 +50,65 @@ function ContributionChart({ data }: { data: SkillData["contributions"] }) {
     <div className="flex gap-2 overflow-x-auto">
       <div className="flex flex-col items-start content-start gap-[3px] text-sm text-zinc-500 dark:text-zinc-300">
         {DAYS.map((day, index) => (
-          <div key={index} className="h-[10px] w-6 text-[10px] text-center align-top relative">
-            <span className='absolute left-0 top-0 leading-none'>{day}</span>
+          <div
+            key={index}
+            className="h-[10px] w-6 text-[10px] text-center align-top relative"
+          >
+            <span className="absolute left-0 top-0 leading-none">{day}</span>
           </div>
         ))}
       </div>
 
       <div className="flex-grow">
         <div className="flex gap-[3px]">
-          {!isLoading &&
-            returnWeeks.map((week, weekIndex) => (
-              <div key={weekIndex} className="flex flex-col gap-[3px]">
-                {week.map((day, dayIndex) => {
-                  const title = `${day.count} contributions on ${dayjs(
-                    day.date
-                  ).format("YYYY-MM-DD")}`;
-                  return (
-                    <TooltipProvider key={dayIndex}>
-                      <Tooltip delayDuration={100}>
-                        <TooltipTrigger asChild>
-                          <div
-                            key={dayIndex}
-                            className={cn(
-                              "h-[10px] w-[10px] rounded-[3px] hover:bg-primary dark:hover:bg-primary ",
-                              getContributionColor(day.level)
-                            )}
-                            title={title}
-                          />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{title}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  );
-                })}
-              </div>
-            ))}
+          {!isLoading && (
+            <>
+              {returnWeeks.map((week, weekIndex) => (
+                <div
+                  key={weekIndex}
+                  className={cn(
+                    "flex flex-col gap-[3px]",
+                    weekIndex === 0 && "justify-end",
+                  )}
+                >
+                  {week.map((day, dayIndex) => {
+                    if (!day) {
+                      return (
+                        <div
+                          key={dayIndex}
+                          className={cn(
+                            "h-[10px] w-[10px] rounded-[3px] hover:bg-primary dark:hover:bg-primary ",
+                          )}
+                        />
+                      );
+                    }
+                    const title = `${day.count} contributions on ${dayjs(
+                      day.date,
+                    ).format("YYYY-MM-DD")}`;
+                    return (
+                      <TooltipProvider key={dayIndex}>
+                        <Tooltip delayDuration={100}>
+                          <TooltipTrigger asChild>
+                            <div
+                              key={dayIndex}
+                              className={cn(
+                                "h-[10px] w-[10px] rounded-[3px] hover:bg-primary dark:hover:bg-primary ",
+                                getContributionColor(day.level),
+                              )}
+                              title={title}
+                            />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{title}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    );
+                  })}
+                </div>
+              ))}
+            </>
+          )}
         </div>
         <div className="flex justify-between mt-2 text-xs text-zinc-500 dark:text-zinc-300">
           {MONTHS.map((month) => (
