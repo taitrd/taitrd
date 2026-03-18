@@ -3,7 +3,7 @@ import {
   AWS_REGION,
   AWS_SECRET_ACCESS_KEY,
   DYNAMODB_TABLE_KEY,
-  DYNAMODB_TABLE_NAME,
+  CONTRIBUTION_ACTIVITIES_TABLE_NAME as DYNAMODB_TABLE_NAME,
 } from "../../lib/constants/aws";
 import dynamodbDocClient from "@/lib/dynamodb";
 import { ScanCommand } from "@aws-sdk/lib-dynamodb";
@@ -22,7 +22,7 @@ export const getCommand = async (keyParam: string = "") => {
     const docClient = dynamodbDocClient(
       AWS_ACCESS_KEY_ID,
       AWS_SECRET_ACCESS_KEY,
-      AWS_REGION
+      AWS_REGION,
     );
 
     const findKey = { [DYNAMODB_TABLE_KEY]: keyParam + keyValue };
@@ -47,28 +47,40 @@ export const scanCommand = async (keySearch: string = "contributions_") => {
     const docClient = dynamodbDocClient(
       AWS_ACCESS_KEY_ID,
       AWS_SECRET_ACCESS_KEY,
-      AWS_REGION
+      AWS_REGION,
     );
-    const startDate = dayjs().subtract(360, "days");
-    const endDate = dayjs();
 
-    const getCommand = new ScanCommand({
-      TableName: DYNAMODB_TABLE_NAME,
-      ExpressionAttributeNames: {
-        "#created_at": "created_at",
-      },
-      FilterExpression:
-        "#created_at BETWEEN :start_date AND :end_date AND begins_with(taitrd, :key)",
+    let allItems = [];
+    let lastEvaluatedKey: any = undefined;
 
-      ExpressionAttributeValues: {
-        ":start_date": startDate.toISOString(),
-        ":end_date": endDate.toISOString(),
-        ":key": keySearch,
-      },
-    });
-    const getResponse = await docClient.send(getCommand);
-    const item = getResponse.Items;
-    return item;
+    do {
+      const startDate = dayjs().subtract(3, "years");
+      const endDate = dayjs();
+
+      const command = new ScanCommand({
+        ExclusiveStartKey: lastEvaluatedKey,
+        TableName: DYNAMODB_TABLE_NAME,
+        ExpressionAttributeNames: {
+          "#created_at": "created_at",
+          "#status": "status",
+        },
+        FilterExpression:
+          "#created_at > :start_date AND #created_at < :end_date AND begins_with(taitrd, :key) AND #status = :status",
+
+        ExpressionAttributeValues: {
+          ":start_date": startDate.toISOString(),
+          ":end_date": endDate.toISOString(),
+          ":key": keySearch,
+          ":status": "open",
+        },
+      });
+
+      const response = await docClient.send(command);
+      allItems.push(...(response.Items || []));
+      lastEvaluatedKey = response.LastEvaluatedKey; // Set next page key
+    } while (lastEvaluatedKey); // Continue if there are more items
+
+    return allItems;
   }
   return null;
 };
@@ -83,7 +95,7 @@ export const getCommandWithEntry = async (keyParam: string = "") => {
     const docClient = dynamodbDocClient(
       AWS_ACCESS_KEY_ID,
       AWS_SECRET_ACCESS_KEY,
-      AWS_REGION
+      AWS_REGION,
     );
     const keyValue = keyParam + "contributions_entry";
     const findKey = { [DYNAMODB_TABLE_KEY]: keyValue };

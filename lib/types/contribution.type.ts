@@ -1,3 +1,4 @@
+import { ContributionPlatformID } from "@/data/contributions/commands/get-contributions-by-platform";
 import { EventGroup } from "./github-api.type";
 
 export type Contributions = {
@@ -12,4 +13,14 @@ export type Contributions = {
     old_grouped_events?: EventGroup[];
     entry_events?: EventGroup[];
   };
+};
+
+export type PlatformContribution = {
+  version: number;
+  updated_at?: string;
+  taitrd: ContributionPlatformID;
+  status: "open" | "closed";
+  created_at: string;
+  grouped_events: { [dateid in string]: EventGroup };
+  events_count: number;
 };
