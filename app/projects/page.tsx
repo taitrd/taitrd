@@ -1,9 +1,9 @@
-import { genPageMetadata } from '@data/seo'
-import dynamic from 'next/dynamic';
+import { genPageMetadata } from "@data/seo";
+import dynamic from "next/dynamic";
 
-const Projects = dynamic(() => import('@/components/projects'));
+const Projects = dynamic(() => import("@/components/projects"));
 
-export const metadata = genPageMetadata({ title: 'Projects' })
+export const metadata = genPageMetadata({ title: "Projects" });
 
 export default function ProjectsPage() {
   return (
@@ -12,5 +12,5 @@ export default function ProjectsPage() {
         <Projects />
       </div>
     </>
-  )
+  );
 }

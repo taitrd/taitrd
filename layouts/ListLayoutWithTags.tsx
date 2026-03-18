@@ -98,7 +98,10 @@ export default function ListLayoutWithTags({
           </h1>
         </div>
         <div className="flex sm:space-x-8">
-          <MotionBlock variants={fadeInLeft} className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
+          <MotionBlock
+            variants={fadeInLeft}
+            className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex"
+          >
             <div className="px-6 py-4">
               {pathname.startsWith("/blog") ? (
                 <h3 className="font-bold uppercase text-primary-500">
@@ -135,20 +138,28 @@ export default function ListLayoutWithTags({
               </ul>
             </div>
           </MotionBlock>
-          <MotionBlock variants={fadeInRight} className="bg-slate-100 dark:bg-slate-700 px-6 rounded shadow min-w-96">
+          <MotionBlock
+            variants={fadeInRight}
+            className="bg-slate-100 dark:bg-slate-700 px-6 rounded shadow min-w-96"
+          >
             <ul>
               {displayPosts.map((post, k) => {
                 const { path, date, title, summary, tags, images } = post;
                 return (
-                  <MotionListItem key={path} variants={cards} transition={{duration: 0.9, delay: 0.1 * k}} className="py-5">
-                    <article className="flex flex-col xl:flex-row gap-2 items-center">
+                  <MotionListItem
+                    key={path}
+                    variants={cards}
+                    transition={{ duration: 0.9, delay: 0.1 * k }}
+                    className="py-5"
+                  >
+                    <article className="flex flex-col xl:flex-row gap-2 items-start">
                       <div className="flex flex-col space-y-2 xl:space-y-0 xl:w-9/12">
                         <dl>
                           <dt className="sr-only">Published on</dt>
                           <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                             <time dateTime={date}>
                               {dayjs(date, "YYYY-MM-DD").format(
-                                DATE_LOCALE_FORMAT
+                                DATE_LOCALE_FORMAT,
                               )}
                             </time>
                           </dd>
@@ -180,7 +191,11 @@ export default function ListLayoutWithTags({
                             (post.images && post.images[0]) ||
                             "/placeholder.jpg"
                           }
-                          alt={post.images && post.images[0] ? post.title : 'Placeholder'}
+                          alt={
+                            post.images && post.images[0]
+                              ? post.title
+                              : "Placeholder"
+                          }
                           height={400}
                           width={600}
                           className="object-cover rounded-md"
