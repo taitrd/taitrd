@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { ReactNode } from "react";
 import Comments from "@components/Comments";
 import Link from "@components/Link";
@@ -45,6 +45,7 @@ export default function PostLayout({
 }: LayoutProps) {
   const { filePath, path, slug, date, title, tags, images = [] } = content;
   const basePath = path.split("/")[0];
+
   const cover = images.find(() => true);
   return (
     <SectionContainer>
@@ -56,11 +57,14 @@ export default function PostLayout({
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <MotionDd variants={heading} className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <MotionDd
+                    variants={heading}
+                    className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400"
+                  >
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(
                         siteMetadata.locale,
-                        postDateTemplate
+                        postDateTemplate,
                       )}
                     </time>
                   </MotionDd>
@@ -77,10 +81,7 @@ export default function PostLayout({
               <dd>
                 <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
                   {authorDetails.map((author, i) => (
-                    <li
-                      className="flex items-center space-x-2"
-                      key={i}
-                    >
+                    <li className="flex items-center space-x-2" key={i}>
                       {author.avatar && (
                         <Image
                           src={author.avatar}
@@ -116,9 +117,18 @@ export default function PostLayout({
             </dl>
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
               {cover && (
-                <Image src={cover} height={600} width={800} alt={title} className="rounded-lg mx-auto py-6"/>
+                <Image
+                  src={cover}
+                  height={900}
+                  width={1600}
+                  alt={title}
+                  className="object-contain rounded-lg mx-auto py-6"
+                />
               )}
-              <MotionBlock variants={fadeIn} className="prose max-w-none pb-8 pt-10 dark:prose-invert">
+              <MotionBlock
+                variants={fadeIn}
+                className="prose max-w-none pb-8 pt-10 dark:prose-invert"
+              >
                 {children}
               </MotionBlock>
               {/* <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
