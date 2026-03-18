@@ -1,15 +1,17 @@
 import { AWS_ENABLE_SYNC } from "../../lib/constants/aws";
-import { getEventData } from "./github/events";
 import putContributions from "./put-contributions";
 
 import { getGithubContributions } from "./get-contributions";
-import { getGithubRangeContributions } from "./get-range-contributions";
-import { mergeGithubContributions } from "./merge-contributions";
+import { getRepositoryEventData } from "./github/get-repository-events";
 
 export const collectGithubContributions = async () => {
-  const eventData = await getEventData();
+  /**
+   * TODO: change Event API when needed
+   * Get mores event data with repo and events API
+   */
+  const eventData = await getRepositoryEventData();
   let contributionsItem = await getGithubContributions();
-  const oldContributes = await getGithubRangeContributions();
+
   if (AWS_ENABLE_SYNC) {
     if (
       !contributionsItem ||
@@ -17,23 +19,9 @@ export const collectGithubContributions = async () => {
     ) {
       console.info(
         "batching contributions",
-        contributionsItem ? "open status" : "new status"
+        contributionsItem ? "open status" : "new status",
       );
-      if (contributionsItem) {
-        contributionsItem = await mergeGithubContributions(
-          contributionsItem,
-          oldContributes
-        );
-      }
-      const putItem = await putContributions(contributionsItem, eventData);
-
-      /** Merge new item */
-      if (!contributionsItem && putItem) {
-        contributionsItem = await mergeGithubContributions(
-          putItem,
-          oldContributes
-        );
-      }
+      await putContributions(contributionsItem, eventData);
     }
   }
   return contributionsItem;

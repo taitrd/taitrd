@@ -11,7 +11,7 @@ export const collectBitbucketContributions = async () => {
   };
   let contributionsItem = await getBitbucketContributions("bitbucket_");
   const oldContributes = await getBitbucketRangeContributions(
-    "bitbucket_contributions"
+    "bitbucket_contributions",
   );
   if (AWS_ENABLE_SYNC) {
     if (
@@ -20,26 +20,20 @@ export const collectBitbucketContributions = async () => {
     ) {
       console.info(
         "batching bitbucket contributions",
-        contributionsItem ? "open status" : "new status"
+        contributionsItem ? "open status" : "new status",
       );
-      if (contributionsItem) {
-        contributionsItem = await mergeBitbucketContributions(
-          contributionsItem,
-          oldContributes
-        );
-      }
 
       const putItem = await putContributions(
         contributionsItem,
         eventData,
-        "bitbucket_"
+        "bitbucket_",
       );
 
       /** Merge new item */
       if (!contributionsItem && putItem) {
         contributionsItem = await mergeBitbucketContributions(
           putItem,
-          oldContributes
+          oldContributes,
         );
       }
     }

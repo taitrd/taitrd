@@ -7,13 +7,13 @@ import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 const keyValue = getDateKeyValue();
 const mergeOldGroups = (
   contributionsItem: Record<string, any>,
-  oldContributes: Record<string, any>[] | null | undefined
+  oldContributes: Record<string, any>[] | null | undefined,
 ) => {
   const keepEventDates =
     contributionsItem.contributions?.grouped_events?.map((i: any) => i.date) ||
     [];
   const sorted = (oldContributes || []).sort((a, b) =>
-    b.taitrd.localeCompare(a.taitrd)
+    b.taitrd.localeCompare(a.taitrd),
   );
   const oldGroupedEvent = sorted.reduce<any[]>((prv, cur) => {
     // Ignore today record
@@ -28,7 +28,7 @@ const mergeOldGroups = (
           console.log(
             "added this event from old group of contribution",
             cur.taitrd,
-            event.date
+            event.date,
           );
         }
       }
@@ -41,7 +41,7 @@ const mergeOldGroups = (
           console.log(
             "added this event from new group of contribution",
             cur.taitrd,
-            event.date
+            event.date,
           );
         }
       }
@@ -52,7 +52,7 @@ const mergeOldGroups = (
 };
 export const mergeGithubContributions = async (
   contributionsItem: Record<string, any>,
-  oldContributes: Record<string, any>[] | null | undefined
+  oldContributes: Record<string, any>[] | null | undefined,
 ) => {
   const oldGroupedEvents = mergeOldGroups(contributionsItem, oldContributes);
   contributionsItem.contributions.old_grouped_events = oldGroupedEvents;
@@ -65,7 +65,7 @@ export const mergeGithubContributions = async (
 
 export const mergeGitlabContributions = async (
   contributionsItem: Record<string, any>,
-  oldContributes: Record<string, any>[] | null | undefined
+  oldContributes: Record<string, any>[] | null | undefined,
 ) => {
   const oldGroupedEvents = mergeOldGroups(contributionsItem, oldContributes);
   contributionsItem.contributions.old_grouped_events = oldGroupedEvents;
@@ -78,7 +78,7 @@ export const mergeGitlabContributions = async (
 
 export const mergeBitbucketContributions = async (
   contributionsItem: Record<string, any>,
-  oldContributes: Record<string, any>[] | null | undefined
+  oldContributes: Record<string, any>[] | null | undefined,
 ) => {
   const oldGroupedEvents = mergeOldGroups(contributionsItem, oldContributes);
   contributionsItem.contributions.old_grouped_events = oldGroupedEvents;
