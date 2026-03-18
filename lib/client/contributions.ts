@@ -14,7 +14,7 @@ export function getContributionLevel(count: number): 0 | 1 | 2 | 3 | 4 {
 export function generateContributions(
   maxCount: number,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): SkillData["contributions"] {
   const contributions = [];
 
@@ -32,17 +32,17 @@ export function generateContributions(
 
 export const gitHubEventGroupMapping = (i: EventGroup) => {
   const createBranchCount = i.events.filter(
-    (j) => j.type === EventType.CreateEvent && j.payload?.ref_type === "branch"
+    (j) => j.type === EventType.CreateEvent && j.payload?.ref_type === "branch",
   ).length;
   const createRepoCount = i.events.filter(
     (j) =>
-      j.type === EventType.CreateEvent && j.payload?.ref_type === "repository"
+      j.type === EventType.CreateEvent && j.payload?.ref_type === "repository",
   ).length;
   const prCount = i.events.filter(
     (j) =>
       j.type === EventType.PullRequestEvent &&
-      j.payload?.action === "closed" &&
-      j.payload?.pull_request?.merged_at
+      (j.payload?.action === "closed" || j.payload?.action === "merged") &&
+      j.payload?.pull_request?.merged_at,
   ).length;
   const cmCount = i.events.filter((j) => j.type === EventType.PushEvent).length;
   const createCount = createRepoCount || createBranchCount;
@@ -59,7 +59,7 @@ export const gitHubContributionsMapping = (
   selectedYear: number,
   startDate: Date,
   endDate: Date,
-  github_contributions?: Contributions
+  github_contributions?: Contributions,
 ) => {
   const dataContributions =
     github_contributions?.contributions?.grouped_events
@@ -78,19 +78,19 @@ export const gitHubContributionsMapping = (
     const dayJsObj = dayjs(d);
     const dateStr = dayJsObj.format("YYYY-MM-DD");
     const dataContribution = dataContributions.find(
-      (i) => i.date_str === dateStr
+      (i) => i.date_str === dateStr,
     );
     if (dataContribution) {
       contributions.push(dataContribution);
     } else {
       const oldDataContribution = oldDataContributions.find(
-        (i) => i.date_str === dateStr
+        (i) => i.date_str === dateStr,
       );
       if (oldDataContribution) {
         contributions.push(oldDataContribution);
       } else {
         const entryContribution = entryContributions.find(
-          (i) => i.date === dateStr
+          (i) => i.date === dateStr,
         );
         if (entryContribution && entryContribution.events_count) {
           contributions.push({
@@ -118,7 +118,7 @@ export const entryContributionsMapping = (
   selectedYear: number,
   startDate: Date,
   endDate: Date,
-  gitlab_contributions?: Contributions
+  gitlab_contributions?: Contributions,
 ) => {
   const entryContributions =
     gitlab_contributions?.contributions?.entry_events || [];
@@ -128,7 +128,7 @@ export const entryContributionsMapping = (
     const dayJsObj = dayjs(d);
     const dateStr = dayJsObj.format("YYYY-MM-DD");
     const entryContribution = entryContributions.find(
-      (i) => i.date === dateStr
+      (i) => i.date === dateStr,
     );
     if (entryContribution && entryContribution.events_count) {
       contributions.push({

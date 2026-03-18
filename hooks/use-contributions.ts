@@ -1,4 +1,4 @@
-import { getContributions } from "@/lib/actions/contribution";
+import { getContributionsV2 } from "@/lib/actions/get-contributions-v2";
 import { ServiceContributions } from "@/lib/types";
 import { useEffect, useState } from "react";
 
@@ -11,11 +11,11 @@ const useContributions = () => {
         success,
         data: contributions,
         message,
-      } = await getContributions();
+      } = await getContributionsV2();
       if (!success || !contributions) {
         throw new Error(message);
       }
-      setData(contributions as ServiceContributions);
+      setData(contributions);
       setIsLoading(false);
     } catch {
       setIsLoading(false);
