@@ -3,20 +3,29 @@
 import { collectBitbucketContributions } from "@/data/contributions/bitbucket";
 import { collectGithubContributions } from "@/data/contributions/github";
 import { collectGitlabContributions } from "@/data/contributions/gitlab";
+import { unstable_cache } from "next/cache";
+import { CacheTag } from "../enums/cach-tag";
 
 export const getContributions = async () => {
   try {
-    const github_contributions = await collectGithubContributions();
-    const gitlab_contributions = await collectGitlabContributions();
-    const bitbucket_contributions = await collectBitbucketContributions();
+    const data = await unstable_cache(
+      async () => {
+        const github_contributions = await collectGithubContributions();
+        const gitlab_contributions = await collectGitlabContributions();
+        const bitbucket_contributions = await collectBitbucketContributions();
+        return {
+          github_contributions,
+          bitbucket_contributions,
+          gitlab_contributions,
+        };
+      },
+      ["all_contributions"],
+      { tags: [CacheTag.Contributions], revalidate: 86400 },
+    )();
 
     return {
       success: true,
-      data: {
-        github_contributions,
-        bitbucket_contributions,
-        gitlab_contributions,
-      },
+      data: data,
     };
   } catch (error) {
     console.error("Error occurred:", error);
