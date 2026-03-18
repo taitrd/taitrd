@@ -4,7 +4,7 @@ import {
   AWS_REGION,
   AWS_SECRET_ACCESS_KEY,
   DYNAMODB_TABLE_KEY,
-  DYNAMODB_TABLE_NAME,
+  CONTRIBUTION_ACTIVITIES_TABLE_NAME as DYNAMODB_TABLE_NAME,
 } from "../../lib/constants/aws";
 
 import { ContributionData } from "@/lib/types";
@@ -17,7 +17,7 @@ const dayJS = dayjs();
 const putContributions = async (
   item: Record<string, any> | null | undefined,
   data: ContributionData,
-  keyParam: string = ""
+  keyParam: string = "",
 ) => {
   if (
     AWS_ACCESS_KEY_ID &&
@@ -30,7 +30,7 @@ const putContributions = async (
     const docClient = dynamodbDocClient(
       AWS_ACCESS_KEY_ID,
       AWS_SECRET_ACCESS_KEY,
-      AWS_REGION
+      AWS_REGION,
     );
     if (!item) {
       const keyValue = getDateKeyValue();
@@ -39,6 +39,7 @@ const putContributions = async (
         contributions: {
           grouped_events: data.groupedEvents || [],
         },
+        events: data.allEvents,
         events_count: data.allEvents?.length || 0,
         created_at: dayJS.toISOString(),
         status: "open",
@@ -57,6 +58,7 @@ const putContributions = async (
         TableName: DYNAMODB_TABLE_NAME,
         Item: {
           ...item,
+          events: data.allEvents,
           events_count: data.allEvents.length,
           updated_at: dayJS.toISOString(),
           status: "closed",

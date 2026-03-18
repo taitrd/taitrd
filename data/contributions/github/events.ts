@@ -2,7 +2,7 @@ import EventAPI from "@/lib/github-apis/event";
 import { EventGroup, EventType } from "@/lib/types/github-api.type";
 import dayjs from "dayjs";
 import { unstable_cache } from "next/cache";
-const eventPayloads: { [key in EventType]?: (payload: any) => any } = {
+export const eventPayloads: { [key in EventType]?: (payload: any) => any } = {
   PullRequestEvent: ({
     action,
     changed_files,
@@ -34,29 +34,38 @@ const eventPayloads: { [key in EventType]?: (payload: any) => any } = {
     ref_type,
   }),
 };
+
+export const eventsGroupingReducer = (prv: EventGroup[], cur: any) => {
+  const date = dayjs(cur.created_at).format("YYYY-MM-DD");
+  const itemIndex = prv.findIndex((i) => i.date === date);
+  const handlePayloads = eventPayloads[cur.type as EventType] || (() => null);
+  const newItem = {
+    id: cur.id,
+    type: cur.type,
+    repo: { id: cur.repo.id },
+    payload: handlePayloads(cur.payload),
+    created_at: cur.created_at,
+  };
+  if (itemIndex > -1) {
+    prv[itemIndex].events.push(newItem);
+  } else {
+    prv.push({ date: date, events: [newItem] });
+  }
+
+  return prv;
+};
+
+/**
+ * @deprecated
+ * using new api instead
+ */
 export const getEventData = unstable_cache(
   async () => {
     const { allEvents } = await EventAPI().getEventsForAuthenticatedUser();
-    const groupedEvents = allEvents.reduce<EventGroup[]>((prv, cur) => {
-      const date = dayjs(cur.created_at).format("YYYY-MM-DD");
-      const itemIndex = prv.findIndex((i) => i.date === date);
-      const handlePayloads =
-        eventPayloads[cur.type as EventType] || (() => null);
-      const newItem = {
-        id: cur.id,
-        type: cur.type,
-        repo: { id: cur.repo.id },
-        payload: handlePayloads(cur.payload),
-        created_at: cur.created_at,
-      };
-      if (itemIndex > -1) {
-        prv[itemIndex].events.push(newItem);
-      } else {
-        prv.push({ date: date, events: [newItem] });
-      }
-
-      return prv;
-    }, []);
+    const groupedEvents = allEvents.reduce<EventGroup[]>(
+      eventsGroupingReducer,
+      [],
+    );
     // console.log("events", groupedEvents);
     return {
       allEvents,
@@ -64,5 +73,5 @@ export const getEventData = unstable_cache(
     };
   },
   ["github_list_events"],
-  { revalidate: 3600 }
+  { revalidate: 3600 },
 );

@@ -5,19 +5,40 @@ import OrganizationAPI from "./organization";
 const client = octokitClient();
 const EventAPI = () => {
   return {
+    /**
+     * @deprecated
+     * @returns
+     */
     getEventsForAuthenticatedUser: async () => {
       const allEvents = await client.paginate(
         client.rest.activity.listEventsForAuthenticatedUser,
         {
           username: GITHUB_USERNAME || "john",
           per_page: 100,
-        }
+        },
       );
       return {
         allEvents,
       };
     },
-    getListRepositoryEvents: async (perPage = 100) => {
+    /**
+     * REST API - List events for the authenticated user
+     * @link https://docs.github.com/en/rest/activity/events?apiVersion=2026-03-10#list-events-for-the-authenticated-user
+     * @returns
+     */
+    getEventsForAuthenticatedUserByRequest: async () => {
+      const { data: events } = await client.request(
+        "GET /users/{username}/events",
+        {
+          username: GITHUB_USERNAME || "john",
+          per_page: 100,
+        },
+      );
+      return {
+        allEvents: events,
+      };
+    },
+    getListRepositoryEvents: async (page = 1, perPage = 100) => {
       const allEvents = [];
       const repos = await RepositoryAPI().getUserRepositories();
       for (const repo of repos) {
@@ -27,8 +48,9 @@ const EventAPI = () => {
             owner: repo.owner.login,
             repo: repo.name,
             headers: {},
+            page: page,
             per_page: perPage,
-          }
+          },
         );
         allEvents.push(...events);
       }
@@ -42,8 +64,9 @@ const EventAPI = () => {
               owner: org.login,
               repo: orgRepo.name,
               headers: {},
+              page: page,
               per_page: perPage,
-            }
+            },
           );
           allEvents.push(...events);
         }
