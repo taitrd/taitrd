@@ -38,7 +38,10 @@ export function Skills() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {skills.map((skill) => (
-        <div key={skill.category} className={cn(skill.colspan && `col-span-2`)}>
+        <div
+          key={skill.category}
+          className={cn(skill.colspan && `md:col-span-2`)}
+        >
           <h3 className="font-semibold mb-2">{skill.category}</h3>
           <div className="flex flex-wrap gap-2 flex-grow-1">
             {skill.items.map((item) => (
