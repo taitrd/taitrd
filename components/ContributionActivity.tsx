@@ -41,21 +41,20 @@ export default function ContributionActivity() {
       selectedYear,
       startDate,
       endDate,
-      contributions_data?.github_contributions
+      contributions_data?.github_contributions,
     );
-
     const gitlab: SkillData["contributions"] = entryContributionsMapping(
       selectedYear,
       startDate,
       endDate,
-      contributions_data?.gitlab_contributions
+      contributions_data?.gitlab_contributions,
     );
 
     const bitbucket: SkillData["contributions"] = entryContributionsMapping(
       selectedYear,
       startDate,
       endDate,
-      contributions_data?.bitbucket_contributions
+      contributions_data?.bitbucket_contributions,
     );
     return [
       {
@@ -75,7 +74,7 @@ export default function ContributionActivity() {
         icon: Bitbucket,
         contributions: bitbucket,
       },
-    ].filter(i => i.contributions.some(j => j.count));
+    ].filter((i) => i.contributions.some((j) => j.count));
   }, [
     contributions_data?.bitbucket_contributions,
     contributions_data?.github_contributions,
@@ -84,16 +83,19 @@ export default function ContributionActivity() {
   ]);
 
   return (
-    <MotionBlock variants={{
-      ...fadeInLeft, animate: {
-        opacity: 1,
-        x: 0,
-        transition: {
-          duration: 0.5,
-          delay: 0.3,
+    <MotionBlock
+      variants={{
+        ...fadeInLeft,
+        animate: {
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 0.5,
+            delay: 0.3,
+          },
         },
-      }
-    }} >
+      }}
+    >
       <Card className="shadow-lg border-0 bg-white dark:bg-slate-700">
         <div className="flex flex-col sm:flex-row sm:justify-between pr-6">
           <CardHeader>
@@ -134,7 +136,7 @@ export default function ContributionActivity() {
                       variant="link"
                       className={cn(
                         "flex items-center gap-2 justify-center px-1 ",
-                        skill.link ? "" : "cursor-default hover:no-underline"
+                        skill.link ? "" : "cursor-default hover:no-underline",
                       )}
                     >
                       {skill.icon && <skill.icon />}
@@ -147,7 +149,9 @@ export default function ContributionActivity() {
             })}
           </div>
           <div className="mt-4 flex items-center justify-center gap-2 text-sm">
-            <span className="text-xs text-zinc-500 dark:text-zinc-300">Less</span>
+            <span className="text-xs text-zinc-500 dark:text-zinc-300">
+              Less
+            </span>
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
@@ -155,12 +159,15 @@ export default function ContributionActivity() {
                   "h-[10px] w-[10px] rounded-sm",
                   level === 0
                     ? "bg-slate-100 dark:bg-slate-700"
-                    : `bg-green-${(level + 1) * 100} dark:bg-green-${1000 - level * 100
-                    }`
+                    : `bg-green-${(level + 1) * 100} dark:bg-green-${
+                        1000 - level * 100
+                      }`,
                 )}
               />
             ))}
-            <span className="text-xs text-zinc-500 dark:text-zinc-300">More</span>
+            <span className="text-xs text-zinc-500 dark:text-zinc-300">
+              More
+            </span>
           </div>
         </CardContent>
       </Card>

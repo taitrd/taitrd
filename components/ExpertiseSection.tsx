@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Check } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,18 +13,24 @@ interface ExpertiseProps {
   items?: string[];
 }
 
-export default function ExpertiseSection({ title, items = ["HEALTHTECH", "E-COMMERCE", "IOT", "SAAS", "MANUFACTURE"] }: ExpertiseProps) {
+export default function ExpertiseSection({
+  title,
+  items = ["BOOKING", "HEALTHTECH", "E-COMMERCE", "IOT", "SAAS", "MANUFACTURE"],
+}: ExpertiseProps) {
   return (
-    <MotionBlock variants={{
-      ...fadeInLeft, animate: {
-        opacity: 1,
-        x: 0,
-        transition: {
-          duration: 0.5,
-          delay: 0.2,
+    <MotionBlock
+      variants={{
+        ...fadeInLeft,
+        animate: {
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 0.5,
+            delay: 0.2,
+          },
         },
-      }
-    }} >
+      }}
+    >
       <Card className="shadow-lg border-0 bg-white dark:bg-slate-700 pt-4">
         <CardContent>
           <div className="flex flex-col sm:flex-row gap-4">
