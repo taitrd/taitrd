@@ -23,6 +23,10 @@ const nextConfig = {
       },
     ],
   },
+  pageExtensions: ["mdx", "md", "tsx", "ts"],
+  rewrites: async () => {
+    return [{ source: "/blog", destination: "/blog/page/1" }];
+  },
 };
 
 const withMDX = createMDX({

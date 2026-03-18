@@ -11,13 +11,17 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function Page(props: { params: Promise<{ page: string }> }) {
+export default async function Page(props: {
+  params: Promise<{ page: string }>;
+}) {
   const params = await props.params;
-  const posts = allBlogs.map((i) => i.content);
+  const posts = allBlogs
+    .map((i) => i.content)
+    .sort((a, b) => b.date.localeCompare(a.date));
   const pageNumber = parseInt(params.page as string);
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
-    POSTS_PER_PAGE * pageNumber
+    POSTS_PER_PAGE * pageNumber,
   );
   const pagination = {
     currentPage: pageNumber,
