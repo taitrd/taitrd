@@ -29,7 +29,7 @@ export const getContributionsByPlatformCommand = async (
     const getResponse = await docClient.send(getCommand);
     const item = getResponse.Item as PlatformContribution;
     if (status && item.status !== status) {
-      console.error(`${platform} item was ${status}`);
+      console.error(`${platform} item was ${item.status}`);
       return null;
     }
 
