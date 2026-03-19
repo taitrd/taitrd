@@ -11,6 +11,9 @@ export const collectGithubContributions = async () => {
    * Get mores event data with repo and events API
    */
   const eventData = await getEventData();
+
+  console.info(eventData);
+
   let contributionsItem = await getGithubContributions();
 
   if (AWS_ENABLE_SYNC) {

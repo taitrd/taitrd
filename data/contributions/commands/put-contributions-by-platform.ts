@@ -33,7 +33,7 @@ export const putContributionsByPlatform = async (
       (p, c) => p + (c.events_count || c.events?.length || 0),
       0,
     ),
-    status: "closed",
+    status: "open",
     version: 1,
     updated_at: dayJS.toISOString(),
   };
