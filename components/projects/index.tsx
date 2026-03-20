@@ -18,7 +18,7 @@ const Projects = () => {
           Projects
         </MotionHeading>
         <MotionParagraph className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          Dominant products that he worked with colleagues and independence.
+          Products that he worked with independence.
         </MotionParagraph>
       </div>
       <div className="container py-12">
