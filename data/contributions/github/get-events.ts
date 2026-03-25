@@ -9,7 +9,7 @@ import { eventsGroupingReducer } from "./events";
 export const getEventData = unstable_cache(
   async () => {
     const { allEvents } =
-      await EventAPI().getEventsForAuthenticatedUserByRequest();
+      await EventAPI().getEventsForAuthenticatedUserByRequest(1, 30);
     const groupedEvents = allEvents.reduce<EventGroup[]>(
       eventsGroupingReducer,
       [],
@@ -20,6 +20,6 @@ export const getEventData = unstable_cache(
       groupedEvents,
     };
   },
-  ["github_list_events"],
-  { revalidate: 3600 },
+  ["github_list_events", "authenticated", "rest_api_request"],
+  { revalidate: false },
 );

@@ -10,8 +10,8 @@ export const getGithubContributions = unstable_cache(
   [CACHE_VERSION, "github_contributes", keyValue],
   {
     tags: [CacheTag.Github, CacheTag.Contributions],
-    revalidate: 3600,
-  }
+    revalidate: false,
+  },
 );
 
 export const getGitlabContributions = unstable_cache(
@@ -20,7 +20,7 @@ export const getGitlabContributions = unstable_cache(
   {
     tags: [CacheTag.Gitlab, CacheTag.Contributions],
     revalidate: 3600,
-  }
+  },
 );
 
 export const getBitbucketContributions = unstable_cache(
@@ -29,5 +29,5 @@ export const getBitbucketContributions = unstable_cache(
   {
     tags: [CacheTag.Bitbucket, CacheTag.Contributions],
     revalidate: 3600,
-  }
+  },
 );

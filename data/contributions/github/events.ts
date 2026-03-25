@@ -72,6 +72,6 @@ export const getEventData = unstable_cache(
       groupedEvents,
     };
   },
-  ["github_list_events"],
-  { revalidate: 3600 },
+  ["github_list_events", "authenticated"],
+  { revalidate: false },
 );
