@@ -60,8 +60,8 @@ export const eventsGroupingReducer = (prv: EventGroup[], cur: any) => {
  * using new api instead
  */
 export const getEventData = unstable_cache(
-  async () => {
-    const { allEvents } = await EventAPI().getEventsForAuthenticatedUser();
+  async (page?: number) => {
+    const { allEvents } = await EventAPI().getEventsForAuthenticatedUser(page);
     const groupedEvents = allEvents.reduce<EventGroup[]>(
       eventsGroupingReducer,
       [],

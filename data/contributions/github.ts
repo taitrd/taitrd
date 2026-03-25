@@ -14,7 +14,9 @@ export const collectGithubContributions = async () => {
    */
   const eventData = await getEventData();
 
-  console.info(eventData);
+  console.table(
+    eventData.groupedEvents.map((d) => `${d.date} (${d.events.length})`),
+  );
 
   let contributionsItem = (await getGithubContributions()) as Contributions;
 
