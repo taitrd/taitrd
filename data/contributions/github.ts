@@ -2,8 +2,10 @@ import { AWS_ENABLE_SYNC } from "../../lib/constants/aws";
 import putContributions from "./put-contributions";
 
 import { getGithubContributions } from "./get-contributions";
-// import { getRepositoryEventData } from "./github/get-repository-events";
-import { getEventData } from "./github/get-events";
+import { getEventData } from "./github/events";
+// import { getRepositoryEventData as getEventData } from "./github/get-repository-events";
+import { Contributions } from "@/lib/types/contribution.type";
+// import { getEventData } from "./github/get-events";
 
 export const collectGithubContributions = async () => {
   /**
@@ -14,7 +16,7 @@ export const collectGithubContributions = async () => {
 
   console.info(eventData);
 
-  let contributionsItem = await getGithubContributions();
+  let contributionsItem = (await getGithubContributions()) as Contributions;
 
   if (AWS_ENABLE_SYNC) {
     if (
@@ -24,6 +26,8 @@ export const collectGithubContributions = async () => {
       console.info(
         "batching contributions",
         contributionsItem ? "open status" : "new status",
+        contributionsItem.taitrd,
+        contributionsItem.events_count,
       );
       await putContributions(contributionsItem, eventData);
     }
