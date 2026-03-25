@@ -9,13 +9,17 @@ const EventAPI = () => {
      * @deprecated
      * @returns
      */
-    getEventsForAuthenticatedUser: async () => {
+    getEventsForAuthenticatedUser: async (page = 1, perPage = 100) => {
       const allEvents = await client.paginate(
         client.rest.activity.listEventsForAuthenticatedUser,
         {
           username: GITHUB_USERNAME || "john",
-          per_page: 100,
+          page: page,
+          per_page: perPage,
         },
+      );
+      console.log(
+        `Fetched events for authenticated user ${allEvents.length} total events. ${page}/${perPage}`,
       );
       return {
         allEvents,
@@ -26,13 +30,21 @@ const EventAPI = () => {
      * @link https://docs.github.com/en/rest/activity/events?apiVersion=2026-03-10#list-events-for-the-authenticated-user
      * @returns
      */
-    getEventsForAuthenticatedUserByRequest: async () => {
+    getEventsForAuthenticatedUserByRequest: async (page = 1, perPage = 100) => {
       const { data: events } = await client.request(
         "GET /users/{username}/events",
         {
           username: GITHUB_USERNAME || "john",
-          per_page: 100,
+          page: page,
+          per_page: perPage,
+          headers: {
+            authorization: `Bearer ${process.env.GIT_TOKEN}`,
+            "X-GitHub-Api-Version": "2026-03-10",
+          },
         },
+      );
+      console.log(
+        `Fetched events for authenticated user by REST request ${events.length} total events.`,
       );
       return {
         allEvents: events,
@@ -73,6 +85,32 @@ const EventAPI = () => {
       }
       return {
         repos,
+        allEvents,
+      };
+    },
+    getEventsByRepos: async (
+      repos: { user: string; repo: string }[],
+      page = 1,
+      perPage = 100,
+    ) => {
+      const allEvents = [];
+      for (const repo of repos) {
+        const { data: events } = await client.request(
+          "GET /repos/{owner}/{repo}/events",
+          {
+            owner: repo.user,
+            repo: repo.repo,
+            headers: {},
+            page: page,
+            per_page: perPage,
+          },
+        );
+        allEvents.push(...events);
+      }
+      console.log(
+        `Fetched events by all repos ${allEvents.length} total events.`,
+      );
+      return {
         allEvents,
       };
     },

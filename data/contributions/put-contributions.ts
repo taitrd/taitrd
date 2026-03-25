@@ -13,9 +13,10 @@ import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 import dayjs from "dayjs";
 import { revalidateTag } from "next/cache";
 import { CacheTag } from "@/lib/enums/cach-tag";
+import { Contributions } from "@/lib/types/contribution.type";
 const dayJS = dayjs();
 const putContributions = async (
-  item: Record<string, any> | null | undefined,
+  item: Contributions | null | undefined,
   data: ContributionData,
   keyParam: string = "",
 ) => {
@@ -53,16 +54,33 @@ const putContributions = async (
       });
       return newItem;
     } else {
-      item.contributions.grouped_events = data.groupedEvents;
+      const groupedDates = item.contributions.grouped_events?.map(
+        (i) => i.date,
+      );
+      const grouped_events = data.groupedEvents.reduce((p, c) => {
+        if (!groupedDates.includes(c.date)) {
+          p.push(c);
+        }
+        return p;
+      }, item.contributions.grouped_events);
+      const groupedIds = item.events?.map((i) => i.id);
+      const events = data.allEvents.reduce((p, c) => {
+        if (!groupedIds?.includes(c.id)) {
+          p.push(c);
+        }
+        return p;
+      }, item.events || []);
+      const version = (item?.version || 0) + 1;
       const putCommand = new PutCommand({
         TableName: DYNAMODB_TABLE_NAME,
         Item: {
           ...item,
-          events: data.allEvents,
-          events_count: data.allEvents.length,
+          contributions: { ...item.contributions, grouped_events },
+          events: events,
+          events_count: events.length,
           updated_at: dayJS.toISOString(),
-          status: "closed",
-          version: (item?.version || 0) + 1,
+          status: version >= 10 ? "closed" : "open",
+          version: version,
         },
       });
       await docClient.send(putCommand, function (err) {
