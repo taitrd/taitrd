@@ -3,9 +3,12 @@ import { EventGroup } from "@/lib/types/github-api.type";
 import { unstable_cache } from "next/cache";
 import { eventsGroupingReducer } from "./events";
 import { CacheTag } from "@/lib/enums/cach-tag";
+import { getRepositories } from "./get-repositories";
 export const getRepositoryEventData = unstable_cache(
   async () => {
-    const { allEvents } = await EventAPI().getListRepositoryEvents(1);
+    const { repoParams } = await getRepositories();
+    console.table(repoParams);
+    const { allEvents } = await EventAPI().getEventsByRepos(repoParams, 1, 5);
     const groupedEvents = allEvents.reduce<EventGroup[]>(
       eventsGroupingReducer,
       [],
@@ -15,6 +18,6 @@ export const getRepositoryEventData = unstable_cache(
       groupedEvents,
     };
   },
-  ["github_list_events"],
+  ["github_list_events", "all_repos"],
   { revalidate: 3600, tags: [CacheTag.Github] },
 );

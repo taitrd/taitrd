@@ -1,5 +1,6 @@
 // import { GITHUB_USERNAME } from "@/data/github.constant";
 import octokitClient from "../octokit";
+import OrganizationAPI from "./organization";
 
 const RepositoryAPI = () => {
   const client = octokitClient();
@@ -17,6 +18,19 @@ const RepositoryAPI = () => {
         headers: {},
       });
       return data;
+    },
+    getListRepositories: async () => {
+      const repos = await RepositoryAPI().getUserRepositories();
+      const orgs = await OrganizationAPI().getUserOrganizations();
+      const orgRepos = [];
+      for (const org of orgs) {
+        const reposByOrg = await RepositoryAPI().getOrgRepositories(org.login);
+        orgRepos.push(...reposByOrg);
+      }
+      return {
+        repos,
+        orgRepos,
+      };
     },
   };
 };
