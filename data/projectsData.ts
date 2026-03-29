@@ -7,6 +7,13 @@ interface Project {
 }
 
 const projectsData: Project[] = [
+    {
+    title: "Next.js/Shadcn/TaiwindCSS website templates",
+    description: `A bundle of website templates built with Tailwind CSS and shadcn/ui, generated with AI assistance.`,
+    imgSrc: "/imgs/Screenshot_26-3-2026_103128_ticketer.demo.dtwebta.com.jpeg",
+    tags: ["Tailwind CSS", "Shadcn/ui"],
+    href: "https://shop.dtwebta.com",
+  },
   {
     title: "Tailwind CSS Component Library",
     description: `A bundle of templates built with Tailwind CSS and shadcn/ui, generated with AI assistance.`,
