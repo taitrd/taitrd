@@ -1,7 +1,7 @@
 import EventAPI from "@/lib/github-apis/event";
 import { EventGroup } from "@/lib/types/github-api.type";
 import { unstable_cache } from "next/cache";
-import { eventsGroupingReducer } from "./events";
+import { eventsGroupingReducer } from "./get-events-legacy";
 import { CacheTag } from "@/lib/enums/cach-tag";
 import { getRepositories } from "./get-repositories";
 export const getRepositoryEventData = unstable_cache(

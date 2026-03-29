@@ -2,7 +2,7 @@ import {
   getBitbucketEntryContributions,
   getGithubEntryContributions,
   getGitlabEntryContributions,
-} from "./get-entry-contributions";
+} from "../get-entry-contributions";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 const keyValue = getDateKeyValue();
 const mergeOldGroups = (

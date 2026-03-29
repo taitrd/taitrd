@@ -1,7 +1,7 @@
 import EventAPI from "@/lib/github-apis/event";
 import { EventGroup } from "@/lib/types/github-api.type";
 import { unstable_cache } from "next/cache";
-import { eventsGroupingReducer } from "./events";
+import { eventsGroupingReducer } from "./get-events-legacy";
 
 /**
  * New API for get event data
@@ -9,7 +9,7 @@ import { eventsGroupingReducer } from "./events";
 export const getEventData = unstable_cache(
   async () => {
     const { allEvents } =
-      await EventAPI().getEventsForAuthenticatedUserByRequest(1, 30);
+      await EventAPI().getEventsForAuthenticatedUserByRequest();
     const groupedEvents = allEvents.reduce<EventGroup[]>(
       eventsGroupingReducer,
       [],

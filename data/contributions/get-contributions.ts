@@ -2,7 +2,7 @@
 import { unstable_cache } from "next/cache";
 import { CACHE_VERSION } from "@/lib/constants/cache";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
-import { getCommand } from "./contribution-api";
+import { getCommand } from "./commands";
 import { CacheTag } from "@/lib/enums/cach-tag";
 const keyValue = getDateKeyValue();
 export const getGithubContributions = unstable_cache(

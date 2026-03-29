@@ -1,8 +1,8 @@
 "use server";
 
-import { collectBitbucketContributions } from "@/data/contributions/bitbucket";
-import { collectGithubContributions } from "@/data/contributions/github";
-import { collectGitlabContributions } from "@/data/contributions/gitlab";
+import { collectBitbucketContributions } from "@/data/contributions/collect-bitbucket-contributions";
+import { collectGithubContributions } from "@/data/contributions/collect-github-contributions";
+import { collectGitlabContributions } from "@/data/contributions/collect-gitlab-contributions";
 import { unstable_cache } from "next/cache";
 import { CacheTag } from "../enums/cach-tag";
 

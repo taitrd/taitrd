@@ -1,7 +1,7 @@
-import { collectBitbucketContributions } from "@/data/contributions/bitbucket";
+import { collectBitbucketContributions } from "@/data/contributions/collect-bitbucket-contributions";
 import { collectPlatformContributions } from "@/data/contributions/collect-platform-contributions";
-import { collectGithubContributions } from "@/data/contributions/github";
-import { collectGitlabContributions } from "@/data/contributions/gitlab";
+import { collectGithubContributions } from "@/data/contributions/collect-github-contributions";
+import { collectGitlabContributions } from "@/data/contributions/collect-gitlab-contributions";
 import { CacheTag } from "@/lib/enums/cach-tag";
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";

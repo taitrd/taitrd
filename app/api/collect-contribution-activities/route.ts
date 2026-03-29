@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
-import { collectBitbucketContributions } from "@/data/contributions/bitbucket";
-import { collectGithubContributions } from "@/data/contributions/github";
-import { collectGitlabContributions } from "@/data/contributions/gitlab";
+import { collectBitbucketContributions } from "@/data/contributions/collect-bitbucket-contributions";
+import { collectGithubContributions } from "@/data/contributions/collect-github-contributions";
+import { collectGitlabContributions } from "@/data/contributions/collect-gitlab-contributions";
 import { revalidateTag } from "next/cache";
 import { CacheTag } from "@/lib/enums/cach-tag";
 

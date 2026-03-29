@@ -4,7 +4,7 @@ import {
   AWS_SECRET_ACCESS_KEY,
   DYNAMODB_TABLE_KEY,
   CONTRIBUTION_ACTIVITIES_TABLE_NAME as DYNAMODB_TABLE_NAME,
-} from "../../lib/constants/aws";
+} from "../../../lib/constants/aws";
 import dynamodbDocClient from "@/lib/dynamodb";
 import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 import dayjs from "dayjs";
