@@ -1,3 +1,4 @@
+import { CacheTag } from "@/lib/enums/cach-tag";
 import EventAPI from "@/lib/github-apis/event";
 import { EventGroup, EventType } from "@/lib/types/github-api.type";
 import dayjs from "dayjs";
@@ -73,5 +74,5 @@ export const getEventData = unstable_cache(
     };
   },
   ["github_list_events", "authenticated"],
-  { revalidate: false },
+  { revalidate: 60, tags: [CacheTag.Github] },
 );

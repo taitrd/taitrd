@@ -10,7 +10,7 @@ export const getGithubContributions = unstable_cache(
   [CACHE_VERSION, "github_contributes", keyValue],
   {
     tags: [CacheTag.Github, CacheTag.Contributions],
-    revalidate: false,
+    revalidate: 3600,
   },
 );
 
