@@ -8,10 +8,7 @@ export async function POST(request: NextRequest) {
   if (secret !== process.env.REVALIDATE_SECRET) {
     return new Response("Unauthorized", { status: 401 });
   }
-  revalidateTag(CacheTag.Contributions);
-  revalidateTag(CacheTag.Github);
-  revalidateTag(CacheTag.Gitlab);
-  revalidateTag(CacheTag.Bitbucket);
+  revalidateTag(CacheTag.ContributionsHistory);
   await collectPlatformContributions();
   return Response.json({ revalidated: true, now: Date.now() });
 }

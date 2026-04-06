@@ -11,8 +11,6 @@ import { ContributionData } from "@/lib/types";
 import dynamodbDocClient from "@/lib/dynamodb";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 import dayjs from "dayjs";
-import { revalidateTag } from "next/cache";
-import { CacheTag } from "@/lib/enums/cach-tag";
 import { Contributions } from "@/lib/types/contribution.type";
 const dayJS = dayjs();
 const putContributions = async (
@@ -27,7 +25,6 @@ const putContributions = async (
     DYNAMODB_TABLE_NAME &&
     DYNAMODB_TABLE_KEY
   ) {
-    revalidateTag(CacheTag.Contributions);
     const docClient = dynamodbDocClient(
       AWS_ACCESS_KEY_ID,
       AWS_SECRET_ACCESS_KEY,

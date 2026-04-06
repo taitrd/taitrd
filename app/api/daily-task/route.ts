@@ -1,9 +1,6 @@
 import { collectBitbucketContributions } from "@/data/contributions/collect-bitbucket-contributions";
-import { collectPlatformContributions } from "@/data/contributions/collect-platform-contributions";
 import { collectGithubContributions } from "@/data/contributions/collect-github-contributions";
 import { collectGitlabContributions } from "@/data/contributions/collect-gitlab-contributions";
-import { CacheTag } from "@/lib/enums/cach-tag";
-import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
@@ -12,14 +9,9 @@ export async function GET(request: Request) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
   // Your scheduled logic here (e.g., database updates, sending emails)
-  revalidateTag(CacheTag.Contributions);
-  revalidateTag(CacheTag.Github);
-  revalidateTag(CacheTag.Gitlab);
-  revalidateTag(CacheTag.Bitbucket);
   await collectGithubContributions();
   await collectGitlabContributions();
   await collectBitbucketContributions();
-  await collectPlatformContributions();
 
   console.log("Cron job ran at:", new Date().toISOString());
 

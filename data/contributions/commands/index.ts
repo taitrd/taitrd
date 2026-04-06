@@ -54,7 +54,7 @@ export const scanCommand = async (keySearch: string = "contributions_") => {
     let lastEvaluatedKey: any = undefined;
 
     do {
-      const startDate = dayjs().subtract(3, "years");
+      const startDate = dayjs().subtract(6, "months");
       const endDate = dayjs();
 
       const command = new ScanCommand({

@@ -6,6 +6,10 @@ import { collectGitlabContributions } from "@/data/contributions/collect-gitlab-
 import { unstable_cache } from "next/cache";
 import { CacheTag } from "../enums/cach-tag";
 
+/**
+ * @deprecated using v2
+ * @returns
+ */
 export const getContributions = async () => {
   try {
     const data = await unstable_cache(
