@@ -7,17 +7,17 @@ const keyValue = getDateKeyValue();
 export const getGithubRangeContributions = unstable_cache(
   scanCommand,
   [CACHE_VERSION, "github_range_contributes", keyValue],
-  { revalidate: 3600, tags: [CacheTag.Contributions] },
+  { revalidate: 3600, tags: [CacheTag.ContributionsHistory] },
 );
 
 export const getGitlabRangeContributions = unstable_cache(
   scanCommand,
   [CACHE_VERSION, "gitlab_range_contributes", keyValue],
-  { revalidate: 3600, tags: [CacheTag.Contributions] },
+  { revalidate: 3600, tags: [CacheTag.ContributionsHistory] },
 );
 
 export const getBitbucketRangeContributions = unstable_cache(
   scanCommand,
   [CACHE_VERSION, "bitbucket_range_contributes", keyValue],
-  { revalidate: 3600, tags: [CacheTag.Contributions] },
+  { revalidate: 3600, tags: [CacheTag.ContributionsHistory] },
 );

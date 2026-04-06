@@ -11,12 +11,8 @@ export async function POST(request: NextRequest) {
     return new Response("Unauthorized", { status: 401 });
   }
   revalidateTag(CacheTag.Contributions);
-  revalidateTag(CacheTag.Github);
-  revalidateTag(CacheTag.Gitlab);
-  revalidateTag(CacheTag.Bitbucket);
   await collectGithubContributions();
   await collectGitlabContributions();
   await collectBitbucketContributions();
-
   return Response.json({ revalidated: true, now: Date.now() });
 }

@@ -15,7 +15,7 @@ export const collectPlatformContributions = async () => {
   });
 
   if (gitHubData) {
-    /** Scan and get events in old range */
+    /** Scan and get events in old range with key starts "contributions_" */
     const oldContributes =
       (await getGithubRangeContributions()) as Contributions[];
 
@@ -26,7 +26,7 @@ export const collectPlatformContributions = async () => {
       allEvents: [],
     });
 
-    /** Scan and get events in old range */
+    /** Scan and get events in old range with key starts "github_contributions" */
     const oldGithubContributes = (await getGithubRangeContributions(
       "github_contributions",
     )) as Contributions[];

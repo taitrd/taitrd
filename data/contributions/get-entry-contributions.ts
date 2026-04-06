@@ -7,15 +7,15 @@ const keyValue = getDateKeyValue();
 export const getGithubEntryContributions = unstable_cache(
   getCommandWithEntry,
   [CACHE_VERSION, "contributes_entry", keyValue],
-  { revalidate: 3600, tags: [CacheTag.Contributions] },
+  { revalidate: 3600, tags: [CacheTag.ContributionsEntry] },
 );
 export const getGitlabEntryContributions = unstable_cache(
   getCommandWithEntry,
   [CACHE_VERSION, "gitlab_contributes_entry", keyValue],
-  { revalidate: 3600, tags: [CacheTag.Contributions] },
+  { revalidate: 3600, tags: [CacheTag.ContributionsEntry] },
 );
 export const getBitbucketEntryContributions = unstable_cache(
   getCommandWithEntry,
   [CACHE_VERSION, "bitbucket_contributes_entry", keyValue],
-  { revalidate: 3600, tags: [CacheTag.Contributions] },
+  { revalidate: 3600, tags: [CacheTag.ContributionsEntry] },
 );
