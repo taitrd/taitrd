@@ -12,7 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.699.0",
+    "@aws-sdk/client-dynamodb": "^3.1035.0",
     "@aws-sdk/lib-dynamodb": "^3.699.0",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
