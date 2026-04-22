@@ -1,8 +1,6 @@
-import { CacheTag } from "@/lib/enums/cach-tag";
 import EventAPI from "@/lib/github-apis/event";
 import { EventGroup, EventType } from "@/lib/types/github-api.type";
 import dayjs from "dayjs";
-import { unstable_cache } from "next/cache";
 export const eventPayloads: { [key in EventType]?: (payload: any) => any } = {
   PullRequestEvent: ({
     action,
@@ -60,19 +58,15 @@ export const eventsGroupingReducer = (prv: EventGroup[], cur: any) => {
  * @deprecated
  * using new api instead
  */
-export const getEventData = unstable_cache(
-  async (page?: number) => {
-    const { allEvents } = await EventAPI().getEventsForAuthenticatedUser(page);
-    const groupedEvents = allEvents.reduce<EventGroup[]>(
-      eventsGroupingReducer,
-      [],
-    );
-    // console.log("events", groupedEvents);
-    return {
-      allEvents,
-      groupedEvents,
-    };
-  },
-  ["github_list_events", "authenticated"],
-  { revalidate: 60, tags: [CacheTag.Github] },
-);
+export const getEventData = async (page?: number) => {
+  const { allEvents } = await EventAPI().getEventsForAuthenticatedUser(page);
+  const groupedEvents = allEvents.reduce<EventGroup[]>(
+    eventsGroupingReducer,
+    [],
+  );
+  // console.log("events", groupedEvents);
+  return {
+    allEvents,
+    groupedEvents,
+  };
+};
