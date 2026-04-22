@@ -10,6 +10,7 @@ import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 import dayjs from "dayjs";
 import { getDateKeyValue } from "@/lib/dynamodb/key-values";
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
+import { match } from "ts-pattern";
 const keyValue = getDateKeyValue();
 export const getCommand = async (keyParam: string = "") => {
   if (
@@ -36,7 +37,10 @@ export const getCommand = async (keyParam: string = "") => {
   }
   return null;
 };
-export const scanCommand = async (keySearch: string = "contributions_") => {
+export const scanCommand = async (
+  keySearch: string = "contributions_",
+  scanType?: "quick" | "medium" | "long",
+) => {
   if (
     AWS_ACCESS_KEY_ID &&
     AWS_SECRET_ACCESS_KEY &&
@@ -54,7 +58,11 @@ export const scanCommand = async (keySearch: string = "contributions_") => {
     let lastEvaluatedKey: any = undefined;
 
     do {
-      const startDate = dayjs().subtract(6, "months");
+      const startDate = match(scanType)
+        .with("long", () => dayjs().subtract(2, "years"))
+        .with("medium", () => dayjs().subtract(7, "months"))
+        .otherwise(() => dayjs().subtract(7, "days"));
+
       const endDate = dayjs();
 
       const command = new ScanCommand({
