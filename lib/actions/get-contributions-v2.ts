@@ -62,11 +62,14 @@ export const getContributionsV2 = async () => {
     const github_grouped_events = Object.entries(
       contributions.github_contributions?.grouped_events || {},
     ).map(([_d, e]) => e);
+    const github_entry_events = Object.entries(
+      contributions.github_contributions?.entry_events || {},
+    ).map(([_d, e]) => e);
     const github_contributions = {
       ...contributions.github_contributions,
       contributions: {
         grouped_events: github_grouped_events.filter((i) => i.events?.length),
-        entry_events: github_grouped_events.filter((i) => !i.events?.length),
+        entry_events: github_entry_events,
       },
     } as Contributions;
     return {

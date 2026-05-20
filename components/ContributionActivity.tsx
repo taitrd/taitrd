@@ -12,10 +12,7 @@ import { cn } from "@/lib/utils";
 import { PropsWithChildren, useMemo, useState } from "react";
 import useContributions from "@/hooks/use-contributions";
 import { SkillData } from "@/lib/types";
-import {
-  entryContributionsMapping,
-  gitHubContributionsMapping,
-} from "@/lib/client/contributions";
+import { entryContributionsMapping } from "@/lib/client/contributions";
 import dayjs from "dayjs";
 import siteMetadata from "@/data/siteMetadata";
 import { Github, Gitlab } from "lucide-react";
@@ -24,6 +21,7 @@ import { currentYear, yearRange } from "@/lib/constants/contributions";
 import dynamic from "next/dynamic";
 import { fadeInLeft } from "@/lib/motion/variants";
 import { Skeleton } from "./ui/skeleton";
+import { entryContributionsMapper } from "@/lib/client/entry-contribution-mapper";
 
 const MotionBlock = dynamic(() => import("./motions/Block"));
 const ContributionChart = dynamic(() => import("./ContributionChart"));
@@ -37,11 +35,11 @@ export default function ContributionActivity() {
     const selectedStartDate = dayjs(`${selectedYear}-01-01`);
     const startDate = selectedStartDate.toDate();
     const endDate = selectedStartDate.endOf("year").toDate();
-    const github: SkillData["contributions"] = gitHubContributionsMapping(
+    const github: SkillData["contributions"] = entryContributionsMapper(
       selectedYear,
       startDate,
       endDate,
-      contributions_data?.github_contributions,
+      contributions_data?.github_contributions?.contributions,
     );
     const gitlab: SkillData["contributions"] = entryContributionsMapping(
       selectedYear,
