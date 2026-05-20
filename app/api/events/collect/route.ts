@@ -1,9 +1,9 @@
 import type { NextRequest } from "next/server";
-import { collectBitbucketContributions } from "@/data/contributions/collect-bitbucket-contributions";
-import { collectGitlabContributions } from "@/data/contributions/collect-gitlab-contributions";
+import { collectBitbucketContributions } from "@/data/collectors/collect-bitbucket-events";
+import { collectGithubContributions } from "@/data/collectors/collect-github-events";
+import { collectGitlabContributions } from "@/data/collectors/collect-gitlab-events";
 import { revalidateTag } from "next/cache";
 import { CacheTag } from "@/lib/enums/cach-tag";
-import { collectGithubContributionsByRepos } from "@/data/contributions/collect-github-contributions-by-repos";
 
 export async function POST(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get("secret");
@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     return new Response("Unauthorized", { status: 401 });
   }
   revalidateTag(CacheTag.Contributions);
-  await collectGithubContributionsByRepos();
+  await collectGithubContributions();
   await collectGitlabContributions();
   await collectBitbucketContributions();
   return Response.json({ revalidated: true, now: Date.now() });
