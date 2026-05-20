@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { collectPlatformContributions } from "@/data/contributions/collect-platform-contributions";
+import { collectPlatformContributions } from "@/data/contributions/update-platform-contributions";
 import { revalidateTag } from "next/cache";
 import { CacheTag } from "@/lib/enums/cach-tag";
 

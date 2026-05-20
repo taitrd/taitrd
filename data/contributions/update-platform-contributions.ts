@@ -7,6 +7,7 @@ import {
   getGitlabRangeContributions,
 } from "./get-range-contributions";
 import { mergeOldGroups } from "./utils/merge-old-groups";
+import { mergeOldEntries } from "./utils/merge-old-entries";
 
 export const collectPlatformContributions = async () => {
   /** Github data instance */
@@ -20,9 +21,11 @@ export const collectPlatformContributions = async () => {
       (await getGithubRangeContributions()) as Contributions[];
 
     const mergedGroupedEvents = mergeOldGroups(gitHubData, oldContributes);
+    const mergedEntryEvents = mergeOldEntries(gitHubData, oldContributes);
 
     await putContributionsByPlatform("github", {
       groupedEvents: mergedGroupedEvents,
+      entryEvents: mergedEntryEvents,
       allEvents: [],
     });
 
@@ -36,8 +39,14 @@ export const collectPlatformContributions = async () => {
       oldGithubContributes,
     );
 
+    const mergedGithubEntryEvents = mergeOldEntries(
+      gitHubData,
+      oldGithubContributes,
+    );
+
     await putContributionsByPlatform("github", {
       groupedEvents: mergedGithubGroupedEvents,
+      entryEvents: mergedGithubEntryEvents,
       allEvents: [],
     });
   }

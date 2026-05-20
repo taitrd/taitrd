@@ -1,15 +1,15 @@
 import { Contributions } from "@/lib/types/contribution.type";
 import { AWS_ENABLE_SYNC } from "../../lib/constants/aws";
-import { getGitlabContributions } from "./get-contributions";
-import putContributions from "./put-contributions";
+import { getBitbucketContributions } from "../contributions/get-contributions";
+import putContributions from "../contributions/put-contributions";
 
-export const collectGitlabContributions = async () => {
+export const collectBitbucketContributions = async () => {
   const eventData = {
     allEvents: [],
     groupedEvents: [],
   };
-  let contributionsItem = (await getGitlabContributions(
-    "gitlab_",
+  let contributionsItem = (await getBitbucketContributions(
+    "bitbucket_",
   )) as Contributions;
   if (AWS_ENABLE_SYNC) {
     if (
@@ -17,11 +17,11 @@ export const collectGitlabContributions = async () => {
       (contributionsItem && ["open"].includes(contributionsItem.status))
     ) {
       console.info(
-        "batching gitlab contributions",
+        "batching bitbucket contributions",
         contributionsItem ? "open status" : "new status",
       );
 
-      await putContributions(contributionsItem, eventData, "gitlab_");
+      await putContributions(contributionsItem, eventData, "bitbucket_");
     }
   }
   return contributionsItem;

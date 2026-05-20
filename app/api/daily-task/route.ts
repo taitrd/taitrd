@@ -1,6 +1,6 @@
-import { collectBitbucketContributions } from "@/data/contributions/collect-bitbucket-contributions";
-import { collectGithubContributions } from "@/data/contributions/collect-github-contributions";
-import { collectGitlabContributions } from "@/data/contributions/collect-gitlab-contributions";
+import { collectBitbucketContributions } from "@/data/collectors/collect-bitbucket-events";
+import { collectGithubContributions } from "@/data/collectors/collect-github-events";
+import { collectGitlabContributions } from "@/data/collectors/collect-gitlab-events";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {

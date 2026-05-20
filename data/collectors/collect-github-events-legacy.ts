@@ -1,17 +1,11 @@
 import { AWS_ENABLE_SYNC } from "../../lib/constants/aws";
-import putContributions from "./put-contributions";
+import putContributions from "../contributions/put-contributions";
 
-import { getGithubContributions } from "./get-contributions";
-// import { getEventData } from "./github/get-events-legacy";
-// import { getRepositoryEventData as getEventData } from "./github/get-repository-events";
+import { getGithubContributions } from "../contributions/get-contributions";
+import { getEventData } from "../contributions/github/get-events-legacy";
 import { Contributions } from "@/lib/types/contribution.type";
-import { getEventData } from "./github/get-events";
 
 export const collectGithubContributions = async () => {
-  /**
-   * TODO: change Event API when needed
-   * Get mores event data with repo and events API
-   */
   const eventData = await getEventData();
 
   console.table(

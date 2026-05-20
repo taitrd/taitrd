@@ -1,8 +1,8 @@
 import { AWS_ENABLE_SYNC } from "../../lib/constants/aws";
-import putContributions from "./put-contributions";
+import putContributions from "../contributions/put-contributions";
 
-import { getGithubContributions } from "./get-contributions";
-import { getRepositoryEventData as getEventData } from "./github/get-repository-events";
+import { getGithubContributions } from "../contributions/get-contributions";
+import { getRepositoryEventData as getEventData } from "../contributions/github/get-repository-events";
 import { Contributions } from "@/lib/types/contribution.type";
 
 export const collectGithubContributionsByRepos = async () => {
