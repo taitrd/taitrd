@@ -114,6 +114,29 @@ const EventAPI = () => {
         allEvents,
       };
     },
+    getContributionsCollection: async () => {
+      const query = `
+        query($userName: String!) {
+          user(login: $userName) {
+            contributionsCollection {
+              contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays {
+                    contributionCount
+                    date
+                  }
+                }
+              }
+            }
+          }
+        }
+      `;
+      const response: any = await client.graphql(query, {
+        userName: GITHUB_USERNAME || "john",
+      });
+      return response;
+    },
   };
 };
 export default EventAPI;
