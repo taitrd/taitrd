@@ -46,7 +46,7 @@ export const gitHubEventGroupMapping = (i: EventGroup) => {
   ).length;
   const cmCount = i.events.filter((j) => j.type === EventType.PushEvent).length;
   const createCount = createRepoCount || createBranchCount;
-  const totalCount = createCount + prCount || cmCount || 0;
+  const totalCount = createCount + prCount + cmCount || 0;
   return {
     count: totalCount,
     date_str: i.date,
