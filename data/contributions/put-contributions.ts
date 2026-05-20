@@ -36,6 +36,7 @@ const putContributions = async (
         [DYNAMODB_TABLE_KEY]: keyParam + keyValue,
         contributions: {
           grouped_events: data.groupedEvents || [],
+          entry_events: data.entryEvents || [],
         },
         events: data.allEvents,
         events_count: data.allEvents?.length || 0,
@@ -51,6 +52,13 @@ const putContributions = async (
       });
       return newItem;
     } else {
+      const entriedDates = item.contributions.entry_events?.map((i) => i.date);
+      const entry_events = data.entryEvents?.reduce((p, c) => {
+        if (!entriedDates?.includes(c.date)) {
+          p.push(c);
+        }
+        return p;
+      }, item.contributions.entry_events || []);
       const groupedDates = item.contributions.grouped_events?.map(
         (i) => i.date,
       );
@@ -72,7 +80,11 @@ const putContributions = async (
         TableName: DYNAMODB_TABLE_NAME,
         Item: {
           ...item,
-          contributions: { ...item.contributions, grouped_events },
+          contributions: {
+            ...item.contributions,
+            grouped_events,
+            entry_events,
+          },
           events: events,
           events_count: events.length,
           updated_at: dayJS.toISOString(),

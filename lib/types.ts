@@ -4,6 +4,7 @@ import { Contributions } from "./types/contribution.type";
 export type ContributionData = {
   allEvents: Event[];
   groupedEvents: EventGroup[];
+  entryEvents?: EventGroup[];
 };
 
 export type ServiceContributions = {
