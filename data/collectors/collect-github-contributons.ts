@@ -8,7 +8,7 @@ export const collectGithubContributions = async () => {
   const contributionData = await getContrbutionData();
 
   console.table(
-    contributionData.entryEvents.map((d) => `${d.date} (${d.events.length})`),
+    contributionData.entryEvents.map((d) => `${d.date} (${d.events_count})`),
   );
 
   let contributionsItem = (await getGithubContributions()) as Contributions;
