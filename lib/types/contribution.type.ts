@@ -23,5 +23,6 @@ export type PlatformContribution = {
   status: "open" | "closed";
   created_at: string;
   grouped_events: { [dateid in string]: EventGroup };
+  entry_events: { [dateid in string]: EventGroup };
   events_count: number;
 };
