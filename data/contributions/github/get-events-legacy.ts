@@ -64,7 +64,6 @@ export const getEventData = async (page?: number) => {
     eventsGroupingReducer,
     [],
   );
-  // console.log("events", groupedEvents);
   return {
     allEvents,
     groupedEvents,
