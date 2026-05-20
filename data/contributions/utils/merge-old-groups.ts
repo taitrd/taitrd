@@ -65,30 +65,6 @@ export const mergeOldGroups = (
         }
       }
     }
-    if (cur.contributions?.entry_events) {
-      for (const event of cur.contributions?.entry_events) {
-        const eventDate = eventDates.find((i) => i === event.date);
-        if (!eventDate) {
-          if (event.date) {
-            prv[event.date] = { ...event };
-            console.log(
-              `added entry event group ${event.date} from record ${cur.taitrd}`,
-            );
-          }
-        } else {
-          prv[eventDate].events = prv[eventDate].events || [];
-          event.events?.forEach((i) => {
-            const eventItem = prv[eventDate].events.find((j) => j.id === i.id);
-            if (!eventItem) {
-              prv[eventDate].events.push(i);
-              console.log(
-                `added entry event ${i.id} ${i.created_at} to group ${eventDate} from record ${cur.taitrd}`,
-              );
-            }
-          });
-        }
-      }
-    }
     return prv;
   }, groupedEvents);
   return Object.entries(mergedEventGroups)

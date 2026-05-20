@@ -29,6 +29,10 @@ export const putContributionsByPlatform = async (
       (p, c) => ({ ...p, [c.date]: c }),
       {},
     ),
+    entry_events: (data.entryEvents || []).reduce(
+      (p, c) => ({ ...p, [c.date]: c }),
+      {},
+    ),
     events_count: (data.groupedEvents || []).reduce(
       (p, c) => p + (c.events_count || c.events?.length || 0),
       0,
