@@ -12,3 +12,13 @@ export async function POST(request: NextRequest) {
   await collectGithubContributions();
   return Response.json({ revalidated: true, now: Date.now() });
 }
+
+export async function GET(request: NextRequest) {
+  const secret = request.nextUrl.searchParams.get("secret");
+  if (secret !== process.env.REVALIDATE_SECRET) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  revalidateTag(CacheTag.Contributions);
+  await collectGithubContributions();
+  return Response.json({ revalidated: true, now: Date.now() });
+}
