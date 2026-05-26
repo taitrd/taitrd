@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get("secret");
-  if (secret !== process.env.REVALIDATE_SECRET) {
+  if (secret !== process.env.CRON_SECRET) {
     return new Response("Unauthorized", { status: 401 });
   }
   revalidateTag(CacheTag.Contributions);
