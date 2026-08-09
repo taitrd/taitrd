@@ -20,7 +20,7 @@ export type EventGroup = {
 export type Event = {
   id: string;
   type: string | null;
-  actor: any;
+  actor?: any;
   repo: {
     id: number;
   };
@@ -37,7 +37,10 @@ export type Event = {
       sha?: string;
       html_url?: string;
     }[];
+    target_type?: string | null;
+    target_title?: string | null;
+    push_data?: any;
   };
-  public: boolean;
+  public?: boolean;
   created_at: string | null;
 };
