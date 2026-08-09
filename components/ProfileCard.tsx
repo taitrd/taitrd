@@ -1,20 +1,20 @@
-'use client';
+"use client";
 import Image from "next/legacy/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { fadeInLeft } from "@/lib/motion/variants";
 import dynamic from "next/dynamic";
-import siteMetadata from '@/data/siteMetadata';
+import siteMetadata from "@/data/siteMetadata";
 const MotionBlock = dynamic(() => import("./motions/Block"));
 
 const ProfileCard = () => {
   return (
-    <MotionBlock variants={fadeInLeft} >
+    <MotionBlock variants={fadeInLeft}>
       <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-700 backdrop-blur-sm">
         <CardContent className="p-6">
           <div className="flex items-center space-x-4">
             <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-700">
               <Image
-                src="/avatar.webp"
+                src="/avatar.png"
                 alt={siteMetadata.title}
                 width={64}
                 height={64}

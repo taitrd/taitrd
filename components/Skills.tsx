@@ -8,7 +8,15 @@ const skills = [
   },
   {
     category: "Backend",
-    items: ["Node.js", "Nest.js", "PHP", "Laravel", "MySQL", "MongoDb"],
+    items: [
+      "Node.js",
+      "Nest.js",
+      "PHP",
+      "Laravel",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDb",
+    ],
   },
   {
     category: "Cloud",
@@ -25,12 +33,12 @@ const skills = [
     colspan: true,
   },
   {
-    category: "DevOps",
+    category: "Deployment",
     items: ["Git-based", "Docker", "Github CI/CD", "Gitlab CI/CD"],
   },
   {
     category: "AI",
-    items: ["v0", "Antigravity", "Github Copilot"],
+    items: ["Claude Code"],
   },
 ];
 
