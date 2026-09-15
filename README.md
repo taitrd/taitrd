@@ -8,9 +8,10 @@ I'm a passionate software engineer with experience in building web applications,
 - 📫 How to reach me: [Linkedin](https://www.linkedin.com/in/tai-tran-0b68a9187/)
 
 ## Skills
-- **Languages:** PHP, Javascript, Typescript
-- **Frameworks:** Laravel, Next.js, Nest.js
-- **Tools:** NodeJs, Docker
-- **Other:** GCP, Github/Gitlab CI-CD, Bitbucket Pipelines
+- **Languages:** JavaScript/TypeScript, PHP, Java
+- **Frontend:** React, Next.js, Angular, Tailwind CSS, Shadcn UI
+- **Backend:** Node.js, NestJS, Laravel, Spring Boot
+- **Database & Cloud:** PostgreSQL, MySQL, MongoDB, Firebase, GCP
+- **Tools:** Claude Code, Antigravity, Github/Gitlab CI-CD, Bitbucket Pipelines
 
 Thanks for visiting my profile! Feel free to reach out if you want to connect or collaborate on a project.
